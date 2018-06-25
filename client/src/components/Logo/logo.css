@@ -1,0 +1,78 @@
+/* Gradient Animation */
+
+.logo {
+    padding: 2vh;
+    border-radius: 2vh;
+    max-width: 50vh;
+    max-height: 50vh;
+    align-content: center;
+    margin: 5vh 5vh 0vh 5vh;
+    box-shadow: 0 0 5px 2px lightgray;
+    margin-right: 5vh;
+    background: linear-gradient(270deg, #00dbff, #d9d9d9, #f590fb);
+    background-size: 600% 600%;
+    -webkit-animation: AnimationName 5s ease infinite;
+    -moz-animation: AnimationName 5s ease infinite;
+    -o-animation: AnimationName 5s ease infinite;
+    animation: AnimationName 5s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0% {
+        background-position: 0% 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@-moz-keyframes AnimationName {
+    0% {
+        background-position: 0% 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@-o-keyframes AnimationName {
+    0% {
+        background-position: 0% 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@keyframes AnimationName {
+    0% {
+        background-position: 0% 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+/* =================================================== */
+/* MEDIA QUERIES */
+/* =================================================== */
+
+@media only screen and (max-width: 767px) {
+    .logo {
+        max-width: 25vh;
+        max-height: 25vh;
+        margin-top: 25vh;
+    }
+}

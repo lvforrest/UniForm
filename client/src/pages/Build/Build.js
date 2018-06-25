@@ -6,7 +6,6 @@ import { Col, Row, Container } from "../../components/Grid";
 import Button from "../../components/Button"
 import Paper from "../../components/Paper"
 import { Input, } from "../../components/InputField";
-import "./Build.css";
 import EmailInput from "./build.components/Email-input";
 import NameInput from "./build.components/Name-input";
 
