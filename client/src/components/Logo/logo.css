@@ -3,10 +3,12 @@
 .logo {
     padding: 2vh;
     border-radius: 2vh;
-    max-width: 200px;
-    max-height: 200px;
+    max-width: 50vh;
+    max-height: 50vh;
     align-content: center;
-    margin: 5vh;
+    margin: 5vh 5vh 0vh 5vh;
+    box-shadow: 0 0 5px 2px lightgray;
+    margin-right: 5vh;
     background: linear-gradient(270deg, #00dbff, #d9d9d9, #f590fb);
     background-size: 600% 600%;
     -webkit-animation: AnimationName 5s ease infinite;
@@ -60,5 +62,17 @@
     }
     100% {
         background-position: 0% 50%
+    }
+}
+
+/* =================================================== */
+/* MEDIA QUERIES */
+/* =================================================== */
+
+@media only screen and (max-width: 767px) {
+    .logo {
+        max-width: 25vh;
+        max-height: 25vh;
+        margin-top: 25vh;
     }
 }

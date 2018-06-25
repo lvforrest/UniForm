@@ -8,7 +8,9 @@
     "animate.css": "^3.6.1",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
+    "material-ui": "^0.20.1",
     "mongoose": "^5.1.6",
+    "react-grid-layout": "^0.16.6",
     "typeface-roboto": "0.0.54"
   },
   "devDependencies": {},

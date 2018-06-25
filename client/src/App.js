@@ -15,7 +15,7 @@ class App extends Component {
   
   <Router>
     <div>
-<Navbar body = {<Button children = "Sign Out" className = "btn btn-outline-dark" key="signOut"/>}/>
+{/* <Navbar body = {<Button children = "Sign Out" className = "btn btn-outline-dark" key="signOut"/>}/> */}
       <Switch>
         <Route exact path="/" component={Home}/>
         <Route exact path="/questionaire" component={Questionaire}/>
