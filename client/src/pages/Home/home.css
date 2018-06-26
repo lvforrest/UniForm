@@ -2,15 +2,6 @@ body {
     margin: auto;
     align-content: center;
     text-align: center;
-    margin-top: 5vh;
     background: linear-gradient(180deg, rgba(204,204,204,1) 24%, rgba(143,143,143,0) 45%);
-    height: 100vh;
+    height: auto;
 };
-
-.button {
-background-color: #00dbff;
-};
-
-#signUpButton {
-background-color: #f590fb;
-}

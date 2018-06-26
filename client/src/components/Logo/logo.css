@@ -8,6 +8,7 @@
     align-content: center;
     margin: 5vh 5vh 0vh 5vh;
     box-shadow: 0 0 5px 2px lightgray;
+    margin-top: 5vh;
     margin-right: 5vh;
     background: linear-gradient(270deg, #00dbff, #d9d9d9, #f590fb);
     background-size: 600% 600%;

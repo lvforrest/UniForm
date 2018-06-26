@@ -30,8 +30,6 @@ class App extends Component {
         </Switch>
       </div>
     </Router>
-    <div className="body">
-    </div>
     <Footer />
   </div>
 
