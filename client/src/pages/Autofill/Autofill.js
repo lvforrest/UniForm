@@ -109,7 +109,7 @@ class Autofill extends Component {
         options= {this.state.users.map(user => (
           { value: user.firstName , label: user.firstName } 
       ))}
-      />
+      /> 
       <h2>Template</h2>
       <Select 
         name="form-field-name2"
