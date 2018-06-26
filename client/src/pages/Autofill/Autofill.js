@@ -13,7 +13,9 @@ class Autofill extends Component {
   state = {
     templates: [],
     users: [],
-    filled: [], 
+    filled: [],
+    userOption: "",
+    templateOption: ""
     
   }
   componentDidMount() {
@@ -58,15 +60,13 @@ class Autofill extends Component {
     for(let i =0; i < this.state.users.length; i++) {
       if(this.state.users[i].firstName === this.state.userOption.value){
         filledUser = this.state.users[i];
-        console.log(filledUser);
+        console.log(this.state)
       }
     }
 
     for(let i =0; i < this.state.templates.length; i++) {
       if(this.state.templates[i].templateName === this.state.templateOption.value){
-        filledTemplate = this.state.templates[i];
-        console.log(filledTemplate);
-      }
+        filledTemplate = this.state.templates[i];      }
     }
     for(let i = 0; i < filledTemplate.template.length; i++){
       let object = {}
@@ -75,6 +75,7 @@ class Autofill extends Component {
       object.props.value = filledUser[filledTemplate.template[i].fill]
       filled.push(object);
       this.setState({filled: filled})
+      console.log(this.state)
   
     }
   }
