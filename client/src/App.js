@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+import "./app.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Home from "./pages/Home";
@@ -30,8 +30,6 @@ class App extends Component {
         </Switch>
       </div>
     </Router>
-    <div className="body">
-    </div>
     <Footer />
   </div>
 
