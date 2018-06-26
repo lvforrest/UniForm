@@ -43,6 +43,17 @@ const Navbar = props => (
             AutoFill
           </Link>
         </li>
+        <li
+          className={
+            window.location.pathname === "/storage"
+              ? "nav-item active"
+              : "nav-item"
+          }
+        >
+          <Link to="/storage" className="nav-link">
+            Storage
+          </Link>
+        </li>
         {props.body}
       </ul>
       
