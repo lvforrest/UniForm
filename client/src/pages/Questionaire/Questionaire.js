@@ -23,7 +23,7 @@ class Questionaire extends Component {
         email: this.state.email,
         firstName: this.state.firstName
       })
-        .then(window.location.href = '/account')
+        .then(alert("User Saved"))
         .catch(err => console.log(err));
     }
   };

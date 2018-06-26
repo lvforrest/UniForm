@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const filledSchema = new Schema({
-  TemplateName: { type: String, required: true },
-  TemplateCreator: { type: String, required: true },
-  userFilling: { type: String, required: true },
+  templateName: { type: String, required: true },
+  firstName: { type: String, required: true },
+  filledName: {type: String, required: true},
   filled: Schema.Types.Mixed
 });
 
