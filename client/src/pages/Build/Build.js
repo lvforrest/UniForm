@@ -8,6 +8,7 @@ import Paper from "../../components/Paper"
 import { Input, } from "../../components/InputField";
 import EmailInput from "./build.components/Email-input";
 import NameInput from "./build.components/Name-input";
+import './build.css';
 
 class Build extends Component {
 
