@@ -23,7 +23,7 @@ class Questionaire extends Component {
         email: this.state.email,
         firstName: this.state.firstName
       })
-        .then(window.location.href = '/account')
+        .then(alert("User Saved"))
         .catch(err => console.log(err));
     }
   };
@@ -33,8 +33,9 @@ class Questionaire extends Component {
     <Row>
       <Col size="md-12">
        
-          <h1>Questionaire</h1>
+          <h1>Questionnaire</h1>
           <form>
+            <center>
               <Input
                 value={this.state.email}
                 onChange={this.handleInputChange}
@@ -47,12 +48,13 @@ class Questionaire extends Component {
                 name="firstName"
                 placeholder="First Name(required)"
               />
-              <FormBtn
+              <center><FormBtn
                 disabled={!(this.state.email && this.state.firstName)}
                 onClick={this.handleFormSubmit}
               >
                 Submit  
-              </FormBtn>
+              </FormBtn></center>
+              </center>
             </form>
           
         

@@ -50,6 +50,24 @@ function ButtonAppBar() {
             
             </li>
             <li className="nav-item" color="inherit" classNameName={
+                window.location.pathname === "/autofill"
+                ? "nav-item active"
+                : "nav-item"}>
+                <Link to="/autofill" classNameName="nav-link">
+                    Autofill
+                </Link>
+            
+            </li>
+            <li className="nav-item" color="inherit" classNameName={
+                window.location.pathname === "/storage"
+                ? "nav-item active"
+                : "nav-item"}>
+                <Link to="/storage" classNameName="nav-link">
+                    Storage
+                </Link>
+            
+            </li>
+            <li className="nav-item" color="inherit" classNameName={
                 window.location.pathname === "/"
                 ? "nav-item active"
                 : "nav-item"}>

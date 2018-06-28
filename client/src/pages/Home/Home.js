@@ -26,7 +26,7 @@ function CenteredGrid(props) {
   const { classes } = props;
 
   return (
-    <div>
+    <div id='landingPage'>
       <Grid container spacing={24}>
       {/* Logo */}
         <Grid item xs={12}>
