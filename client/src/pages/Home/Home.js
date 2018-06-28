@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Logo from '../../components/Logo';
-import 'typeface-roboto';
+//import 'typeface-roboto';
 import './home.css';
 import { Typography } from '@material-ui/core';
 
@@ -20,6 +20,7 @@ const styles = theme => ({
 // ===============================================
 // BODY
 // ===============================================
+
 
 function CenteredGrid(props) {
   const { classes } = props;

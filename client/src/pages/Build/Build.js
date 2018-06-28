@@ -56,16 +56,16 @@ class Build extends Component {
     <Row>
       <Col size="md-12">
         <h1>Build</h1>
-        <Button onClick = {() => this.Button({component: <EmailInput key = {1} value = ""/>, fill: "email"},{component: "EmailInput" ,props: {key: 1, value: ""},fill: "email"})} children = "Email Input" className = "btn btn-outline-dark"/>
-        <Button onClick = {() => this.Button({component: <NameInput key = {2}/>, fill: "name"},{component: "NameInput" ,props: {key:2, value: ""},fill: "firstName"})} children = "Name Input" className = "btn btn-outline-dark"/>
+        <Button id="pageButton" onClick = {() => this.Button({component: <EmailInput key = {1} value = ""/>, fill: "email"},{component: "EmailInput" ,props: {key: 1, value: ""},fill: "email"})} children = "Email Input" className = "btn"/>
+        <Button id="pageButton" onClick = {() => this.Button({component: <NameInput key = {2}/>, fill: "name"},{component: "NameInput" ,props: {key:2, value: ""},fill: "firstName"})} children = "Name Input" className = "btn"/>
 
-        <Input
+        <center><Input
                 value={this.state.templatename}
                 onChange={this.handleInputChange}
                 name="templateName"
                 placeholder="Title (required)"
-              />
-        <Button onClick = {this.handleFormSubmit} children = "Save Template" className = "btn btn-outline-dark"/>
+              /></center>
+        <Button onClick = {this.handleFormSubmit} children = "Save Template" className = "btn" id="pageButton"/>
         <Paper title = {this.state.templateName} children = {this.state.template.map(child => (
           <div>{child.component}</div>))}      
           />
