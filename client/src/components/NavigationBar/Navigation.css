@@ -6,3 +6,19 @@ li {
     margin-right: 10px;
     float: right;
 }
+
+nav.navbar.navbar-default {
+    margin-bottom: 0;
+  }
+  
+  nav a{
+  color: #f590fb;
+  }
+  
+  nav a:hover {
+  color: #00dbff;
+  }
+  
+  nav a:active {
+    color: linear-gradient(270deg, #00dbff, #d9d9d9, #f590fb);
+  }
