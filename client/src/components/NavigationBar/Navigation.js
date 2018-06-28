@@ -13,7 +13,7 @@ import "./Navigation.css";
 
 function ButtonAppBar() {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light" id="theNav">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <a className="navbar-brand" href="#">UniForm</a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -40,15 +40,16 @@ function ButtonAppBar() {
                 </Link>
             
             </li>
-            <li className="nav-item" color="inherit" classNameName={
-                window.location.pathname === "/build"
-                ? "nav-item active"
-                : "nav-item"}>
-                <Link to="/build" classNameName="nav-link">
-                    Build
-                </Link>
-            
-            </li>
+            <li className="nav-item dropdown">
+        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Build
+        </a>
+        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a className="dropdown-item" href="/build">Template</a>
+          {/* CHANGE QUESTIONNAIRE HREF WHEN NEW ROUTE GETS MADE */}
+          <a className="dropdown-item" href="/questionaire">Questionnaire</a>
+          </div>
+        </li>
             <li className="nav-item" color="inherit" classNameName={
                 window.location.pathname === "/autofill"
                 ? "nav-item active"
