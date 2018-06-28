@@ -1,38 +1,31 @@
 import React, { Component } from "react";
-import ReactDOMServer from 'react-dom/server';
-import jsxToString from 'jsx-to-string'
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import Button from "../../components/Button"
 import Paper from "../../components/Paper"
 import { Input, } from "../../components/InputField";
+import "./build.css";
 import EmailInput from "./build.components/Email-input";
 import NameInput from "./build.components/Name-input";
-import './build.css';
 
 class Build extends Component {
 
   state = {
     templateName: "",
-    template: []
-  }
-  emailButton = () => {
-    let newTemplate = this.state.template.slice();
-    const key = newTemplate.length + 1;
-    const email = {component: <EmailInput key = {key} value = ""/>, fill: "email"}
-    newTemplate.push(email)
-    this.setState({template: newTemplate})
+    template: [],
+    templateData: []
   }
 
-  nameButton = () => {
+  Button = (name, nameData) => {
     let newTemplate = this.state.template.slice();
-    const key = newTemplate.length + 1;
-    const name = {component: <NameInput key = {key}/>, fill: "name"}
     newTemplate.push(name)
-    this.setState({template: newTemplate})
-  } 
 
-  
+    let newTemplateData = this.state.templateData.slice();
+    newTemplateData.push(nameData)
+
+    this.setState({template: newTemplate})
+    this.setState({templateData: newTemplateData })
+  } 
     handleInputChange = event => {
       const { name, value } = event.target;
       this.setState({
@@ -47,31 +40,25 @@ class Build extends Component {
         alert("Template Title is requried!")
       } else {
       
-      event.preventDefault();
-      let newTemplate =[]
-      for(let i = 0; i < this.state.template.length; i ++){
-        const component = this.state.template[i].component
-        const fill = this.state.template[i].fill
-        const newComponenet = jsxToString(component);
-        newTemplate.push({component: newComponenet, fill: fill})      
-      }
       API.saveTemplate({
       templateName: this.state.templateName,
-      template: newTemplate
+      template: this.state.templateData
       })
         .then(res => alert("Template saved!"))
         .catch(err => console.log(err));
       }
       
     };
+
   render() {
   return(
   <Container fluid>
     <Row>
       <Col size="md-12">
         <h1>Build</h1>
-        <Button onClick = {this.emailButton} children = "Email Input" className = "btn btn-outline-dark"/>
-        <Button onClick = {this.nameButton} children = "Name Input" className = "btn btn-outline-dark"/>
+        <Button onClick = {() => this.Button({component: <EmailInput key = {1} value = ""/>, fill: "email"},{component: "EmailInput" ,props: {key: 1, value: ""},fill: "email"})} children = "Email Input" className = "btn btn-outline-dark"/>
+        <Button onClick = {() => this.Button({component: <NameInput key = {2}/>, fill: "name"},{component: "NameInput" ,props: {key:2, value: ""},fill: "firstName"})} children = "Name Input" className = "btn btn-outline-dark"/>
+
         <Input
                 value={this.state.templatename}
                 onChange={this.handleInputChange}
