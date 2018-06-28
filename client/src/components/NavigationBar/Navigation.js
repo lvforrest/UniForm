@@ -11,10 +11,10 @@ function ButtonAppBar() {
         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
+        <div id="floatNav">
         {/* ===================================== */}
         {/* Home */}
         {/* ===================================== */}
-        <div id="floatNav">
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
             <li className="nav-item" color="inherit" classNameName={
