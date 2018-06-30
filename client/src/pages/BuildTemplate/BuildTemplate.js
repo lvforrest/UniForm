@@ -12,6 +12,8 @@ import LanguageInput from "../../build.components/Language-input";
 import NationalityInput from "../../build.components/Nationality-input";
 import GenderInput from "../../build.components/Gender-input";
 
+import SideNav from "../../components/SideNav";
+import Jumbotron from "../../components/Jumbotron";
 
 class BuildTemplate extends Component {
 
@@ -58,7 +60,8 @@ class BuildTemplate extends Component {
   render() {
   return(
   <Container fluid>
-    <Row>
+  <Jumbotron>
+  <Row>
       <Col size="md-12">
         <h1>Templates</h1>
         <Button id="pageButton" onClick = {() => this.Button({component: <EmailInput key = {1} value = ""/>, fill: "email"},{component: "EmailInput" ,props: {key: 1, value: ""},fill: "email"})} children = "Email Input" className = "btn"/>
@@ -76,12 +79,34 @@ class BuildTemplate extends Component {
                 placeholder="Title (required)"
               /></center>
         <Button onClick = {this.handleFormSubmit} children = "Save Changes" className = "btn" id="pageButton"/>
+        </Col></Row>
+    </Jumbotron>
+          {/* ====================================== */}
+          {/* SIDE NAV */}
+          {/* ===================================== */}
+        <Row>
+          <Col size="md 3">
+          <SideNav children={[
+              /* ===================================== */
+              // Email Button
+              /* ===================================== */
+          <Button id="pageButton" onClick = {() => this.Button({component: <EmailInput key = {1} value = ""/>, fill: "email"},
+          {component: "EmailInput" ,props: {key: 1, value: ""},fill: "email"})} children = "Email Input" className = "btn"/>,
+              /* ===================================== */
+              // Name Button 
+              /* ===================================== */
+          <Button id="pageButton" onClick = {() => this.Button({component: <NameInput key = {2}/>, fill: "name"},
+          {component: "NameInput" ,props: {key:2, value: ""},fill: "firstName"})} children = "Name Input" className = "btn"/>]} />
+          </Col>
+          {/* ====================================== */}
+          {/* PAPER */}
+          {/* ===================================== */}
+          <Col size="md 9">
         <Paper title = {this.state.templateName} children = {this.state.template.map(child => (
           <div>{child.component}</div>))}      
           />
-        
-      </Col>
-    </Row>
+          </Col>
+          </Row>
   </Container>
 )}
 }

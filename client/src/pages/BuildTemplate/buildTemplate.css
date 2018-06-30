@@ -10,6 +10,8 @@ body {
 }
 
 div.paper {
+    position: relative;
+    right: 34.5vh;
     -webkit-transition: all 235ms ease 0s;
     -moz-transition: all 235ms ease 0s;
     -o-transition: all 235ms ease 0s;
@@ -19,7 +21,7 @@ div.paper {
     -moz-transition: all 235ms ease-in-out 0s;
     -o-transition: all 235ms ease-in-out 0s;
     transition: all 235ms ease-in-out 0s;
-    align-self: center;
+    align-content: center;
     background: 0 0;
     border: 0.2vh solid #41403e;
     color: #00dbff;
