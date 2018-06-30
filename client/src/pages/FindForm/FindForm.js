@@ -6,8 +6,9 @@ import Paper from "../../components/Paper"
 import "./FindForm.css";
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
-import EmailInput from "../Build/build.components/Email-input"
-import NameInput from "../Build/build.components/Name-input"
+import EmailInput from "../../build.components/Email-input"
+import NameInput from "../../build.components/Name-input"
+
 class FindForm extends Component {
 
   state = {
@@ -19,7 +20,6 @@ class FindForm extends Component {
   }
   componentDidMount() {
     this.loadData();
-   
   }
   loadData= () => {
     API.getFilleds()

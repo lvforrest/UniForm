@@ -4,12 +4,16 @@ import { Col, Row, Container } from "../../components/Grid";
 import Button from "../../components/Button"
 import Paper from "../../components/Paper"
 import { Input, } from "../../components/InputField";
-import "./build.css";
-import EmailInput from "./build.components/Email-input";
-import NameInput from "./build.components/Name-input";
-import AddressInput from "./build.components/Address-input";
+import "./buildTemplate.css";
+import EmailInput from "../../build.components/Email-input";
+import NameInput from "../../build.components/Name-input";
+import AddressInput from "../../build.components/Address-input";
+import LanguageInput from "../../build.components/Language-input";
+import NationalityInput from "../../build.components/Nationality-input";
+import GenderInput from "../../build.components/Gender-input";
 
-class Build extends Component {
+
+class BuildTemplate extends Component {
 
   state = {
     templateName: "",
@@ -56,10 +60,14 @@ class Build extends Component {
   <Container fluid>
     <Row>
       <Col size="md-12">
-        <h1>Build</h1>
+        <h1>Templates</h1>
         <Button id="pageButton" onClick = {() => this.Button({component: <EmailInput key = {1} value = ""/>, fill: "email"},{component: "EmailInput" ,props: {key: 1, value: ""},fill: "email"})} children = "Email Input" className = "btn"/>
         <Button id="pageButton" onClick = {() => this.Button({component: <NameInput key = {2}/>, fill: "name"},{component: "NameInput" ,props: {key:2, value: ""},fill: "firstName"})} children = "Name Input" className = "btn"/>
         <Button id="pageButton" onClick = {() => this.Button({component: <AddressInput key = {3}/>, fill: "address"},{component: "AddressInput" ,props: {key:3, value: ""},fill: ""})} children = "Address Input" className = "btn"/>
+        <Button id="pageButton" onClick = {() => this.Button({component: <LanguageInput key = {3}/>, fill: "language"},{component: "LanguageInput" ,props: {key:4, value: ""},fill: ""})} children = "Language Input" className = "btn"/>
+        <Button id="pageButton" onClick = {() => this.Button({component: <NationalityInput key = {3}/>, fill: ""},{component: "NationalityInput" ,props: {key:5, value: ""},fill: ""})} children = "Nationality Input" className = "btn"/>
+        <Button id="pageButton" onClick = {() => this.Button({component: <GenderInput key = {3}/>, fill: ""},{component: "GenderInput" ,props: {key:6, value: ""},fill: ""})} children = "Gender Input" className = "btn"/>
+
 
         <center><Input
                 value={this.state.templatename}
@@ -67,7 +75,7 @@ class Build extends Component {
                 name="templateName"
                 placeholder="Title (required)"
               /></center>
-        <Button onClick = {this.handleFormSubmit} children = "Save Template" className = "btn" id="pageButton"/>
+        <Button onClick = {this.handleFormSubmit} children = "Save Changes" className = "btn" id="pageButton"/>
         <Paper title = {this.state.templateName} children = {this.state.template.map(child => (
           <div>{child.component}</div>))}      
           />
@@ -77,4 +85,4 @@ class Build extends Component {
   </Container>
 )}
 }
-export default Build;
+export default BuildTemplate;

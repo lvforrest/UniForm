@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Home from "./pages/Home";
 import Account from "./pages/Account";
-import Build from "./pages/Build";
+import BuildQuestionnaire from "./pages/BuildQuestionnaire";
+import BuildTemplate from "./pages/BuildTemplate";
 import NoMatch from "./pages/NoMatch";
 import Button from "./components/Button";
 import Questionaire from "./pages/Questionaire";
@@ -24,7 +25,8 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route exact path="/questionaire" component={Questionaire}/>
-          <Route exact path="/build" component={Build}/>
+          <Route exact path="/buildQuestionnaire" component={BuildQuestionnaire}/>
+          <Route exact path="/buildTemplate" component={BuildTemplate}/>
           <Route exact path="/autofill" component={Autofill}/>
           <Route exact path ="/storage" component={FindForm}/>
           <Route component={NoMatch} />
