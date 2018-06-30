@@ -7,6 +7,7 @@ import { Input, } from "../../components/InputField";
 import "./buildTemplate.css";
 import EmailInput from "../../build.components/Email-input";
 import NameInput from "../../build.components/Name-input";
+import SideNav from "../../components/SideNav";
 
 class BuildTemplate extends Component {
 
@@ -56,9 +57,6 @@ class BuildTemplate extends Component {
     <Row>
       <Col size="md-12">
         <h1>Templates</h1>
-        <Button id="pageButton" onClick = {() => this.Button({component: <EmailInput key = {1} value = ""/>, fill: "email"},{component: "EmailInput" ,props: {key: 1, value: ""},fill: "email"})} children = "Email Input" className = "btn"/>
-        <Button id="pageButton" onClick = {() => this.Button({component: <NameInput key = {2}/>, fill: "name"},{component: "NameInput" ,props: {key:2, value: ""},fill: "firstName"})} children = "Name Input" className = "btn"/>
-
         <center><Input
                 value={this.state.templatename}
                 onChange={this.handleInputChange}
@@ -66,12 +64,33 @@ class BuildTemplate extends Component {
                 placeholder="Title (required)"
               /></center>
         <Button onClick = {this.handleFormSubmit} children = "Save Changes" className = "btn" id="pageButton"/>
+        </Col></Row>
+          {/* ====================================== */}
+          {/* SIDE NAV */}
+          {/* ===================================== */}
+        <Row>
+          <Col size="md 3">
+          <SideNav children={[
+              /* ===================================== */
+              // Email Button
+              /* ===================================== */
+          <Button id="pageButton" onClick = {() => this.Button({component: <EmailInput key = {1} value = ""/>, fill: "email"},
+          {component: "EmailInput" ,props: {key: 1, value: ""},fill: "email"})} children = "Email Input" className = "btn"/>,
+              /* ===================================== */
+              // Name Button 
+              /* ===================================== */
+          <Button id="pageButton" onClick = {() => this.Button({component: <NameInput key = {2}/>, fill: "name"},
+          {component: "NameInput" ,props: {key:2, value: ""},fill: "firstName"})} children = "Name Input" className = "btn"/>]} />
+          </Col>
+          {/* ====================================== */}
+          {/* PAPER */}
+          {/* ===================================== */}
+          <Col size="md 9">
         <Paper title = {this.state.templateName} children = {this.state.template.map(child => (
           <div>{child.component}</div>))}      
           />
-        
-      </Col>
-    </Row>
+          </Col>
+          </Row>
   </Container>
 )}
 }
