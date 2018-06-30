@@ -7,6 +7,7 @@ import { Input, } from "../../components/InputField";
 import "./build.css";
 import EmailInput from "./build.components/Email-input";
 import NameInput from "./build.components/Name-input";
+import AddressInput from "./build.components/Address-input";
 
 class Build extends Component {
 
@@ -58,6 +59,7 @@ class Build extends Component {
         <h1>Build</h1>
         <Button id="pageButton" onClick = {() => this.Button({component: <EmailInput key = {1} value = ""/>, fill: "email"},{component: "EmailInput" ,props: {key: 1, value: ""},fill: "email"})} children = "Email Input" className = "btn"/>
         <Button id="pageButton" onClick = {() => this.Button({component: <NameInput key = {2}/>, fill: "name"},{component: "NameInput" ,props: {key:2, value: ""},fill: "firstName"})} children = "Name Input" className = "btn"/>
+        <Button id="pageButton" onClick = {() => this.Button({component: <AddressInput key = {3}/>, fill: "address"},{component: "AddressInput" ,props: {key:3, value: ""},fill: ""})} children = "Address Input" className = "btn"/>
 
         <center><Input
                 value={this.state.templatename}
