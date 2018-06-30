@@ -8,6 +8,7 @@ import "./buildTemplate.css";
 import EmailInput from "../../build.components/Email-input";
 import NameInput from "../../build.components/Name-input";
 import SideNav from "../../components/SideNav";
+import Jumbotron from "../../components/Jumbotron";
 
 class BuildTemplate extends Component {
 
@@ -54,9 +55,11 @@ class BuildTemplate extends Component {
   render() {
   return(
   <Container fluid>
-    <Row>
+  <Jumbotron>
+  <Row>
       <Col size="md-12">
         <h1>Templates</h1>
+        <hr></hr>
         <center><Input
                 value={this.state.templatename}
                 onChange={this.handleInputChange}
@@ -65,6 +68,7 @@ class BuildTemplate extends Component {
               /></center>
         <Button onClick = {this.handleFormSubmit} children = "Save Changes" className = "btn" id="pageButton"/>
         </Col></Row>
+    </Jumbotron>
           {/* ====================================== */}
           {/* SIDE NAV */}
           {/* ===================================== */}

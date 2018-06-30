@@ -9,6 +9,10 @@
     margin-left: -2vh;
 }
 
+#sideNavHeader {
+    padding-left: 2vh;
+}
+
 .sidenav a {
     padding : 2vh 3vh 2vh 4vh;
     text-decoration: none;
