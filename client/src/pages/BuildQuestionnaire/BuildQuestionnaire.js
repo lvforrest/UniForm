@@ -10,6 +10,10 @@ import EmailInput from "../../build.components/Email-input";
 import NameInput from "../../build.components/Name-input";
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+import StreetAddressInput from "../../build.components/Address-input/components/streetAddress";
+import CityInput from "../../build.components/Address-input/components/city";
+import StateInput from "../../build.components/Address-input/components/state";
+import ZipInput from "../../build.components/Address-input/components/zip";
 
 class BuildQuestionnaire extends Component {
 
@@ -38,6 +42,15 @@ class BuildQuestionnaire extends Component {
 
     this.setState({template: newTemplate})
   } 
+
+  multiInput = (name) => {
+    let newTemplate = this.state.template.slice();
+    for(let i = 0; i < name.length; i++){
+      newTemplate.push(name[i])
+    }
+    this.setState({template: newTemplate})
+  }
+
     handleInputChange = event => {
       const { value } = event.target;
       this.setState({value});
@@ -80,6 +93,13 @@ class BuildQuestionnaire extends Component {
       const  components = {
         "EmailInput" : EmailInput,
         "NameInput" : NameInput,
+
+        "StreetAddressInput" : StreetAddressInput,
+        "CityInput" : CityInput,
+        "StateInput" : StateInput,
+        "ZipInput" : ZipInput,
+
+        "Row" : Row
       }
       const component = React.createElement(components[componentName], props);
       return component;
@@ -143,6 +163,16 @@ class BuildQuestionnaire extends Component {
         <h1>Build Questionaire</h1>
         <Button id="pageButton" onClick = {() => this.Button({component: "EmailInput" ,props: {key: 1, value: ""},fill: "email"})} children = "Email Input" className = "btn"/>
         <Button id="pageButton" onClick = {() => this.Button({component: "NameInput" ,props: {key:2, value: ""},fill: "firstName"})} children = "Name Input" className = "btn"/>
+
+        {/* Multi Input Buttons */}
+        <Button id="pageButton" onClick = {() => this.multiInput([
+           {component: "StreetAddressInput", props: {key: 1, value: ""},fill: "email"},
+           {component: "CityInput", props: {key:2, value: ""},fill: "firstName"},
+           {component: "StateInput", props: {key:2, value: ""},fill: "firstName"},
+           {component: "ZipInput", props: {key:2, value: ""},fill: "firstName"}
+
+            ])} children = "Super Input" className = "btn"/>
+
 
         <center><Input
                 value={this.state.value}
