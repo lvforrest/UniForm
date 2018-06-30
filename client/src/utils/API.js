@@ -17,6 +17,25 @@ export default {
   saveUser: function(userData) {
     return axios.post("/api/user", userData);
   },
+   // Gets all Questrians 
+   getQuestrians: function() { 
+    return axios.get("/api/Questrian"); 
+  }, 
+  // Gets the Questrian with the given id 
+  getQuestrian: function(id) { 
+    return axios.get("/api/Questrian/" + id); 
+  }, 
+  // Deletes the Questrian with the given id 
+  deleteQuestrian: function(id) { 
+    return axios.delete("/api/Questrian/" + id); 
+  }, 
+  // Saves a Questrian to the database 
+  saveQuestrian: function(QuestrianData) { 
+    return axios.post("/api/Questrian", QuestrianData); 
+  }, 
+  updateQuestrian: function(id) { 
+    return axios.put("/api/Questrian/" + id); 
+  }, 
   // Gets all Templates
   getTemplates: function() {
     return axios.get("/api/template");
@@ -32,6 +51,9 @@ export default {
   // Saves a Template to the database
   saveTemplate: function(templateData) {
     return axios.post("/api/template", templateData);
+  },
+  updateTemplate: function(id,templateData) {
+    return axios.put("/api/template/" + id, templateData);
   },
   // Gets all Filleds
   getFilleds: function() {

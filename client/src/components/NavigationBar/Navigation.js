@@ -44,9 +44,9 @@ function ButtonAppBar() {
           Build
         </a>
         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a className="dropdown-item" href="/build">Template</a>
+          <a className="dropdown-item" href="/buildTemplate">Template</a>
           {/* CHANGE QUESTIONNAIRE HREF WHEN NEW ROUTE GETS MADE */}
-          <a className="dropdown-item" href="/questionaire" color="inherit">Questionnaire</a>
+          <a className="dropdown-item" href="/buildQuestionnaire" color="inherit">Questionnaire</a>
           </div>
         </li>
         {/* ===================================== */}

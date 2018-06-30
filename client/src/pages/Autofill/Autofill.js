@@ -6,15 +6,16 @@ import Paper from "../../components/Paper"
 import "./Autofill.css";
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
-import EmailInput from "../Build/build.components/Email-input"
-import NameInput from "../Build/build.components/Name-input"
-class Autofill extends Component {
+import EmailInput from "../../build.components/Email-input"
+import NameInput from "../../build.components/Name-input"
 
+class Autofill extends Component {
+ 
   state = {
     templates: [],
-    users: [],
+    questrians: [],
     filled: [],
-    userOption: "",
+    questrianOption: "",
     templateOption: ""
     
   }
@@ -28,16 +29,16 @@ class Autofill extends Component {
         this.setState({ templates: res.data}),
       )
       .catch(err => console.log(err));
-
-    API.getUsers()
+ 
+    API.getQuestrians()
       .then(res =>
-        this.setState({ users: res.data}),
+        this.setState({ questrians: res.data}),
       )
       .catch(err => console.log(err));
   };
-
-  handleChange = (userOption) => {
-    this.setState({ userOption });
+ 
+  handleChange = (questrianOption) => {
+    this.setState({ questrianOption });
   }
   handleChangeB = (templateOption) => {
     this.setState({ templateOption });
@@ -53,17 +54,17 @@ class Autofill extends Component {
     return component;
   }
   generate = () => {
-
-    let filledUser = []
+ 
+    let filledquestrian = []
     let filledTemplate = []
     let filled = []
-    for(let i =0; i < this.state.users.length; i++) {
-      if(this.state.users[i].firstName === this.state.userOption.value){
-        filledUser = this.state.users[i];
+    for(let i =0; i < this.state.questrians.length; i++) {
+      if(this.state.questrians[i].firstName === this.state.questrianOption.value){
+        filledquestrian = this.state.questrians[i];
         console.log(this.state)
       }
     }
-
+ 
     for(let i =0; i < this.state.templates.length; i++) {
       if(this.state.templates[i].templateName === this.state.templateOption.value){
         filledTemplate = this.state.templates[i];      }
@@ -72,7 +73,8 @@ class Autofill extends Component {
       let object = {}
       object.component = filledTemplate.template[i].component
       object.props = filledTemplate.template[i].props
-      object.props.value = filledUser[filledTemplate.template[i].fill]
+      object.props.value = filledquestrian[filledTemplate.template[i].fill]
+      console.log(filledquestrian[filledTemplate.template[i].fill])
       filled.push(object);
       this.setState({filled: filled})
       console.log(this.state)
@@ -83,16 +85,16 @@ class Autofill extends Component {
       API.saveFilled({
         templateName: this.state.templateOption.value,
         filled: this.state.filled,
-        firstName: this.state.userOption.value,
-        filledName: `${this.state.userOption.value} ${this.state.templateOption.value}`
+        firstName: this.state.questrianOption.value,
+        filledName: `${this.state.questrianOption.value} ${this.state.templateOption.value}`
         })
           .then(res => alert("Filled saved!"))
           .catch(err => console.log(err));
     }
  
   render() {
-    const { userOption } = this.state;
-    const userValue = userOption && userOption.value;
+    const { questrianOption } = this.state;
+    const questrianValue = questrianOption && questrianOption.value;
     
     const { templateOption } = this.state;
     const templateValue = templateOption && templateOption.value;
@@ -101,13 +103,13 @@ class Autofill extends Component {
     <Row>
       <Col size="md-12">
         <h1>Autofill</h1>
-        <h2>User</h2>          
+        <h2>questrian</h2>          
         <Select
         name="form-field-name2"
-        value={userValue}
+        value={questrianValue}
         onChange={this.handleChange}
-        options= {this.state.users.map(user => (
-          { value: user.firstName , label: user.firstName } 
+        options= {this.state.questrians.map(questrian => (
+          { value: questrian.firstName , label: questrian.firstName } 
       ))}
       /> 
       <h2>Template</h2>
