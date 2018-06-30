@@ -4,11 +4,11 @@ import { Col, Row, Container } from "../../components/Grid";
 import Button from "../../components/Button"
 import Paper from "../../components/Paper"
 import { Input, } from "../../components/InputField";
-import "./build.css";
-import EmailInput from "./build.components/Email-input";
-import NameInput from "./build.components/Name-input";
+import "./buildTemplate.css";
+import EmailInput from "../../build.components/Email-input";
+import NameInput from "../../build.components/Name-input";
 
-class Build extends Component {
+class BuildTemplate extends Component {
 
   state = {
     templateName: "",
@@ -55,7 +55,7 @@ class Build extends Component {
   <Container fluid>
     <Row>
       <Col size="md-12">
-        <h1>Build</h1>
+        <h1>Templates</h1>
         <Button id="pageButton" onClick = {() => this.Button({component: <EmailInput key = {1} value = ""/>, fill: "email"},{component: "EmailInput" ,props: {key: 1, value: ""},fill: "email"})} children = "Email Input" className = "btn"/>
         <Button id="pageButton" onClick = {() => this.Button({component: <NameInput key = {2}/>, fill: "name"},{component: "NameInput" ,props: {key:2, value: ""},fill: "firstName"})} children = "Name Input" className = "btn"/>
 
@@ -65,7 +65,7 @@ class Build extends Component {
                 name="templateName"
                 placeholder="Title (required)"
               /></center>
-        <Button onClick = {this.handleFormSubmit} children = "Save Template" className = "btn" id="pageButton"/>
+        <Button onClick = {this.handleFormSubmit} children = "Save Changes" className = "btn" id="pageButton"/>
         <Paper title = {this.state.templateName} children = {this.state.template.map(child => (
           <div>{child.component}</div>))}      
           />
@@ -75,4 +75,4 @@ class Build extends Component {
   </Container>
 )}
 }
-export default Build;
+export default BuildTemplate;
