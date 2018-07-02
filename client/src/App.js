@@ -12,6 +12,7 @@ import FindForm from "./pages/FindForm";
 import Autofill from "./pages/Autofill";
 import ButtonAppBar from "./components/NavigationBar/Navigation";
 import Footer from "./components/Footer/Footer";
+import Jumbotron from "./components/Jumbotron";
 
 class App extends Component {
 
@@ -22,6 +23,7 @@ class App extends Component {
       <Router>
       <div>
       <ButtonAppBar />
+      <Jumbotron />
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route exact path="/questionaire" component={Questionaire}/>

@@ -58,8 +58,8 @@ class BuildTemplate extends Component {
 
   render() {
   return(
+  
   <Container fluid>
-  <Jumbotron>
   <Row>
       <Col size="md-12">
         <h1>Templates</h1>
@@ -72,10 +72,9 @@ class BuildTemplate extends Component {
               /></center>
         <Button onClick = {this.handleFormSubmit} children = "Save Changes" className = "btn" id="pageButton"/>
         </Col></Row>
-    </Jumbotron>
-{/* ====================================== */}
-{/* SIDE NAV */}
-{/* ===================================== */}
+          {/* ====================================== */}
+          {/* SIDE NAV */}
+          {/* ===================================== */}
         <Row>
           <Col size="md 3">
           <SideNav children={[
