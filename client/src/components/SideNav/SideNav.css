@@ -24,3 +24,23 @@
 .sidenav a:hover {
     color: #f1f1f1;
 }
+
+@media only screen and (max-width: 1440px) {
+.sidenav {
+    min-width: 50vh;
+}
+}
+
+@media only screen and (max-width: 1024px) {
+    .paper {
+        max-width: 150vh;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .paper {
+        max-width: 100vh;
+        position: relative;
+        left: 0.05vh;
+    }
+}
