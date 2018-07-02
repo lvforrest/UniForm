@@ -3,7 +3,7 @@ body {
 }
 
 
-.btn {
+#pageButton {
     margin: 10px 0px 10px 10px;
     background: linear-gradient( #89dfec, #00c0de 60%, #89dfec);
     color: white;
@@ -11,7 +11,7 @@ body {
 
 div.paper {
     position: relative;
-    right: 34.5vh;
+    right: 10vh;
     -webkit-transition: all 235ms ease 0s;
     -moz-transition: all 235ms ease 0s;
     -o-transition: all 235ms ease 0s;
