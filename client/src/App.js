@@ -23,7 +23,6 @@ class App extends Component {
       <Router>
       <div>
       <ButtonAppBar />
-      <Jumbotron />
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route exact path="/questionaire" component={Questionaire}/>

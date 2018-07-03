@@ -8,6 +8,8 @@ import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import EmailInput from "../../build.components/Email-input"
 import NameInput from "../../build.components/Name-input"
+import Jumbotron from "../../components/Jumbotron";
+
 
 class Autofill extends Component {
  
@@ -16,7 +18,8 @@ class Autofill extends Component {
     questrians: [],
     filled: [],
     questrianOption: "",
-    templateOption: ""
+    templateOption: "", 
+    name: "Autofill Template"
     
   }
   componentDidMount() {
@@ -99,11 +102,12 @@ class Autofill extends Component {
     const { templateOption } = this.state;
     const templateValue = templateOption && templateOption.value;
   return(
+  <div>
+  <Jumbotron name = {this.state.name} children = {this.state.name} />
   <Container fluid>
     <Row>
       <Col size="md-12">
-        <h1>Autofill</h1>
-        <h2>questrian</h2>          
+        <h2>Questrian</h2>          
         <Select
         name="form-field-name2"
         value={questrianValue}
@@ -131,6 +135,7 @@ class Autofill extends Component {
       </Col>
     </Row>
   </Container>
+  </div>
 )}
 }
 export default Autofill;

@@ -14,6 +14,7 @@ import StreetAddressInput from "../../build.components/Address-input/components/
 import CityInput from "../../build.components/Address-input/components/city";
 import StateInput from "../../build.components/Address-input/components/state";
 import ZipInput from "../../build.components/Address-input/components/zip";
+import Jumbotron from "../../components/Jumbotron";
 
 class BuildQuestionnaire extends Component {
 
@@ -24,6 +25,7 @@ class BuildQuestionnaire extends Component {
     delete: "none",
     paper: "none",
     save: "none",
+    name: "Build Questionnaire"
   }
   componentDidMount() {
     this.loadData();
@@ -157,10 +159,11 @@ class BuildQuestionnaire extends Component {
     const { userOption } = this.state;
     const userValue = userOption && userOption.value;
   return(
+  <div>
+  <Jumbotron name = {this.state.name} children = {this.state.name} />
   <Container fluid>
     <Row>
       <Col size="md-12">
-        <h1>Build Questionaire</h1>
         <Button id="pageButton" onClick = {() => this.Button({component: "EmailInput" ,props: {key: 1, value: ""},fill: "email"})} children = "Email Input" className = "btn"/>
         <Button id="pageButton" onClick = {() => this.Button({component: "NameInput" ,props: {key:2, value: ""},fill: "firstName"})} children = "Name Input" className = "btn"/>
 
@@ -202,6 +205,7 @@ class BuildQuestionnaire extends Component {
       </Col>
     </Row>
   </Container>
+  </div>
 )}
 }
 export default BuildQuestionnaire;

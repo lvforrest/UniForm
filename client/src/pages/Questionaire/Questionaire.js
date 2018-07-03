@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/InputField";
+import Jumbotron from "../../components/Jumbotron";
 
 class Questionaire extends Component {
   state = {
     username: "",
-    firstName: ""
+    firstName: "", 
+    name: "Questionnaire"
   }
 
   handleInputChange = event => {
@@ -29,11 +31,12 @@ class Questionaire extends Component {
   };
   render() {
   return(
+  <div>
+  <Jumbotron name = {this.state.name} children = {this.state.name} />
   <Container fluid>
     <Row>
       <Col size="md-12">
        
-          <h1>Questionnaire</h1>
           <form>
             <center>
               <Input
@@ -61,6 +64,7 @@ class Questionaire extends Component {
       </Col>
     </Row>
   </Container>
+  </div>
 )}
 }
 export default Questionaire;
