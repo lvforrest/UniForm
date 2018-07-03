@@ -4,34 +4,44 @@ import { Col, Row, Container } from "../../components/Grid";
 import Button from "../../components/Button"
 import Paper from "../../components/Paper"
 import { Input, } from "../../components/InputField";
-import "./buildTemplate.css";
+import "./buildTemplateById.css";
 import EmailInput from "../../build.components/Email-input";
 import NameInput from "../../build.components/Name-input";
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 
-class BuildTemplate extends Component {
+class BuildTemplateById extends Component {
 
   state = {
     templates: [],
     templateName: "",
     template: [],
+    _id: "",
+    url: "",
   }
   componentDidMount() {
+    
     this.loadData();
   }
   loadData= () => {
-    API.getTemplates()
+  console.log(this.props.match.params.id)
+  API.getTemplate(this.props.match.params.id)
+  .then(res => this.setState({ template: res.data.template, templateName: res.data.templateName, _id: res.data._id, userOption: res.data.templateName }))
+    .catch(err => console.log(err));
+
+  API.getTemplates()
       .then(res =>
         this.setState({templates:res.data})
       )
       .catch(err => console.log(err));
   };
+
   singleInput = (name) => {
     let newTemplate = this.state.template.slice();
     newTemplate.push(name)
 
     this.setState({template: newTemplate})
+    console.log(this.state);
   }
   multiInput = (name) => {
     let newTemplate = this.state.template.slice();
@@ -49,44 +59,39 @@ class BuildTemplate extends Component {
     return component;
   }
 
-    handleInputChange = event => {
-      const { name, value } = event.target;
-      this.setState({
-        [name]: value
-      });
-    };
-
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
     handleChange = (userOption) => {
       this.setState({userOption})
-      for(let i = 0; i < this.state.templates.length; i++){
-        let match = this.state.templates[i].templateName.includes(userOption.value)
-        let id = this.state.templates[i]._id
-        if(match) {
-          this.props.history.push(`/buildTemplate/${id}`)
-        }
-        }
-    }
-    keyMaker = () => {
-      const key = this.state.template.length
-      return key;
-    }
-    handleFormSubmit = event => {
-      // When the form is submitted, prevent its default behavior, get recipes update the recipes state
-      event.preventDefault();
-      if(this.state.templateName === ""){
-        alert("Template Title is requried!")
-      } else {
-      console.log(this.state.template)
-      API.saveTemplate({
-      templateName: this.state.templateName,
-      template: this.state.template
-      })
-        // .then(res => this.props.history.push(`/buildTemplate/${res.data._id}`))
-        .catch(err => console.log(err));
-      }
+      let url = `/buildTemplate/${userOption.value}`
+      this.props.history.push(url)
       
-    };
-
+    }
+    
+    log = () => {
+      this.loadData()
+    }
+    
+    deleteTemplate = (id) => {
+      API.deleteTemplate(id)
+      .then(res =>  this.props.history.push("/buildTemplate"))
+      .catch(err => console.log(err));
+    }
+    updateTemplate = (id) => {
+      API.updateTemplate(id, {
+        templateName: this.state.templateName,
+        template: this.state.template
+      })
+      .then(res => this.loadData())
+      .catch(err => console.log(err));
+    }
+    newTemplate = () => {
+     this.props.history.push("/buildTemplate")
+    }
   render() {
     const { userOption } = this.state;
     const userValue = userOption && userOption.value;
@@ -95,25 +100,28 @@ class BuildTemplate extends Component {
     <Row>
       <Col size="md-12">
         <h1>Templates</h1>
-        <Button id="pageButton" onClick = {() => this.singleInput({component: "EmailInput" ,props: {key: this.keyMaker(), value: "",name: "email"}})} children = "Email Input" className = "btn"/>
-        <Button id="pageButton" onClick = {() => this.singleInput({component: "NameInput" ,props: {key:this.keyMaker(), value: "",name: "firstName"}})} children = "Name Input" className = "btn"/>
+        <Button id="pageButton" onClick = {() => this.singleInput({component: "EmailInput" ,props: {key: 1, value: ""},fill: "email"})} children = "Email Input" className = "btn"/>
+        <Button id="pageButton" onClick = {() => this.singleInput({component: "NameInput" ,props: {key:2, value: ""},fill: "firstName"})} children = "Name Input" className = "btn"/>
+        <Button onClick = {this.newTemplate} children = "New" className = "btn" id="pageButton"/>
 
-        <Input
-                width="35%"
+        <center><Input
+                value={this.state.templatename}
                 onChange={this.handleInputChange}
                 name="templateName"
                 placeholder="Title (required)"
-              />
-              
+              /></center>
               <Select
         name="form-field-name2"
         value={userValue}
         onChange={this.handleChange}
         options= {this.state.templates.map(template => (
-          { value: template.templateName, label: template.templateName } 
+          { value: template._id, label: template.templateName } 
+         
       ))}
       />
-        <Button onClick = {this.handleFormSubmit} children = "Save Changes" className = "btn" id="pageButton"/>
+        <Button onClick = {this.log} children = "Go"/>
+        <Button onClick = {() => this.updateTemplate(this.state._id)} children = "Save Changes" className = "btn" id="pageButton"/>
+        <Button onClick = {() => this.deleteTemplate(this.state._id)} display = {this.state.delete} children = "Delete Template" className = "btn" id="deleteButton"/>
         <Paper
         display = {this.state.paper}
         title = {this.state.templateName}
@@ -125,6 +133,6 @@ class BuildTemplate extends Component {
       </Col>
     </Row>
   </Container>
-)}
-}
-export default BuildTemplate;
+)
+}}
+export default BuildTemplateById;
