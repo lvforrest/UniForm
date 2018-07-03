@@ -13,26 +13,50 @@ import GenderInput from "../../build.components/Gender-input";
 import SideNav from "../../components/SideNav";
 import Jumbotron from "../../components/Jumbotron";
 import "./buildTemplate.css";
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 
 class BuildTemplate extends Component {
 
   state = {
+    templates: [],
     templateName: "",
     template: [],
     templateData: [],
     name: "Template"
   }
-
-  Button = (name, nameData) => {
+  componentDidMount() {
+    this.loadData();
+  }
+  loadData= () => {
+    API.getTemplates()
+      .then(res =>
+        this.setState({templates:res.data})
+      )
+      .catch(err => console.log(err));
+  };
+  singleInput = (name) => {
     let newTemplate = this.state.template.slice();
     newTemplate.push(name)
 
-    let newTemplateData = this.state.templateData.slice();
-    newTemplateData.push(nameData)
-
     this.setState({template: newTemplate})
-    this.setState({templateData: newTemplateData })
-  } 
+  }
+  multiInput = (name) => {
+    let newTemplate = this.state.template.slice();
+    for(let i = 0; i < name.length; i++){
+      newTemplate.push(name[i])
+    }
+    this.setState({template: newTemplate})
+  }
+  createComponent = (componentName,props) => {
+    const  components = {
+      "EmailInput" : EmailInput,
+      "NameInput" : NameInput,
+    }
+    const component = React.createElement(components[componentName], props);
+    return component;
+  }
+
     handleInputChange = event => {
       const { name, value } = event.target;
       this.setState({
@@ -40,24 +64,40 @@ class BuildTemplate extends Component {
       });
     };
 
+    handleChange = (userOption) => {
+      this.setState({userOption})
+      for(let i = 0; i < this.state.templates.length; i++){
+        let match = this.state.templates[i].templateName.includes(userOption.value)
+        let id = this.state.templates[i]._id
+        if(match) {
+          this.props.history.push(`/buildTemplate/${id}`)
+        }
+        }
+    }
+    keyMaker = () => {
+      const key = this.state.template.length
+      return key;
+    }
     handleFormSubmit = event => {
       // When the form is submitted, prevent its default behavior, get recipes update the recipes state
       event.preventDefault();
       if(this.state.templateName === ""){
         alert("Template Title is requried!")
       } else {
-      
+      console.log(this.state.template)
       API.saveTemplate({
       templateName: this.state.templateName,
-      template: this.state.templateData
+      template: this.state.template
       })
-        .then(res => alert("Template saved!"))
+        // .then(res => this.props.history.push(`/buildTemplate/${res.data._id}`))
         .catch(err => console.log(err));
       }
       
     };
 
   render() {
+    const { userOption } = this.state;
+    const userValue = userOption && userOption.value;
   return(
   <div> 
   <Jumbotron name = {this.state.name} children = {this.state.name} />
@@ -72,8 +112,8 @@ class BuildTemplate extends Component {
         <Button id="pageButton" onClick = {() => this.Button({component: <NationalityInput key = {3}/>, fill: ""},{component: "NationalityInput" ,props: {key:5, value: ""},fill: ""})} children = "Nationality Input" className = "btn"/>
         <Button id="pageButton" onClick = {() => this.Button({component: <GenderInput key = {3}/>, fill: ""},{component: "GenderInput" ,props: {key:6, value: ""},fill: ""})} children = "Gender Input" className = "btn"/>
 
-        <center><Input
-                value={this.state.templatename}
+        <Input
+                width="35%"
                 onChange={this.handleInputChange}
                 name="templateName"
                 placeholder="Title (required)" id="templateForm"
