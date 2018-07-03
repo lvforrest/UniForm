@@ -94,25 +94,7 @@ class Autofill extends Component {
           .then(res => alert("Filled saved!"))
           .catch(err => console.log(err));
     }
-    asdf = () => {
-      API.saveUser({
-        email: this.state.email,
-        password: this.state.password
-      })
-        .then(response => {
-          console.log(response)
-          if (!response.data.err) {
-            console.log('successful signup')
-          
-          } else {
-            console.log('username already taken')
-          }
-        }).catch(error => {
-          console.log('signup error: ')
-          console.log(error)
-  
-        })
-    }
+ 
   render() {
     const { questrianOption } = this.state;
     const questrianValue = questrianOption && questrianOption.value;
@@ -145,7 +127,6 @@ class Autofill extends Component {
       />
       <Button children = "Generate" onClick = {this.generate}/>
       <Button children = "Save" onClick = {this.save}/>
-      <Button children = "asdf" onClick = {this.asdf}/>
       <Paper 
         children = {this.state.filled.map(fills => (
           this.createComponent(fills.component,fills.props)

@@ -2,12 +2,12 @@ const router = require("express").Router();
 const filledRoutes = require("./filled");
 const templateRoutes = require("./template");
 const userRoutes = require("./user");
-const patronRoutes = require("./patron"); 
+const questrianRoutes = require("./questrian"); 
 
 
 // filled routes
 router.use("/filled", filledRoutes);
 router.use("/template", templateRoutes);
 router.use("/user", userRoutes);
-router.use("/patron", patronRoutes) 
+router.use("/questrian", questrianRoutes) 
 module.exports = router;

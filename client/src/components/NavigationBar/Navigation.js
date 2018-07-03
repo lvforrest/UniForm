@@ -17,7 +17,7 @@ function ButtonAppBar() {
         {/* ===================================== */}
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
-            <li color="inherit" classNameName={
+            <li className="nav-item" color="inherit" classNameName={
                     window.location.pathname === "/"
                     ? "nav-item active"
                     : "nav-item"}>
@@ -28,18 +28,53 @@ function ButtonAppBar() {
         {/* ===================================== */}
         {/* Questionnaire */}
         {/* ===================================== */}
-            <li color="inherit" classNameName={
-                window.location.pathname === "/buildTemplate"
+            <li className="nav-item" color="inherit" classNameName={
+                window.location.pathname === "/questionaire"
                 ? "nav-item active"
                 : "nav-item"}>
-                <Link to="/buildTemplate" classNameName="nav-link">
-                    Build
+                <Link to="/questionaire" classNameName="nav-link">
+                    Questionnaire
+                </Link>
+            </li>
+        {/* ===================================== */}
+        {/* Build Dropdown Menu */}
+        {/* ===================================== */}
+            <li className="nav-item dropdown">
+        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Build
+        </a>
+        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a className="dropdown-item" href="/buildTemplate">Template</a>
+          {/* CHANGE QUESTIONNAIRE HREF WHEN NEW ROUTE GETS MADE */}
+          <a className="dropdown-item" href="/buildQuestionnaire" color="inherit">Questionnaire</a>
+          </div>
+        </li>
+        {/* ===================================== */}
+        {/* Autofill */}
+        {/* ===================================== */}
+            <li className="nav-item" color="inherit" classNameName={
+                window.location.pathname === "/autofill"
+                ? "nav-item active"
+                : "nav-item"}>
+                <Link to="/autofill" classNameName="nav-link">
+                    Autofill
+                </Link>
+            </li>
+        {/* ===================================== */}
+        {/* Storage */}
+        {/* ===================================== */}
+            <li className="nav-item" color="inherit" classNameName={
+                window.location.pathname === "/storage"
+                ? "nav-item active"
+                : "nav-item"}>
+                <Link to="/storage" classNameName="nav-link">
+                    Storage
                 </Link>
             </li>
         {/* ===================================== */}
         {/* Sign Out */}
         {/* ===================================== */}
-            <li color="inherit" classNameName={
+            <li className="nav-item" color="inherit" classNameName={
                 window.location.pathname === "/"
                 ? "nav-item active"
                 : "nav-item"}>

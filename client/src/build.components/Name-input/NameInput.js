@@ -1,11 +1,9 @@
 import React from "react";
 
 const NameInput = props => (
-  <div style = { {width:props.width, display: "inline-block", float: "left", boxSizing: "border-box"}}>
-  <div className="form-group" >
+  <div className="form-group col-12">
     <label htmlFor={props.key}>First Name</label>
-    <input  type="firstname" className="form-control" name = {props.name} value = {props.value} id={props.key} onChange = {props.onChange} aria-describedby="nameHelp" placeholder="Your Name"/>
-  </div>
+    <input type="firstname" className="form-control" value = {props.value} id={props.key} aria-describedby="nameHelp" placeholder="Your Name"/>
   </div>
 );
 

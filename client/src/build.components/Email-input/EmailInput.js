@@ -1,11 +1,10 @@
 import React from "react";
 
 const EmailInput = props => (
-  <div style = { {width:props.width, display: "inline-block", float: "left", boxSizing: "border-box", marginRight: "2.5%"}}>
-  <div className="form-group">
+  <div className="form-group col-12">
     <label htmlFor={props.key}>Email address</label>
-    <input  type="email" className="form-control" id={props.key} aria-describedby="emailHelp" name = {props.name} onChange = {props.onChange} value = {props.value} placeholder="Enter email"/>
-  </div>
+    <input type="email" className="form-control" id={props.key} aria-describedby="emailHelp" value = {props.value}placeholder="Enter email"/>
+    <small id="emailHelp" className="form-text text-muted">Example@example.edu</small>
   </div>
 );
 

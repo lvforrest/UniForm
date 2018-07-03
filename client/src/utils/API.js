@@ -17,21 +17,24 @@ export default {
   saveUser: function(userData) {
     return axios.post("/api/user", userData);
   },
-   // Gets all Patrons 
-   getPatrons: function() { 
-    return axios.get("/api/patron"); 
+   // Gets all Questrians 
+   getQuestrians: function() { 
+    return axios.get("/api/Questrian"); 
   }, 
-  // Gets the Patron with the given id 
-  getPatron: function(id) { 
-    return axios.get("/api/patron/" + id); 
+  // Gets the Questrian with the given id 
+  getQuestrian: function(id) { 
+    return axios.get("/api/Questrian/" + id); 
   }, 
-  // Deletes the Patron with the given id 
-  deletePatron: function(id) { 
-    return axios.delete("/api/patron/" + id); 
+  // Deletes the Questrian with the given id 
+  deleteQuestrian: function(id) { 
+    return axios.delete("/api/Questrian/" + id); 
   }, 
-  // Saves a Patron to the database 
-  savePatron: function(PatronData) { 
-    return axios.post("/api/patron", PatronData); 
+  // Saves a Questrian to the database 
+  saveQuestrian: function(QuestrianData) { 
+    return axios.post("/api/Questrian", QuestrianData); 
+  }, 
+  updateQuestrian: function(id) { 
+    return axios.put("/api/Questrian/" + id); 
   }, 
   // Gets all Templates
   getTemplates: function() {
