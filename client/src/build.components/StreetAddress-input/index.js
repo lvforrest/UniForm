@@ -1,1 +1,1 @@
-export { default } from "./streeAddress";
+export { default } from "./streetAddress";

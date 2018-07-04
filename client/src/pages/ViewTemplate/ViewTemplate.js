@@ -40,7 +40,6 @@ class ViewTemplate extends Component {
   handleFillableChange = event => {
     const { name, value } = event.target;
     console.log(value)
-    const array = [{}]
     let newPatronData = this.state.patronData
     newPatronData[name] = value    
     this.setState({
