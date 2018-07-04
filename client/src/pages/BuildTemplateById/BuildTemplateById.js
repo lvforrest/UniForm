@@ -3,8 +3,10 @@ import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import Button from "../../components/Button"
 import Paper from "../../components/Paper"
+import Jumbotron from "../../components/Jumbotron";
+import SideNav from "../../components/SideNav"
 import { Title, } from "../../components/InputField";
-import "./buildTemplate.css";
+import "./buildTemplateById.css";
 import EmailInput from "../../build.components/Email-input";
 import NameInput from "../../build.components/Name-input";
 import Select from 'react-select';
@@ -16,25 +18,40 @@ import StreetAddressInput from "../../build.components/StreetAddress-input";
 import LanguageInput from "../../build.components/Language-input";
 import NationalityInput from "../../build.components/Nationality-input";
 import GenderInput from "../../build.components/Gender-input";
-import Jumbotron from "../../components/Jumbotron";
-import SideNav from "../../components/SideNav"
 
-class BuildTemplate extends Component {
+class BuildTemplateById extends Component {
 
   state = {
+    templates: [],
     templateName: "",
     template: [],
+    _id: "",
+    url: "",
     key: 1000000
   }
+  componentDidMount() {
+    
+    this.loadData();
+  }
+  loadData= () => {
+  console.log(this.props.match.params.id)
+  API.getTemplate(this.props.match.params.id)
+  .then(res => this.setState({ template: res.data.template, templateName: res.data.templateName, _id: res.data._id, userOption: res.data.templateName }))
+    .catch(err => console.log(err));
 
-  Button = (name, nameData) => {
+  API.getTemplates()
+      .then(res =>
+        this.setState({templates:res.data})
+      )
+      .catch(err => console.log(err));
+  };
+
+  singleInput = (name) => {
     let newTemplate = this.state.template.slice();
     newTemplate.push(name)
 
-    let newTemplateData = this.state.templateData.slice();
-    newTemplateData.push(nameData)
-
     this.setState({template: newTemplate})
+    console.log(this.state);
   }
   multiInput = (name) => {
     let newTemplate = this.state.template.slice();
@@ -42,6 +59,11 @@ class BuildTemplate extends Component {
       newTemplate.push(name[i])
     }
     this.setState({template: newTemplate})
+  }
+  keyMaker = () => {
+    const newKey = this.state.key - 1
+    this.setState({key: newKey})
+    return newKey;
   }
   createComponent = (componentName,props) => {
     const  components = {
@@ -61,61 +83,67 @@ class BuildTemplate extends Component {
 
   handleInputChange = event => {
     const { name, value } = event.target;
-
     this.setState({
       [name]: value
     });
   };
-
     handleChange = (userOption) => {
       this.setState({userOption})
-      for(let i = 0; i < this.state.templates.length; i++){
-        let match = this.state.templates[i].templateName.includes(userOption.value)
-        let id = this.state.templates[i]._id
-        if(match) {
-          console.log("hello")
-          window.location.href = `/buildTemplate/${id}`
-        }
-        }
-    }
-    keyMaker = () => {
-      const newKey = this.state.key - 1
-      this.setState({key: newKey})
-      return newKey;
-    }
-    handleFormSubmit = event => {
-      // When the form is submitted, prevent its default behavior, get recipes update the recipes state
-      event.preventDefault();
-      if(this.state.templateName === ""){
-        alert("Template Title is requried!")
-      } else {
+      let url = `/buildTemplate/${userOption.value}`
+      this.props.history.push(url)
       
-      API.saveTemplate({
-      templateName: this.state.templateName,
-      template: this.state.templateData
+    }
+    
+    log = () => {
+      this.loadData()
+    }
+    
+    deleteTemplate = (id) => {
+      API.deleteTemplate(id)
+      .then(res =>  this.props.history.push("/buildTemplate"))
+      .catch(err => console.log(err));
+    }
+    updateTemplate = (id) => {
+      API.updateTemplate(id, {
+        templateName: this.state.templateName,
+        template: this.state.template
       })
-        .then(res => this.props.history.push(`/buildTemplate/${res.data._id}`))
-        .catch(err => console.log(err));
-      }
-      
-    };
-
+      .then(res => this.loadData())
+      .catch(err => console.log(err));
+    }
+    newTemplate = () => {
+     this.props.history.push("/buildTemplate")
+    }
   render() {
+    const { userOption } = this.state;
+    const userValue = userOption && userOption.value;
   return(
-   <div> 
+  <div> 
   <Jumbotron name = {this.state.name} children = {this.state.name} />
   <Container fluid>
-  <Row>
+    <Row>
       <Col size="md-12">
         <h1>Templates</h1>
+        <Button onClick = {this.newTemplate} children = "New" className = "btn" id="pageButton"/>
+
         <Title
-                width="35%"
-                value = {this.state.templatename}
+                width= "35%"
                 onChange={this.handleInputChange}
                 name="templateName"
-                placeholder="Title (required)" id="templateForm"
-              /></center>
-        <Button onClick = {this.handleFormSubmit} children = "Save Changes" className = "btn" id="pageButton"/>
+                placeholder="Title (required)"
+              />
+              <Select
+        name="form-field-name2"
+        value={userValue}
+        onChange={this.handleChange}
+        options= {this.state.templates.map(template => (
+          { value: template._id, label: template.templateName } 
+         
+      ))}
+      />
+        <Button onClick = {this.log} children = "Go"/>
+        <Button onClick = {() => this.updateTemplate(this.state._id)} children = "Save Changes" className = "btn" id="pageButton"/>
+        <Button onClick = {() => this.deleteTemplate(this.state._id)} display = {this.state.delete} children = "Delete Template" className = "btn" id="deleteButton"/>
         </Col></Row>
           {/* ====================================== */}
           {/* SIDE NAV */}
@@ -135,10 +163,10 @@ class BuildTemplate extends Component {
               // Address Button 
               /* ===================================== */
           <div id="pageButton" onClick = {() => this.multiInput([
-            {component: "StreetAddressInput", props: {key:1, value: "",name: "streetAddress"}},
-            {component: "CityInput", props: {key: 2, value: "",name: "city",width: "45%"}},
-            {component: "StateInput", props: {key: 3, value: "",name: "state",width: "20%"}},
-            {component: "ZipInput", props: {key: 4,value: "",name: "zip",width: "30%"}}
+            {component: "StreetAddressInput", props: {key:this.keyMaker(), value: "",name: "streetAddress"}},
+            {component: "CityInput", props: {key:this.keyMaker(), value: "",name: "city",width: "45%"}},
+            {component: "StateInput", props: {key:this.keyMaker(), value: "",name: "state",width: "20%"}},
+            {component: "ZipInput", props: {key:this.keyMaker(),value: "",name: "zip",width: "30%"}}
             ])} children = "Address Input" className = "navBtn"/>,
               /* ===================================== */
               // Language Button 
@@ -167,21 +195,10 @@ class BuildTemplate extends Component {
         ))}
       />
         
-        // End Button Array
-        ]}/>
-        {/* End Button Div */}
-          </Col>
-{/* ====================================== */}
-{/* PAPER */}
-{/* ===================================== */}
-          <Col size="md 9">
-        <Paper title = {this.state.templateName} children = {this.state.template.map(child => (
-          <div>{child.component}</div>))}      
-          />
-          </Col>
-          </Row>
+      </Col>
+    </Row>
   </Container>
   </div>
-)}
-}
-export default BuildTemplate;
+)
+}}
+export default BuildTemplateById;
