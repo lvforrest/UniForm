@@ -3,8 +3,10 @@ import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import Button from "../../components/Button"
 import Paper from "../../components/Paper"
+import Jumbotron from "../../components/Jumbotron";
+import SideNav from "../../components/SideNav"
 import { Title, } from "../../components/InputField";
-import "./buildTemplate.css";
+import "./buildTemplateById.css";
 import EmailInput from "../../build.components/Email-input";
 import NameInput from "../../build.components/Name-input";
 import Select from 'react-select';
@@ -25,6 +27,7 @@ class BuildTemplateById extends Component {
     template: [],
     _id: "",
     url: "",
+    key: 1000000
   }
   componentDidMount() {
     
@@ -56,6 +59,11 @@ class BuildTemplateById extends Component {
       newTemplate.push(name[i])
     }
     this.setState({template: newTemplate})
+  }
+  keyMaker = () => {
+    const newKey = this.state.key - 1
+    this.setState({key: newKey})
+    return newKey;
   }
   createComponent = (componentName,props) => {
     const  components = {
@@ -116,8 +124,6 @@ class BuildTemplateById extends Component {
     <Row>
       <Col size="md-12">
         <h1>Templates</h1>
-        <Button id="pageButton" onClick = {() => this.singleInput({component: "EmailInput" ,props: {key: 1, value: ""},fill: "email"})} children = "Email Input" className = "btn"/>
-        <Button id="pageButton" onClick = {() => this.singleInput({component: "NameInput" ,props: {key:2, value: ""},fill: "firstName"})} children = "Name Input" className = "btn"/>
         <Button onClick = {this.newTemplate} children = "New" className = "btn" id="pageButton"/>
 
         <Title

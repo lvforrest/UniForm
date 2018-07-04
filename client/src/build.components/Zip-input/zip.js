@@ -5,7 +5,7 @@ const ZipInput = props => (
     <form>
     <div style = {{ width:props.width, display: "inline-block", float: "left", boxSizing: "border-box"}}>
         <div class="form-group">
-              <input type="address" class="form-control" id="AddressInput" placeholder="Zip"></input>
+              <input name = {props.name} value = {props.value} id={props.key} onChange = {props.onChange} type="address" class="form-control" id="AddressInput" placeholder="Zip"></input>
         </div>
         </div>
     </form>

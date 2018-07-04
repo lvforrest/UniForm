@@ -8,6 +8,13 @@ import "./ViewTemplate.css";
 import EmailInput from "../../build.components/Email-input";
 import NameInput from "../../build.components/Name-input";
 import 'react-select/dist/react-select.css';
+import CityInput from "../../build.components/City-input";
+import StateInput from "../../build.components/State-input";
+import ZipInput from "../../build.components/Zip-input";
+import StreetAddressInput from "../../build.components/StreetAddress-input";
+import LanguageInput from "../../build.components/Language-input";
+import NationalityInput from "../../build.components/Nationality-input";
+import GenderInput from "../../build.components/Gender-input";
 
 class ViewTemplate extends Component {
 
@@ -31,6 +38,13 @@ class ViewTemplate extends Component {
     const  components = {
       "EmailInput" : EmailInput,
       "NameInput" : NameInput,
+      "CityInput" : CityInput,
+      "StateInput" : StateInput,
+      "ZipInput" : ZipInput,
+      "StreetAddressInput" : StreetAddressInput,
+      "GenderInput" : GenderInput,
+      "NationalityInput" : NationalityInput,
+      "LanguageInput" : LanguageInput
     }
     props.onChange = this.handleFillableChange
     props.value = this.state.patronData[props.name]
@@ -55,9 +69,6 @@ class ViewTemplate extends Component {
       [name]: value
     });
   };
-  asdf = () =>{
-    console.log(this.state)
-  }
   handleFormSubmit = event => {
     // When the form is submitted, prevent its default behavior, get recipes update the recipes state
     if(!this.state.patronData.firstName || !this.state.patronData.lastName){
@@ -68,7 +79,7 @@ class ViewTemplate extends Component {
     patronName: `${this.state.patronData.firstName} ${this.state.patronData.lastName}`,
     patronData: this.state.patronData
     })
-      .then(res => console.log(res.data))
+      .then(res => alert("Posted to Database"))
       .catch(err => console.log(err));
     }
     
@@ -95,7 +106,6 @@ class ViewTemplate extends Component {
                 placeholder="Last Name"
               />
         <Button onClick = {this.handleFormSubmit} children = "Post" className = "btn" id="pageButton"/>
-        <Button onClick = {this.asdf} children = "wow" className = "btn" id="pageButton"/>
         <Paper
         display = {this.state.paper}
         children = {this.state.template.map(template => (

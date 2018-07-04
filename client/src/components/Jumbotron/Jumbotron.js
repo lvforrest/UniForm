@@ -1,12 +1,16 @@
 import React from "react";
+import './Jumbotron.css';
 
-const Jumbotron = ({ children }) => (
+function Jumbotron(props) {
+  return (
   <div
-    style={{ height: 300, clear: "both", paddingTop: 120, textAlign: "center" }}
-    className="jumbotron"
-  >
-    {children}
-  </div>
-);
+    style={{ clear: "both", paddingTop: 20, textAlign: "center" }}
+    className="jumbotron jumbotron-fluid">
+    <div>
+      <h1>{props.name}</h1>
+    </div>
+    </div>
+  );
+}
 
 export default Jumbotron;

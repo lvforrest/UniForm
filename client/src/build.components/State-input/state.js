@@ -5,7 +5,7 @@ const StateInput = props => (
   <div style = {{ width:props.width, display: "inline-block", float: "left", boxSizing: "border-box", marginRight: "2.5%"}}>
     <form>
         <span class="form-group">
-              <input type="address" class="form-control" id="AddressInput" placeholder="State"></input>
+              <input name = {props.name} value = {props.value} id={props.key} onChange = {props.onChange} type="address" class="form-control" id="AddressInput" placeholder="State"></input>
         </span>
     </form>
     </div>
