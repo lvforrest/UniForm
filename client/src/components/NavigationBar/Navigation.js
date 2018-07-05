@@ -50,6 +50,19 @@ function ButtonAppBar() {
           </div>
         </li>
         {/* ===================================== */}
+        {/* Manage Dropdown Menu */}
+        {/* ===================================== */}
+        <li className="nav-item dropdown">
+        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Manage
+        </a>
+        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a className="dropdown-item" href="/manageForms">Forms</a>
+          {/* CHANGE QUESTIONNAIRE HREF WHEN NEW ROUTE GETS MADE */}
+          <a className="dropdown-item" href="/managePatrons" color="inherit">Patrons</a>
+          </div>
+        </li>
+        {/* ===================================== */}
         {/* Autofill */}
         {/* ===================================== */}
             <li className="nav-item" color="inherit" classNameName={
