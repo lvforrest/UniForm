@@ -13,3 +13,8 @@ h1 {
 .jumbotron {
     background: url("../../assets/images/cosmic.jpg");
 }
+
+#jumbotronChildren {
+    height: 180px;
+    padding-bottom: 5vh;
+}
