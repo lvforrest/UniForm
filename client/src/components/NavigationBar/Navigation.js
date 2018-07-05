@@ -26,17 +26,6 @@ function ButtonAppBar() {
                     </Link>
             </li>
         {/* ===================================== */}
-        {/* Questionnaire */}
-        {/* ===================================== */}
-            <li className="nav-item" color="inherit" classNameName={
-                window.location.pathname === "/questionaire"
-                ? "nav-item active"
-                : "nav-item"}>
-                <Link to="/questionaire" classNameName="nav-link">
-                    Questionnaire
-                </Link>
-            </li>
-        {/* ===================================== */}
         {/* Build Dropdown Menu */}
         {/* ===================================== */}
             <li className="nav-item dropdown">
@@ -71,17 +60,6 @@ function ButtonAppBar() {
                 : "nav-item"}>
                 <Link to="/autofill" classNameName="nav-link">
                     Autofill
-                </Link>
-            </li>
-        {/* ===================================== */}
-        {/* Storage */}
-        {/* ===================================== */}
-            <li className="nav-item" color="inherit" classNameName={
-                window.location.pathname === "/storage"
-                ? "nav-item active"
-                : "nav-item"}>
-                <Link to="/storage" classNameName="nav-link">
-                    Storage
                 </Link>
             </li>
         {/* ===================================== */}

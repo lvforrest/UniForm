@@ -21,7 +21,6 @@ body {
     margin-bottom: 3vh;
 }
 
-h2 {
-    font-family: "MoonBold";
-    letter-spacing: 2px;
+#title {
+    color: #494949;
 }
