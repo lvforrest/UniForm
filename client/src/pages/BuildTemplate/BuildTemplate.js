@@ -24,16 +24,23 @@ class BuildTemplate extends Component {
   state = {
     templateName: "",
     template: [],
+    templates: [],
     key: 1000000
   }
-
-  Button = (name, nameData) => {
+  componentDidMount() {
+    
+    this.loadData();
+  }
+  loadData= () => {
+    API.getTemplates()
+        .then(res =>
+          this.setState({templates:res.data})
+        )
+        .catch(err => console.log(err));
+    };
+  singleInput = (name, nameData) => {
     let newTemplate = this.state.template.slice();
     newTemplate.push(name)
-
-    let newTemplateData = this.state.templateData.slice();
-    newTemplateData.push(nameData)
-
     this.setState({template: newTemplate})
   }
   multiInput = (name) => {
@@ -67,17 +74,12 @@ class BuildTemplate extends Component {
     });
   };
 
-    handleChange = (userOption) => {
-      this.setState({userOption})
-      for(let i = 0; i < this.state.templates.length; i++){
-        let match = this.state.templates[i].templateName.includes(userOption.value)
-        let id = this.state.templates[i]._id
-        if(match) {
-          console.log("hello")
-          window.location.href = `/buildTemplate/${id}`
-        }
-        }
-    }
+  handleChange = (userOption) => {
+    this.setState({userOption})
+    let url = `/buildTemplate/${userOption.value}`
+    this.props.history.push(url)
+    
+  }
     keyMaker = () => {
       const newKey = this.state.key - 1
       this.setState({key: newKey})
@@ -101,6 +103,8 @@ class BuildTemplate extends Component {
     };
 
   render() {
+    const { userOption } = this.state;
+    const userValue = userOption && userOption.value;
   return(
    <div> 
   <Jumbotron name = {this.state.name} children = {this.state.name} />
@@ -114,7 +118,16 @@ class BuildTemplate extends Component {
                 onChange={this.handleInputChange}
                 name="templateName"
                 placeholder="Title (required)" id="templateForm"
-              /></center>
+              />
+        <Select
+        name="form-field-name2"
+        value={userValue}
+        onChange={this.handleChange}
+        options= {this.state.templates.map(template => (
+          { value: template._id, label: template.templateName } 
+         
+      ))}
+      />
         <Button onClick = {this.handleFormSubmit} children = "Save Changes" className = "btn" id="pageButton"/>
         </Col></Row>
           {/* ====================================== */}
