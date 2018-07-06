@@ -111,10 +111,8 @@ class BuildTemplate extends Component {
   <Container fluid>
   <Row>
       <Col size="md-12">
-        <h1>Templates</h1>
-        <Title
-                width="35%"
-                value = {this.state.templatename}
+        <center><Input
+                value={this.state.templatename}
                 onChange={this.handleInputChange}
                 name="templateName"
                 placeholder="Title (required)" id="templateForm"
