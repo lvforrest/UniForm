@@ -12,5 +12,7 @@ router
   .get(patronController.findById) 
   .put(patronController.update) 
   .delete(patronController.remove); 
- 
+router 
+  .route("/name/:name") 
+  .get(patronController.findOne); 
 module.exports = router;

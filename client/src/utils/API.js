@@ -29,6 +29,14 @@ export default {
   deletePatron: function(id) { 
     return axios.delete("/api/patron/" + id); 
   }, 
+  updatePatron: function(name,patronData) { 
+    console.log(name) 
+    return axios.put("/api/patron/" + name, patronData); 
+  }, 
+  getPatronName: function(name){ 
+    console.log("getting patron name") 
+    return axios.get("/api/patron/name/" + name) 
+  }, 
   // Saves a Patron to the database 
   savePatron: function(PatronData) { 
     return axios.post("/api/patron", PatronData); 

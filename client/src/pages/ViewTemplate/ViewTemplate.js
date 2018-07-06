@@ -17,12 +17,13 @@ import NationalityInput from "../../build.components/Nationality-input";
 import GenderInput from "../../build.components/Gender-input";
 
 class ViewTemplate extends Component {
-
+ 
   state = {
     patronData: {},
     template: [],
     templateName: "",
     _id: "",
+    patron_id: '',
     url: "",
   }
   componentDidMount() {
@@ -59,12 +60,11 @@ class ViewTemplate extends Component {
     this.setState({
       patronData : newPatronData
     });
-    
   };
   
   handleInputChange = event => {
     const { name, value } = event.target;
-
+ 
     this.setState({
       [name]: value
     });
@@ -74,16 +74,37 @@ class ViewTemplate extends Component {
     if(!this.state.patronData.firstName || !this.state.patronData.lastName){
       alert("First and Last names are requried!")
     } else {
-    console.log(this.state)
-    API.savePatron({
-    patronName: `${this.state.patronData.firstName} ${this.state.patronData.lastName}`,
-    patronData: this.state.patronData
-    })
-      .then(res => alert("Posted to Database"))
-      .catch(err => console.log(err));
+    const name = `${this.state.patronData.firstName} ${this.state.patronData.lastName}`
+    this.updatePatron(name)
     }
+ 
+  }; 
+  combinePatronData = data => {
+    Object.assign(data.patronData,this.state.patronData)
+    this.setState({patronData:data.patronData, patron_id: data._id}, () => {
+      API.updatePatron(this.state.patron_id, {
+        patronName: `${this.state.patronData.firstName} ${this.state.patronData.lastName}`,
+        patronData: this.state.patronData
+      })
+      .then(res => alert("Patrons data was successfully updated!"))
+      .catch(err => console.log(err));
+    });
     
-  };
+    
+  }
+  updatePatron = (name) => {
+    let updateData;
+    API.getPatronName(name)
+      .then(res => this.combinePatronData(res.data))
+      .catch(err =>
+        API.savePatron({
+          patronName: name,
+          patronData: this.state.patronData
+          })
+            .then(alert("Patron added to the database"))
+            .catch(err => console.log(err))
+      );
+  }
 
   render() {
   return(
