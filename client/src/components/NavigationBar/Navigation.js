@@ -26,17 +26,6 @@ function ButtonAppBar() {
                     </Link>
             </li>
         {/* ===================================== */}
-        {/* Questionnaire */}
-        {/* ===================================== */}
-            <li className="nav-item" color="inherit" classNameName={
-                window.location.pathname === "/questionaire"
-                ? "nav-item active"
-                : "nav-item"}>
-                <Link to="/questionaire" classNameName="nav-link">
-                    Questionnaire
-                </Link>
-            </li>
-        {/* ===================================== */}
         {/* Build Dropdown Menu */}
         {/* ===================================== */}
             <li className="nav-item dropdown">
@@ -47,6 +36,19 @@ function ButtonAppBar() {
           <a className="dropdown-item" href="/buildTemplate">Template</a>
           {/* CHANGE QUESTIONNAIRE HREF WHEN NEW ROUTE GETS MADE */}
           <a className="dropdown-item" href="/buildQuestionnaire" color="inherit">Questionnaire</a>
+          </div>
+        </li>
+        {/* ===================================== */}
+        {/* Manage Dropdown Menu */}
+        {/* ===================================== */}
+        <li className="nav-item dropdown">
+        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Manage
+        </a>
+        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a className="dropdown-item" href="/manageForms">Forms</a>
+          {/* CHANGE QUESTIONNAIRE HREF WHEN NEW ROUTE GETS MADE */}
+          <a className="dropdown-item" href="/managePatrons" color="inherit">Patrons</a>
           </div>
         </li>
         {/* ===================================== */}
