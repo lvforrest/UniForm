@@ -133,6 +133,7 @@ class BuildTemplate extends Component {
           {/* ===================================== */}
         <Row>
           <Col size="md 3">
+          
           <SideNav children={[
               /* ===================================== */
               // Email Button

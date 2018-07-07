@@ -10,7 +10,10 @@ import FindForm from "./pages/FindForm";
 import Autofill from "./pages/Autofill";
 import ButtonAppBar from "./components/NavigationBar/Navigation";
 import Footer from "./components/Footer/Footer";
+import Jumbotron from "./components/Jumbotron";
+import ManagePatrons from "./pages/ManagePatrons";
 import ManageForms from "./pages/ManageForms";
+
 
 class App extends Component {
 
@@ -25,10 +28,10 @@ class App extends Component {
           <Route exact path="/" component={Home}/>
           <Route exact path="/questionaire" component={Questionaire}/>
           <Route exact path="/buildTemplate" component={BuildTemplate}/>
+          <Route exact path="/ManagePatrons" component={ManagePatrons}/>
           <Route exact path="/manageForms" component={ManageForms}/>
           <Route exact path="/autofill" component={Autofill}/>
           <Route exact path ="/storage" component={FindForm}/>
-          
           <Route exact path="/buildTemplate/:id" component={BuildTemplateById} />
           <Route exact path="/template/:id" component={ViewTemplate}/>
           <Route component={NoMatch} />
