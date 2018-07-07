@@ -25,7 +25,8 @@ class BuildTemplate extends Component {
     templateName: "",
     template: [],
     templates: [],
-    key: 1000000
+    key: 1000000, 
+    name: "Build Template"
   }
   componentDidMount() {
     
