@@ -117,7 +117,6 @@ class BuildTemplate extends Component {
   <Jumbotron name = {this.state.name} children = {this.state.name} />
    <Row>
       <Col size="md-12">
-        <h1>Templates</h1>
         <Title
                 width="35%"
                 value = {this.state.templatename}

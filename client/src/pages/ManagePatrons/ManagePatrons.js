@@ -7,6 +7,8 @@ import Jumbotron from "../../components/Jumbotron";
 import FormManagerTable from "../../components/FormManagerTable";
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+
+
 class ManagePatrons extends Component {
  
   state = {
@@ -14,7 +16,7 @@ class ManagePatrons extends Component {
     filled: [],
     filleds: [],
     patronOption: "", 
-    name: "Managepatrons",
+    name: "Manage Patrons",
 
     
   }
@@ -56,7 +58,7 @@ class ManagePatrons extends Component {
   <Container fluid>
     <Row>
       <Col size="md-6">
-      <h2>My Forms</h2>
+      <h2>My Patrons</h2>
       </Col>
       <Col size="md-6">
       <Button onClick = {this.asdf}>Create a New Form</Button>
@@ -86,38 +88,26 @@ class ManagePatrons extends Component {
   </div>
 )}
 }
-=======
-import { Col, Row, Container } from "../../components/Grid"; 
-import Jumbotron from "../../components/Jumbotron";
-import PatronsTable from "./ManagePatronsTable/table";
 
-class ManagePatrons extends Component {
+// render() {
+//     return(
 
-    state = {
-        username: "",
-        firstName: "", 
-        name: "Manage Patrons"
-      }
-
-render() {
-    return(
-
-        <div>
-            <Jumbotron name={this.state.name} children={this.state.name} />
-            <Container fluid>
-                <Row>
-                    <Col size="md-12">
-                        <input class="form-control form-control-lg" type="text" placeholder="Search Your Patrons"></input>
-                        <PatronsTable />
+//         <div>
+//             <Jumbotron name={this.state.name} children={this.state.name} />
+//             <Container fluid>
+//                 <Row>
+//                     <Col size="md-12">
+//                         <input class="form-control form-control-lg" type="text" placeholder="Search Your Patrons"></input>
+//                         <PatronsTable />
                         
 
-                    </Col>
-                </Row>
-            </Container>
-        </div>
+//                     </Col>
+//                 </Row>
+//             </Container>
+//         </div>
 
-    )
-}
-};
+//     )
+// }
+// };
 
 export default ManagePatrons;
