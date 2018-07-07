@@ -86,14 +86,19 @@ class ViewTemplate extends Component {
         patronName: `${this.state.patronData.firstName} ${this.state.patronData.lastName}`,
         patronData: this.state.patronData
       })
-      .then(res => alert("Patrons data was successfully updated!"))
+      .then(res => API.saveFilled({
+        patronId: res.data._id,
+        templateId: this.state._id,
+        filledName: `${this.state.patronData.firstName} ${this.state.patronData.lastName} ${this.state.templateName}`
+      })
+        .then(res => alert("Patrons and form updated!"))
+        .catch(err => console.log(err)))
       .catch(err => console.log(err));
     });
     
     
   }
   updatePatron = (name) => {
-    let updateData;
     API.getPatronName(name)
       .then(res => this.combinePatronData(res.data))
       .catch(err =>
@@ -101,7 +106,15 @@ class ViewTemplate extends Component {
           patronName: name,
           patronData: this.state.patronData
           })
-            .then(alert("Patron added to the database"))
+            .then(res => 
+                API.saveFilled({
+                  patronId: res.data._id,
+                  templateId: this.state._id,
+                  filledName: `${this.state.patronData.firstName} ${this.state.patronData.lastName} ${this.state.templateName}`
+                })
+                  .then(res => alert("Patrons and form created!"))
+                  .catch(err => console.log(err))
+              )
             .catch(err => console.log(err))
       );
   }

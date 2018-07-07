@@ -28,7 +28,7 @@ export default {
   // Deletes the Patron with the given id 
   deletePatron: function(id) { 
     return axios.delete("/api/patron/" + id); 
-  }, 
+  },
   updatePatron: function(name,patronData) { 
     console.log(name) 
     return axios.put("/api/patron/" + name, patronData); 
@@ -61,12 +61,18 @@ export default {
     return axios.put("/api/template/" + id, templateData);
   },
   // Gets all Filleds
-  getFilleds: function() {
-    return axios.get("/api/filled");
+  getFilleds: function(data) {
+    return axios.get("/api/filled", data);
   },
   // Gets the Filled with the given id
   getFilled: function(id) {
     return axios.get("/api/filled/" + id);
+  },
+  getFilledByTemplate: function(id) {
+    return axios.get("/api/filled/template/" + id);
+  },
+  getFilledByPatron: function(id) {
+    return axios.get("/api/filled/patron/" + id);
   },
   // Deletes the Filled with the given id
   deleteFilled: function(id) {

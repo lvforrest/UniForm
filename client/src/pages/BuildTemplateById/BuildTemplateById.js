@@ -6,7 +6,7 @@ import Paper from "../../components/Paper"
 import Jumbotron from "../../components/Jumbotron";
 import SideNav from "../../components/SideNav"
 import { Title, } from "../../components/InputField";
-import "./buildTemplateById.css";
+import "./BuildTemplateById.css";
 import EmailInput from "../../build.components/Email-input";
 import NameInput from "../../build.components/Name-input";
 import Select from 'react-select';
