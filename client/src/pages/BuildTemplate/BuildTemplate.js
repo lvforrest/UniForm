@@ -111,12 +111,12 @@ class BuildTemplate extends Component {
   <Container fluid>
   <Row>
       <Col size="md-12">
-        <center><Input
+        {/* <center><Input
                 value={this.state.templatename}
                 onChange={this.handleInputChange}
                 name="templateName"
                 placeholder="Title (required)" id="templateForm"
-              />
+              /> */}
         <Select
         name="form-field-name2"
         value={userValue}
@@ -127,7 +127,9 @@ class BuildTemplate extends Component {
       ))}
       />
         <Button onClick = {this.handleFormSubmit} children = "Save Changes" className = "btn" id="pageButton"/>
-        </Col></Row>
+        {/* </center> */}
+        </Col>
+        </Row>
           {/* ====================================== */}
           {/* SIDE NAV */}
           {/* ===================================== */}

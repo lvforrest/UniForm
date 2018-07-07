@@ -32,8 +32,8 @@ class App extends Component {
           <Route exact path="/manageForms" component={ManageForms}/>
           <Route exact path="/autofill" component={Autofill}/>
           <Route exact path ="/storage" component={FindForm}/>
-          <Route exact path="/buildTemplate/:id" component={BuildTemplateById} />
-          <Route exact path="/template/:id" component={ViewTemplate}/>
+          {/* <Route exact path="/buildTemplate/:id" component={BuildTemplateById} />
+          <Route exact path="/template/:id" component={ViewTemplate}/> */}
           <Route component={NoMatch} />
           {/* <Route exact path="/filled/:id" component={ViewFilled}/> */}
         </Switch>
