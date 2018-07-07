@@ -34,7 +34,7 @@ function CenteredGrid(props) {
         </Grid>
          {/* Text */}
         <Grid item xs={12}>
-        <Typography variant="display1">uniform</Typography><Typography variant="subheading">Just like magic.</Typography>
+        <Typography variant="display1" id="title">uniform</Typography><Typography variant="subheading">Just like magic.</Typography>
         </Grid>
         {/* Login Button */}
         <Grid item xs={12}>

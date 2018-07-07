@@ -15,3 +15,8 @@ body {
 #signupButton {
     margin-bottom: 3vh;
 }
+
+h3 {
+    position: relative;
+    top: 2vh;
+}
