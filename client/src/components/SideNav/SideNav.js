@@ -1,14 +1,23 @@
 import React from 'react';
+import SideNav, { Nav, NavText } from 'react-sidenav';
 import './SideNav.css';
+ 
+ 
+//specify the base color/background of the parent container if needed
+const MySideNav = props => (
+    <div style={{background: '#2c3e50', color: '#FFF', width: 220}}> 
+        <SideNav highlightColor='#f590fb' highlightBgColor='#00dbff' defaultSelected='none'>
+        <h4>{props.title}</h4>
+        <hr></hr>
+        {props.children.map(child => {
+          return (
+          <Nav>
+          <NavText> {child} </NavText>
+          </Nav>
+          );      
+        })}
+        </SideNav>
+    </div>
+)
 
-const SideNav = props => (
-            <div className="sidenav">
-            <div id="sideNavHeader">
-            <h5>Form Elements</h5>
-            <hr></hr>
-            </div>
-            {props.children}
-          </div>
-    )
-
-    export default SideNav;
+export default MySideNav;
