@@ -1,3 +1,8 @@
+@font-face {
+    font-family: MoonBold;
+    src: url(../../assets/fonts/Moon2.0-Bold.otf);
+}
+
 .sidenav {
     z-index: -1;
     width: 20vh;
@@ -9,8 +14,9 @@
     margin-left: -2vh;
 }
 
-#sideNavHeader {
-    padding-left: 2vh;
+h5 {
+    font-family: 'MoonBold';
+    letter-spacing: 1px;
 }
 
 .sidenav a {
