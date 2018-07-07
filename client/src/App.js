@@ -11,6 +11,11 @@ import FindForm from "./pages/FindForm";
 import Autofill from "./pages/Autofill";
 import ManageForms from "./pages/ManageForms"
 import ManagePatrons from "./pages/ManagePatrons"
+import Jumbotron from "./components/Jumbotron";
+import ManagePatrons from "./pages/ManagePatrons";
+import ManageForms from "./pages/ManageForms";
+import BuildTemplateById from "./pages/BuildTemplateById";
+import ViewTemplate from "./pages/ViewTemplate";
 
 class App extends Component {
 
@@ -26,6 +31,7 @@ class App extends Component {
           <Route exact path="/buildTemplate" component={BuildTemplate}/>
           <Route exact path="/buildTemplate/:id" component={BuildTemplateById} />
           <Route exact path="/template/:id" component={ViewTemplate}/>
+          <Route exact path="/ManagePatrons" component={ManagePatrons}/>
           <Route exact path="/manageForms" component={ManageForms}/>
           <Route exact path="/managePatrons" component={ManagePatrons}/>
           <Route exact path="/autofill" component={Autofill}/>

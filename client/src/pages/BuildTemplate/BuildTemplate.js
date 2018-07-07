@@ -25,7 +25,9 @@ class BuildTemplate extends Component {
     templates: [],
     templateName: "",
     template: [],
-    key: 1000000
+    templates: [],
+    key: 1000000, 
+    name: "Build Template"
   }
   componentDidMount() {
     this.loadData();
@@ -111,10 +113,9 @@ class BuildTemplate extends Component {
     const { userOption } = this.state;
     const userValue = userOption && userOption.value;
   return(
-   <div> 
-  <Jumbotron name = {this.state.name} children = {this.state.name} />
   <Container fluid>
-    <Row>
+  <Jumbotron name = {this.state.name} children = {this.state.name} />
+   <Row>
       <Col size="md-12">
         <h1>Templates</h1>
         <Title
@@ -134,12 +135,14 @@ class BuildTemplate extends Component {
       ))}
       />
         <Button onClick = {this.handleFormSubmit} children = "Save Changes" className = "btn" id="pageButton"/>
-        </Col></Row>
+        </Col>
+        </Row>
           {/* ====================================== */}
           {/* SIDE NAV */}
           {/* ===================================== */}
         <Row>
           <Col size="md 3">
+          
           <SideNav children={[
               /* ===================================== */
               // Email Button
@@ -184,11 +187,12 @@ class BuildTemplate extends Component {
           this.createComponent(template.component,template.props)
         ))}
       />
-        
-      </Col>
-    </Row>
+        {/* End Button Array */}
+        {/* End Button Div */}
+          </Col>
+          </Row>
   </Container>
-  </div>
 )}
 }
+
 export default BuildTemplate;
