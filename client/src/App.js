@@ -13,6 +13,7 @@ import Autofill from "./pages/Autofill";
 import ButtonAppBar from "./components/NavigationBar/Navigation";
 import Footer from "./components/Footer/Footer";
 import Jumbotron from "./components/Jumbotron";
+import ManagePatrons from "./pages/ManagePatrons";
 
 class App extends Component {
 
@@ -28,6 +29,7 @@ class App extends Component {
           <Route exact path="/questionaire" component={Questionaire}/>
           <Route exact path="/buildQuestionnaire" component={BuildQuestionnaire}/>
           <Route exact path="/buildTemplate" component={BuildTemplate}/>
+          <Route exact path="/ManagePatrons" component={ManagePatrons}/>
           <Route exact path="/autofill" component={Autofill}/>
           <Route exact path ="/storage" component={FindForm}/>
           <Route component={NoMatch} />
