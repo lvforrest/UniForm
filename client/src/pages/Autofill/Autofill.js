@@ -8,8 +8,6 @@ import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import EmailInput from "../../build.components/Email-input"
 import NameInput from "../../build.components/Name-input"
-import Jumbotron from "../../components/Jumbotron";
-
 
 class Autofill extends Component {
  
@@ -18,8 +16,9 @@ class Autofill extends Component {
     questrians: [],
     filled: [],
     questrianOption: "",
-    templateOption: "", 
-    name: "Autofill Template"
+    templateOption: "",
+    email: "asdf@gmail.com",
+    password: "qwer"
     
   }
   componentDidMount() {
@@ -94,7 +93,25 @@ class Autofill extends Component {
           .then(res => alert("Filled saved!"))
           .catch(err => console.log(err));
     }
- 
+    asdf = () => {
+      API.saveUser({
+        email: this.state.email,
+        password: this.state.password
+      })
+        .then(response => {
+          console.log(response)
+          if (!response.data.err) {
+            console.log('successful signup')
+          
+          } else {
+            console.log('username already taken')
+          }
+        }).catch(error => {
+          console.log('signup error: ')
+          console.log(error)
+  
+        })
+    }
   render() {
     const { questrianOption } = this.state;
     const questrianValue = questrianOption && questrianOption.value;
@@ -102,12 +119,11 @@ class Autofill extends Component {
     const { templateOption } = this.state;
     const templateValue = templateOption && templateOption.value;
   return(
-  <div>
-  <Jumbotron name = {this.state.name} children = {this.state.name} />
   <Container fluid>
     <Row>
       <Col size="md-12">
-        <h2>Questrian</h2>          
+        <h1>Autofill</h1>
+        <h2>questrian</h2>          
         <Select
         name="form-field-name2"
         value={questrianValue}
@@ -127,6 +143,7 @@ class Autofill extends Component {
       />
       <Button children = "Generate" onClick = {this.generate}/>
       <Button children = "Save" onClick = {this.save}/>
+      <Button children = "asdf" onClick = {this.asdf}/>
       <Paper 
         children = {this.state.filled.map(fills => (
           this.createComponent(fills.component,fills.props)
@@ -135,7 +152,6 @@ class Autofill extends Component {
       </Col>
     </Row>
   </Container>
-  </div>
 )}
 }
 export default Autofill;

@@ -9,7 +9,6 @@ const Paper = props => (
     <div style = {{padding: 100}}className = "content">
     <h1 style = {{textAlign: "center"}}>{props.title}</h1>
     {props.children}
-    
     </div>
   </div>
 );

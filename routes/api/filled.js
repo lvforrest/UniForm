@@ -12,5 +12,10 @@ router
   .get(filledController.findById)
   .put(filledController.update)
   .delete(filledController.remove);
-
+router 
+  .route("/patron/:id") 
+  .get(filledController.findByPatron);
+router 
+  .route("/template/:id") 
+  .get(filledController.findByTemplate);
 module.exports = router;

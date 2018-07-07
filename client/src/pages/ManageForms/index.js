@@ -1,1 +1,1 @@
-export { default } from "./ManageForms.js";
+export { default } from "./ManageForms";

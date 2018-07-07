@@ -1,1 +1,1 @@
-export { default } from "./ManagePatrons.js";
+export { default } from "./ManagePatrons";

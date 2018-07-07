@@ -1,1 +1,1 @@
-export { default } from "./FormManagerTable";
+export { default } from "./ManageFormsTable";

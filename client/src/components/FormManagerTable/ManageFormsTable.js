@@ -7,6 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Button from "../Button"
 
 const styles = theme => ({
   root: {
@@ -19,17 +20,7 @@ const styles = theme => ({
   },
 });
 
-let id = 0;
-function createData(name, button1, button2, button3 ) {
-  id += 1;
-  return { id, name, button1, button2, button3 };
-}
 
-const data = [
-  createData('Form 1', 'View', 'Edit', 'Delete'),
-  createData('Form 2', 'View', 'Edit', 'Delete'),
-  createData('Form 3', 'View', 'Edit', 'Delete'),
-];
 
 function ManageFormsTable(props) {
   const { classes } = props;
@@ -38,20 +29,17 @@ function ManageFormsTable(props) {
     <Paper className={classes.root}>
       <Table className={classes.table}>
         <TableBody>
-          {data.map(n => {
+          {props.children.map(child => {
             return (
-              <TableRow key={n.id}>
+              <TableRow key={child._id}>
                 <TableCell component="th" scope="row">
-                  {n.name}
+                  {child.filledName}
                 </TableCell>
                 <TableCell>
-                View
+                <a href = {`/buildTemplate/${child.templateId}`} children = "View/Update"/>
                 </TableCell>
                 <TableCell>
-                Update
-                </TableCell>
-                <TableCell>
-                Delete
+                <a onClick = {() => props.onDelete(child._id,child.templateId)} children = "Delete"/>
                 </TableCell>
               </TableRow>
             );

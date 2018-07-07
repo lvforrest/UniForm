@@ -34,7 +34,7 @@ function CenteredGrid(props) {
         </Grid>
          {/* Text */}
         <Grid item xs={12}>
-        <h2 id="title">uniform</h2><Typography variant="subheading">Just like magic.</Typography>
+        <Typography variant="display1">uniform</Typography><Typography variant="subheading">Just like magic.</Typography>
         </Grid>
         {/* Login Button */}
         <Grid item xs={12}>
@@ -52,8 +52,6 @@ function CenteredGrid(props) {
     </div>
   );
 }
-
-
 
 // ===============================================
 // Login Button Style Override

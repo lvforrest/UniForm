@@ -51,6 +51,7 @@ class BuildTemplateById extends Component {
     newTemplate.push(name)
 
     this.setState({template: newTemplate})
+    console.log(this.state);
   }
   multiInput = (name) => {
     let newTemplate = this.state.template.slice();
@@ -86,19 +87,17 @@ class BuildTemplateById extends Component {
       [name]: value
     });
   };
-  handleChange = (userOption) => {
-    this.setState({userOption})
-    for(let i = 0; i < this.state.templates.length; i++){
-      let match = this.state.templates[i]._id.includes(userOption.value)
-      if(match){
-      this.setState({ 
-        template: this.state.templates[i].template, 
-        templateName: this.state.templates[i].templateName,
-         _id: this.state.templates[i]._id, 
-         })
-        }
-      }
-  }    
+    handleChange = (userOption) => {
+      this.setState({userOption})
+      let url = `/buildTemplate/${userOption.value}`
+      this.props.history.push(url)
+      
+    }
+    
+    log = () => {
+      this.loadData()
+    }
+    
     deleteTemplate = (id) => {
       API.deleteTemplate(id)
       .then(res =>  this.props.history.push("/buildTemplate"))
@@ -142,6 +141,7 @@ class BuildTemplateById extends Component {
          
       ))}
       />
+        <Button onClick = {this.log} children = "Go"/>
         <Button onClick = {() => this.updateTemplate(this.state._id)} children = "Save Changes" className = "btn" id="pageButton"/>
         <Button onClick = {() => this.deleteTemplate(this.state._id)} display = {this.state.delete} children = "Delete Template" className = "btn" id="deleteButton"/>
         </Col></Row>

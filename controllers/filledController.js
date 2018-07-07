@@ -3,8 +3,9 @@ const db = require("../models");
 // Defining methods for the FilledsController
 module.exports = {
   findAll: function(req, res) {
+    console.log(req.body)
     db.Filled
-      .find(req.query)
+      .find({},req.body)
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
@@ -15,6 +16,20 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  findByTemplate: function(req, res) {
+    db.Filled  
+    .find({templateId: req.params.id})  
+    .sort({ date: -1 })
+    .then(dbModel => res.json(dbModel))  
+    .catch(err => res.status(422).json(err));
+},
+findByPatron: function(req, res) { 
+  db.Filled  
+  .find({patronId: req.params.id})
+  .sort({ date: -1 })
+  .then(dbModel => res.json(dbModel))  
+  .catch(err => res.status(422).json(err));
+}, 
   create: function(req, res) {
     db.Filled
       .create(req.body)

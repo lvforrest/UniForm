@@ -22,6 +22,7 @@ import SideNav from "../../components/SideNav"
 class BuildTemplate extends Component {
 
   state = {
+    templates: [],
     templateName: "",
     template: [],
     templates: [],
@@ -29,19 +30,19 @@ class BuildTemplate extends Component {
     name: "Build Template"
   }
   componentDidMount() {
-    
     this.loadData();
   }
   loadData= () => {
     API.getTemplates()
-        .then(res =>
-          this.setState({templates:res.data})
-        )
-        .catch(err => console.log(err));
-    };
-  singleInput = (name, nameData) => {
+      .then(res =>
+        this.setState({templates:res.data})
+      )
+      .catch(err => console.log(err));
+  };
+  singleInput = (name) => {
     let newTemplate = this.state.template.slice();
     newTemplate.push(name)
+
     this.setState({template: newTemplate})
   }
   multiInput = (name) => {
@@ -75,12 +76,17 @@ class BuildTemplate extends Component {
     });
   };
 
-  handleChange = (userOption) => {
-    this.setState({userOption})
-    let url = `/buildTemplate/${userOption.value}`
-    this.props.history.push(url)
-    
-  }
+    handleChange = (userOption) => {
+      this.setState({userOption})
+      for(let i = 0; i < this.state.templates.length; i++){
+        let match = this.state.templates[i].templateName.includes(userOption.value)
+        let id = this.state.templates[i]._id
+        if(match) {
+          console.log("hello")
+          window.location.href = `/buildTemplate/${id}`
+        }
+        }
+    }
     keyMaker = () => {
       const newKey = this.state.key - 1
       this.setState({key: newKey})
@@ -95,7 +101,7 @@ class BuildTemplate extends Component {
       
       API.saveTemplate({
       templateName: this.state.templateName,
-      template: this.state.templateData
+      template: this.state.template
       })
         .then(res => this.props.history.push(`/buildTemplate/${res.data._id}`))
         .catch(err => console.log(err));
@@ -109,21 +115,22 @@ class BuildTemplate extends Component {
   return(
   <Container fluid>
   <Jumbotron name = {this.state.name} children = {this.state.name} />
-  <Row>
+   <Row>
       <Col size="md-12">
-        <center><input
-                value={this.state.templatename}
+        <Title
+                width="35%"
+                value = {this.state.templatename}
                 onChange={this.handleInputChange}
                 name="templateName"
-                placeholder="Title (required)" id="templateForm"
-              /></center>
-        <Select
+                placeholder="Title (required)"
+              />
+              
+              <Select
         name="form-field-name2"
         value={userValue}
         onChange={this.handleChange}
         options= {this.state.templates.map(template => (
-          { value: template._id, label: template.templateName } 
-         
+          { value: template.templateName, label: template.templateName } 
       ))}
       />
         <Button onClick = {this.handleFormSubmit} children = "Save Changes" className = "btn" id="pageButton"/>
@@ -179,7 +186,6 @@ class BuildTemplate extends Component {
           this.createComponent(template.component,template.props)
         ))}
       />
-        
         {/* End Button Array */}
         {/* End Button Div */}
           </Col>

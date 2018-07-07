@@ -17,24 +17,29 @@ export default {
   saveUser: function(userData) {
     return axios.post("/api/user", userData);
   },
-   // Gets all Questrians 
-   getQuestrians: function() { 
-    return axios.get("/api/Questrian"); 
+   // Gets all Patrons 
+   getPatrons: function() { 
+    return axios.get("/api/patron"); 
   }, 
-  // Gets the Questrian with the given id 
-  getQuestrian: function(id) { 
-    return axios.get("/api/Questrian/" + id); 
+  // Gets the Patron with the given id 
+  getPatron: function(id) { 
+    return axios.get("/api/patron/" + id); 
   }, 
-  // Deletes the Questrian with the given id 
-  deleteQuestrian: function(id) { 
-    return axios.delete("/api/Questrian/" + id); 
+  // Deletes the Patron with the given id 
+  deletePatron: function(id) { 
+    return axios.delete("/api/patron/" + id); 
+  },
+  updatePatron: function(name,patronData) { 
+    console.log(name) 
+    return axios.put("/api/patron/" + name, patronData); 
   }, 
-  // Saves a Questrian to the database 
-  saveQuestrian: function(QuestrianData) { 
-    return axios.post("/api/Questrian", QuestrianData); 
+  getPatronName: function(name){ 
+    console.log("getting patron name") 
+    return axios.get("/api/patron/name/" + name) 
   }, 
-  updateQuestrian: function(id) { 
-    return axios.put("/api/Questrian/" + id); 
+  // Saves a Patron to the database 
+  savePatron: function(PatronData) { 
+    return axios.post("/api/patron", PatronData); 
   }, 
   // Gets all Templates
   getTemplates: function() {
@@ -56,12 +61,18 @@ export default {
     return axios.put("/api/template/" + id, templateData);
   },
   // Gets all Filleds
-  getFilleds: function() {
-    return axios.get("/api/filled");
+  getFilleds: function(data) {
+    return axios.get("/api/filled", data);
   },
   // Gets the Filled with the given id
   getFilled: function(id) {
     return axios.get("/api/filled/" + id);
+  },
+  getFilledByTemplate: function(id) {
+    return axios.get("/api/filled/template/" + id);
+  },
+  getFilledByPatron: function(id) {
+    return axios.get("/api/filled/patron/" + id);
   },
   // Deletes the Filled with the given id
   deleteFilled: function(id) {
