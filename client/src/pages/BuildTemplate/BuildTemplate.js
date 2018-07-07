@@ -107,17 +107,16 @@ class BuildTemplate extends Component {
     const { userOption } = this.state;
     const userValue = userOption && userOption.value;
   return(
-   <div> 
-  <Jumbotron name = {this.state.name} children = {this.state.name} />
   <Container fluid>
+  <Jumbotron name = {this.state.name} children = {this.state.name} />
   <Row>
       <Col size="md-12">
-        {/* <center><Input
+        <center><input
                 value={this.state.templatename}
                 onChange={this.handleInputChange}
                 name="templateName"
                 placeholder="Title (required)" id="templateForm"
-              /> */}
+              /></center>
         <Select
         name="form-field-name2"
         value={userValue}
@@ -128,7 +127,6 @@ class BuildTemplate extends Component {
       ))}
       />
         <Button onClick = {this.handleFormSubmit} children = "Save Changes" className = "btn" id="pageButton"/>
-        {/* </center> */}
         </Col>
         </Row>
           {/* ====================================== */}
@@ -182,21 +180,12 @@ class BuildTemplate extends Component {
         ))}
       />
         
-        // End Button Array
-        ]}/>
+        {/* End Button Array */}
         {/* End Button Div */}
-          </Col>
-{/* ====================================== */}
-{/* PAPER */}
-{/* ===================================== */}
-          <Col size="md 9">
-        <Paper title = {this.state.templateName} children = {this.state.template.map(child => (
-          <div>{child.component}</div>))}      
-          />
           </Col>
           </Row>
   </Container>
-  </div>
 )}
 }
+
 export default BuildTemplate;
