@@ -1,0 +1,47 @@
+.firstSection {
+    background: white;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+#body1 {
+    text-align: left;
+}
+
+.image1 {
+    width: 100%;
+}
+
+#loginButton {
+    padding: none;
+    margin: 20px 10px 10px -10px;
+}
+
+#mainText {
+}
+
+#secondaryText {
+    line-height: 120%;
+    padding-top: 20px;
+}
+
+.firstSection h1 {
+    color: #74D9F9;
+    font-family: 'Roboto';
+}
+
+.secondSection {
+    background: url("../../assets/images/cosmic.jpg");
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.secondSection h1 {
+    color: #74D9F9;
+}
+
+.thirdSection {
+    background: #808080;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
