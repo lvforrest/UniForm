@@ -7,6 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Button from "../Button"
 
 const styles = theme => ({
   root: {
@@ -19,34 +20,26 @@ const styles = theme => ({
   },
 });
 
-let id = 0;
-function createData(name, calories, fat, carbs, protein) {
-  id += 1;
-  return { id, name, calories, fat, carbs, protein };
-}
 
-const data = [
-  createData('John', 'view', 'delete'),
-  createData('Lacie', 'view', 'delete'),
-  createData('Max', 'view', 'delete'),
-];
 
-function PatronsTable(props) {
+function PatronManagerTable(props) {
   const { classes } = props;
-
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
         <TableBody>
-          {data.map(n => {
+          {Object.keys(props.children || {}).map(function(keyName,keyIndex){
             return (
-              <TableRow key={n.id}>
+              <TableRow key= {keyName}>
                 <TableCell component="th" scope="row">
-                  {n.name}
+                  {keyName}
                 </TableCell>
-                <TableCell numeric>{n.calories}</TableCell>
-                <TableCell numeric>{n.fat}</TableCell>
-                <TableCell numeric>{n.carbs}</TableCell>
+                <TableCell>
+                  {props.children[keyName]}
+                </TableCell>
+                <TableCell>
+                <a onClick = {() => props.deleteKey(keyName)} children = "Delete"/>
+                </TableCell>
               </TableRow>
             );
           })}
@@ -56,8 +49,8 @@ function PatronsTable(props) {
   );
 }
 
-PatronsTable.propTypes = {
+PatronManagerTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(PatronsTable);
+export default withStyles(styles)(PatronManagerTable);

@@ -8,17 +8,24 @@ import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import EmailInput from "../../build.components/Email-input"
 import NameInput from "../../build.components/Name-input"
+import CityInput from "../../build.components/City-input";
+import StateInput from "../../build.components/State-input";
+import ZipInput from "../../build.components/Zip-input";
+import StreetAddressInput from "../../build.components/StreetAddress-input";
+import LanguageInput from "../../build.components/Language-input";
+import NationalityInput from "../../build.components/Nationality-input";
+import GenderInput from "../../build.components/Gender-input";
 
 class Autofill extends Component {
  
   state = {
     templates: [],
-    questrians: [],
+    patrons: [],
     filled: [],
-    questrianOption: "",
+    patron: [],
+    template: [],
+    patronOption: "",
     templateOption: "",
-    email: "asdf@gmail.com",
-    password: "qwer"
     
   }
   componentDidMount() {
@@ -32,89 +39,73 @@ class Autofill extends Component {
       )
       .catch(err => console.log(err));
  
-    API.getQuestrians()
+    API.getPatrons()
       .then(res =>
-        this.setState({ questrians: res.data}),
+        this.setState({ patrons: res.data}),
       )
       .catch(err => console.log(err));
   };
  
-  handleChange = (questrianOption) => {
-    this.setState({ questrianOption });
+  handleChange = (patronOption) => {
+    this.setState({ patronOption });
   }
   handleChangeB = (templateOption) => {
     this.setState({ templateOption });
     }
   
-  createComponent = (componentName,props) => {
-    const  components = {
-      "EmailInput" : EmailInput,
-      "NameInput" : NameInput,
-    }
-    const component = React.createElement(components[componentName], props);
-    console.log(component)
-    return component;
-  }
-  generate = () => {
- 
-    let filledquestrian = []
-    let filledTemplate = []
-    let filled = []
-    for(let i =0; i < this.state.questrians.length; i++) {
-      if(this.state.questrians[i].firstName === this.state.questrianOption.value){
-        filledquestrian = this.state.questrians[i];
-        console.log(this.state)
+    createComponent = (componentName,props) => {
+      const  components = {
+        "EmailInput" : EmailInput,
+        "NameInput" : NameInput,
+        "CityInput" : CityInput,
+        "StateInput" : StateInput,
+        "ZipInput" : ZipInput,
+        "StreetAddressInput" : StreetAddressInput,
+        "GenderInput" : GenderInput,
+        "NationalityInput" : NationalityInput,
+        "LanguageInput" : LanguageInput
       }
+      const component = React.createElement(components[componentName], props);
+      return component;
     }
- 
-    for(let i =0; i < this.state.templates.length; i++) {
-      if(this.state.templates[i].templateName === this.state.templateOption.value){
-        filledTemplate = this.state.templates[i];      }
-    }
-    for(let i = 0; i < filledTemplate.template.length; i++){
-      let object = {}
-      object.component = filledTemplate.template[i].component
-      object.props = filledTemplate.template[i].props
-      object.props.value = filledquestrian[filledTemplate.template[i].fill]
-      console.log(filledquestrian[filledTemplate.template[i].fill])
-      filled.push(object);
-      this.setState({filled: filled})
-      console.log(this.state)
-  
-    }
-  }
     save = () => {
       API.saveFilled({
-        templateName: this.state.templateOption.value,
-        filled: this.state.filled,
-        firstName: this.state.questrianOption.value,
-        filledName: `${this.state.questrianOption.value} ${this.state.templateOption.value}`
+        templateId: this.state.templateOption.value,
+        patronId: this.state.patronOption.value,
+        filledName: `${this.state.patronOption.label} ${this.state.templateOption.label}`
         })
-          .then(res => alert("Filled saved!"))
+          .then(this.generate())
           .catch(err => console.log(err));
     }
-    asdf = () => {
-      API.saveUser({
-        email: this.state.email,
-        password: this.state.password
-      })
-        .then(response => {
-          console.log(response)
-          if (!response.data.err) {
-            console.log('successful signup')
-          
-          } else {
-            console.log('username already taken')
+    generate = () => {
+ 
+      let patronData = []
+      let templateData = []
+      let filled = []
+      for(let i =0; i < this.state.patrons.length; i++) {
+        if(this.state.patrons[i]._id === this.state.patronOption.value){
+          patronData = this.state.patrons[i].patronData;
+        }
+      }
+   
+      for(let i =0; i < this.state.templates.length; i++) {
+        if(this.state.templates[i]._id === this.state.templateOption.value){
+          templateData = this.state.templates[i].template;
           }
-        }).catch(error => {
-          console.log('signup error: ')
-          console.log(error)
-  
-        })
+      }
+      for(let i = 0; i < templateData.length; i++){
+        let object = {}
+        object.component = templateData[i].component
+        object.props = templateData[i].props
+        object.props.value = patronData[templateData[i].props.name]
+        filled.push(object);
+        this.setState({filled: filled})
+    
+      }
     }
   render() {
-    const { questrianOption } = this.state;
-    const questrianValue = questrianOption && questrianOption.value;
+    const { patronOption } = this.state;
+    const patronValue = patronOption && patronOption.value;
     
     const { templateOption } = this.state;
     const templateValue = templateOption && templateOption.value;
@@ -123,13 +114,13 @@ class Autofill extends Component {
     <Row>
       <Col size="md-12">
         <h1>Autofill</h1>
-        <h2>questrian</h2>          
+        <h2>Patron</h2>          
         <Select
         name="form-field-name2"
-        value={questrianValue}
+        value={patronValue}
         onChange={this.handleChange}
-        options= {this.state.questrians.map(questrian => (
-          { value: questrian.firstName , label: questrian.firstName } 
+        options= {this.state.patrons.map(patron => (
+          { value: patron._id , label: patron.patronName } 
       ))}
       /> 
       <h2>Template</h2>
@@ -138,17 +129,10 @@ class Autofill extends Component {
         value={templateValue}
         onChange={this.handleChangeB}
         options= {this.state.templates.map(template => (
-          { value: template.templateName , label: template.templateName } 
+          { value: template._id , label: template.templateName } 
       ))}
       />
-      <Button children = "Generate" onClick = {this.generate}/>
       <Button children = "Save" onClick = {this.save}/>
-      <Button children = "asdf" onClick = {this.asdf}/>
-      <Paper 
-        children = {this.state.filled.map(fills => (
-          this.createComponent(fills.component,fills.props)
-        ))}
-      />
       </Col>
     </Row>
   </Container>
