@@ -26,7 +26,7 @@
 }
 
 .firstSection h1 {
-    color: #74D9F9;
+    color: rgb(75, 213, 255);
     font-family: 'Roboto';
 }
 
@@ -37,11 +37,19 @@
 }
 
 .secondSection h1 {
-    color: #74D9F9;
+    color: rgb(75, 213, 255);
 }
 
 .thirdSection {
     background: #808080;
     padding-top: 100px;
     padding-bottom: 100px;
+}
+
+.employerImg {
+    width: 50%;
+}
+
+.employeeImg {
+    width: 50%;
 }

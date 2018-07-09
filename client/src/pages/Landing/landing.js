@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Col, Row, Container } from "../../components/Grid";
 import './landing.css';
 import landingimage1 from "../../assets/images/landingimage1.png";
+import SimpleCard from "./components/EmployeeCard";
+import EmployerCard from "./components/EmployerCard";
 
 class Landing extends Component {
 
@@ -14,8 +16,8 @@ class Landing extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-6" id="body1">
-                                <h1 id="mainText">Let UniForm build any form you need and link all of your employees in one place.</h1>
-                                <h3 id="secondaryText">UniForm allows users to build any kind of form from their tablet or desktop in minutes and send it out to a collection of employees.</h3>
+                                <h1 id="mainText">Let UniForm build any form you need and store all of your information in one place.</h1>
+                                <h3 id="secondaryText">UniForm allows users to build any kind of form from their tablet or desktop in minutes and send it out to users with the click of a button.</h3>
                                 <div className="row">
                                     <div className="col-6" id="loginButton">
                                         <button type="button" class="btn">Log In</button>
@@ -33,12 +35,11 @@ class Landing extends Component {
                 <div className="secondSection">
                     <div className="container">
                         <div className="row">
-                            <div className="col-6" id="body1">
-                                <h1 id="mainText">This is some information about our product</h1>
-                                <h3 id="secondaryText">Here is some more information in a smaller font that you can read below the title</h3>
+                            <div className="col-6" >
+                                <EmployerCard />
                             </div>
                             <div className="col-6">
-                                <h1 id="mainText">This is some information about our product</h1>
+                                <SimpleCard />
                             </div>
                         </div>
                     </div>
