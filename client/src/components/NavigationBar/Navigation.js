@@ -36,6 +36,16 @@ function ButtonAppBar() {
                         Account
                     </Link>
             </li>
+         {/* Account */}
+        {/* ===================================== */}
+        <li color="inherit" classNameName={
+                    window.location.pathname === "/Login"
+                    ? "nav-item active"
+                    : "nav-item"}>
+                    <Link to="/Login" classNameName="nav-link">
+                        Login
+                    </Link>
+            </li>
         {/* ===================================== */}
         {/* Questionnaire */}
         {/* ===================================== */}

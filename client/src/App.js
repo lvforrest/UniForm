@@ -13,7 +13,7 @@ import ManageForms from "./pages/ManageForms"
 import ManagePatrons from "./pages/ManagePatrons"
 import Jumbotron from "./components/Jumbotron";
 import Account from "./pages/Account";
-
+import Login from "./pages/Login";
 class App extends Component {
 
   render() {
@@ -33,6 +33,8 @@ class App extends Component {
           <Route exact path="/autofill" component={Autofill}/>
           <Route exact path ="/storage" component={FindForm}/>
           <Route exact path = "/Account" component ={Account}/>
+          <Route exact path = "/Login" component ={Login}/>
+
           {/* <Route exact path="/filled/:id" component={ViewFilled}/> */}
           <Route component={NoMatch} />
         </Switch>

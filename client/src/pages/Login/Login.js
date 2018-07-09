@@ -6,12 +6,10 @@ import { Input, TextArea, FormBtn } from "../../components/InputField";
 import Button from "../../components/Button";
 
 
-class Account extends Component {
+class Login extends Component {
   state = {
-    lastName: "",
+    username:"", 
     password: "",
-    email: "", 
-    firstName: ""
   }
 
   handleInputChange = event => {
@@ -26,21 +24,15 @@ class Account extends Component {
     console.log(this.state);
   }
 
-  signup = (event)=>{
+  login = (event)=>{
     event.preventDefault();
     API.saveUser({
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      email: this.state.email,
+      username: this.state.username,
       password: this.state.password
       })
-        .then(res => alert("user created!"))
+        .then(res => alert("logged in!"))
         .catch(err => console.log(err));
   };
-  // login = (event)=> {
-  //   event(preventDefault)();
-
-  // }
   // export default React.createClass({
 
   //   submitHandler(event) {
@@ -59,36 +51,23 @@ class Account extends Component {
     <Row>
       <Col size="md-12">
        
-          <h1>Account</h1>
+          <h1>Login</h1>
           <form>
               <Input
-                value={this.state.firstName}
+                value={this.state.username}
                 onChange={this.handleInputChange}
-                name="firstName"
-                placeholder="First Name (Required)"
+                name="username"
+                placeholder="User Name"
               />
-              <Input
-                value={this.state.lastName}
-                onChange={this.handleInputChange}
-                name="lastName"
-                placeholder="Last Name (Required)"
-              />
-              <Input
-                value={this.state.email}
-                onChange={this.handleInputChange}
-                name="email"
-                placeholder="Email (Required)"
-              />
-          
               <Input
                 value={this.state.password}
                 onChange={this.handleInputChange}
                 name="password"
-                type="password"
-                placeholder="password(required)"
+                placeholder="Password"
               />
+              
 
-              <Button onClick={this.signup} children= "signup"/>
+              <Button onClick={this.login} children= "login"/>
               <Button onClick={this.asdf} children= "asdf"/>
               
 
@@ -100,4 +79,4 @@ class Account extends Component {
   </Container>
 )}
 }
-export default Account;
+export default Login;
