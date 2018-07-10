@@ -9,7 +9,9 @@ import ButtonAppBar from "./components/NavigationBar/Navigation";
 import Footer from "./components/Footer/Footer";
 import FindForm from "./pages/FindForm";
 import Autofill from "./pages/Autofill";
-import ManageForms from "./pages/ManageForms"
+import ViewFilled from "./pages/ViewFilled";
+import ManagePatronData from "./pages/ManagePatronData";
+import ManageForms from "./pages/ManageForms";
 import ManagePatrons from "./pages/ManagePatrons"
 import Jumbotron from "./components/Jumbotron";
 import Account from "./pages/Account";
@@ -33,9 +35,10 @@ class App extends Component {
           <Route exact path="/managePatrons" component={ManagePatrons}/>
           <Route exact path="/autofill" component={Autofill}/>
           <Route exact path ="/storage" component={FindForm}/>
+          <Route exact path="/filled/:id" component={ViewFilled}/>
+          <Route exact path="/managePatronData" component={ManagePatronData}/>
           <Route exact path ="/Landing" component={Landing}/>
           <Route exact path = "/Account" component ={Account}/>
-          {/* <Route exact path="/filled/:id" component={ViewFilled}/> */}
           <Route component={NoMatch} />
         </Switch>
       </div>

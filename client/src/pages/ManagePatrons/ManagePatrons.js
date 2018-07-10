@@ -33,7 +33,8 @@ class ManagePatrons extends Component {
   };
   
   handleChange = (userOption) => {
-    this.setState({userOption: userOption})
+    let link = `http://${window.location.host}/buildTemplate/${userOption.value}`
+    this.setState({userOption: userOption, link: link})
     API.getFilledByPatron(userOption.value)
       .then(res =>
         this.setState({ filleds: res.data}),
