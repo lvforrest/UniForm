@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Col, Row, Container } from "../../components/Grid";
 import './landing.css';
 import landingimage1 from "../../assets/images/landingimage1.png";
+import part3 from "../../assets/images/part3.png";
 import SimpleCard from "./components/EmployeeCard";
 import EmployerCard from "./components/EmployerCard";
 
@@ -49,11 +50,11 @@ class Landing extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-6" id="body1">
-                                <h1 id="mainText">This is some information about our product</h1>
-                                <h3 id="secondaryText">Here is some more information in a smaller font that you can read below the title</h3>
+                            <img className="part3" src={part3} alt="logo"/>
                             </div>
-                            <div className="col-6">
-                                <h1 id="mainText">This is some information about our product</h1>
+                            <div className="col-6" id="body1">
+                                <h1 id="mainText">Say goodbye to the headache of filling out form after form.</h1>
+                                <h3 id="secondaryText">UniForm allows users to autofill repetitive, boring information that no one wants to fill out. Share your completed form with anyone using the app in safe and secure way.</h3>
                             </div>
                         </div>
                     </div>
