@@ -15,7 +15,8 @@ import Jumbotron from "./components/Jumbotron";
 import Account from "./pages/Account";
 import Login from "./pages/Login";
 class App extends Component {
-
+  state= {user: null};
+  
   render() {
     return(
 

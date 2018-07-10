@@ -5,45 +5,56 @@ import Jumbotron from "../../components/Jumbotron";
 import { Input, TextArea, FormBtn } from "../../components/InputField";
 import Button from "../../components/Button";
 
-
-class Login extends Component {
-  state = {
-    username:"", 
-    password: "",
+class Auth extends Component {
+  constructor(){
+    super()
+  this.state = {
+    vistor:{
+      firstName: "",
+      lastName: "",
+      email:"", 
+      password: "",
+    }
   }
+}
 
-  handleInputChange = event => {
-    const { name, value } = event.target;
+
+  newVistor(event){
+    console.log( att + "==" + event.target.value)
+    const newVistor = object.assign({}, this.state.vistor)
+    newVistor[attr]= event.target.value
+
     this.setState({
-      [name]: value
-    });
-  };
-
-  asdf =(event) =>{
-    event.preventDefault();
-    console.log(this.state);
+      vistor:newVistor
+    })
   }
-
-  login = (event)=>{
+  register(event){
     event.preventDefault();
-    API.saveUser({
-      username: this.state.username,
-      password: this.state.password
-      })
-        .then(res => alert("logged in!"))
-        .catch(err => console.log(err));
-  };
-  // export default React.createClass({
+    console.log("register");
 
-  //   submitHandler(event) {
-  //     event.preventDefault();
-  
-  //     // Using ref: secret
-  //     console.log("Using ref:", this.refs.pswd.value);
-  
-  //     // From form: password=secret
-  //     console.log("From form:", serialize(this.refs.form));
-  //   },
+  }
+  login(event){
+    event.preventDefault();
+    console.log("login")
+
+  }
+  // asdf =(event) =>{
+  //   event.preventDefault();
+  //   console.log(this.state);
+  // }
+
+  // login = (event)=>{
+  //   event.preventDefault();
+  //   API.getUserLogin({
+  //     email: this.state.email,
+  //     password: this.state.password,
+      
+  //     })
+  //       .then(res => alert("logged in!"))
+  //       .catch(err => console.log(err));
+       
+  // };
+
   
   render() {
   return(
@@ -51,32 +62,131 @@ class Login extends Component {
     <Row>
       <Col size="md-12">
        
-          <h1>Login</h1>
+          <h1>Register</h1>
           <form>
               <Input
-                value={this.state.username}
-                onChange={this.handleInputChange}
-                name="username"
-                placeholder="User Name"
+                value={this.state.firstName}
+                onChange={this.newVistor.bind(this, firstName)}
+                name="firstName"
+                placeholder="First Name"
+              />
+              <Input
+                value={this.state.lastName}
+                onChange={this.newVistor.bind(this, lastName)}
+                name="lastName"
+                placeholder="Last Name"
+              />
+              <Input
+                value={this.state.email}
+                onChange={this.newVistor.bind(this, email)}
+                name="email"
+                placeholder="Email"
               />
               <Input
                 value={this.state.password}
-                onChange={this.handleInputChange}
+                onChange={this.newVistor.bind(this,password)}
+                name="password"
+                placeholder="Password"
+              />
+
+              <Button onClick={this.register.bind(this)} children= "register"/>
+              {/* <Button onClick={this.asdf} children= "asdf"/> */}
+              
+
+            </form>
+          
+            <h1>Login</h1>
+          <form>
+              <Input
+                value={this.state.email}
+                onChange={this.newVistor.bind(this, email)}
+                name="email"
+                placeholder="Email"
+              />
+              <Input
+                value={this.state.password}
+                onChange={this.newVistor.bind(this, password)}
                 name="password"
                 placeholder="Password"
               />
               
 
-              <Button onClick={this.login} children= "login"/>
-              <Button onClick={this.asdf} children= "asdf"/>
+              <Button onClick={this.login.bind(this)} children= "login"/>
+              {/* <Button onClick={this.asdf} children= "asdf"/> */}
               
 
             </form>
-          
         
       </Col>
     </Row>
   </Container>
 )}
 }
+export default Login;
+
+// class Login extends Component {
+//   state = {
+//     email:"", 
+//     password: "",
+//   }
+
+//   handleInputChange = event => {
+//     const { name, value } = event.target;
+//     this.setState({
+//       [name]: value
+//     });
+//   };
+
+//   asdf =(event) =>{
+//     event.preventDefault();
+//     console.log(this.state);
+//   }
+
+//   login = (event)=>{
+//     event.preventDefault();
+//     API.getUserLogin({
+//       email: this.state.email,
+//       password: this.state.password,
+      
+//       })
+//         .then(res => alert("logged in!"))
+//         .catch(err => console.log(err));
+       
+//   };
+
+  
+//   render() {
+//   return(
+//   <Container fluid>
+//     <Row>
+//       <Col size="md-12">
+       
+//           <h1>Login</h1>
+//           <form>
+//               <Input
+//                 value={this.state.email}
+//                 onChange={this.handleInputChange}
+//                 name="email"
+//                 placeholder="Email"
+//               />
+//               <Input
+//                 value={this.state.password}
+//                 onChange={this.handleInputChange}
+//                 name="password"
+//                 placeholder="Password"
+//               />
+              
+
+//               <Button onClick={this.login(this.state.email)} children= "login"/>
+//               <Button onClick={this.asdf} children= "asdf"/>
+              
+
+//             </form>
+          
+        
+//       </Col>
+//     </Row>
+//   </Container>
+// )}
+// }
 export default Login;

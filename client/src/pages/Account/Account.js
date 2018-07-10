@@ -11,7 +11,7 @@ class Account extends Component {
     lastName: "",
     password: "",
     email: "", 
-    firstName: ""
+    firstName: "",
   }
 
   handleInputChange = event => {
@@ -77,15 +77,14 @@ class Account extends Component {
                 value={this.state.email}
                 onChange={this.handleInputChange}
                 name="email"
-                placeholder="Email (Required)"
+                placeholder="Email(Required)"
               />
-          
+            
               <Input
                 value={this.state.password}
                 onChange={this.handleInputChange}
                 name="password"
-                type="password"
-                placeholder="password(required)"
+                placeholder="Password(required)"
               />
 
               <Button onClick={this.signup} children= "signup"/>

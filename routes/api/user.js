@@ -13,4 +13,8 @@ router
   .put(userController.update)
   .delete(userController.remove);
 
+router.
+  route("/api/user/:email/:password")
+  .get(userController.findOne);
+
 module.exports = router;
