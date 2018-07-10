@@ -32,10 +32,10 @@ div.paper {
     width: 75vh;
 }
 
-.Select.is-clearable.is-searchable.Select--single {
+/* .Select.is-clearable.is-searchable.Select--single {
     position: relative;
     bottom: 2vh;
-}
+} */
 
 .form-group {
     margin-bottom: 20px;
