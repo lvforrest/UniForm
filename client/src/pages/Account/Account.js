@@ -41,10 +41,9 @@ class Account extends Component {
   render() {
   return(
   <Container fluid>
+  <Jumbotron/>
     <Row>
       <Col size="md-12">
-       
-          <h1>Account</h1>
           <form>
               <Input
                 value={this.state.firstName}
