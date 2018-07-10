@@ -20,3 +20,8 @@ h3 {
     position: relative;
     top: 2vh;
 }
+
+button#loginButton {
+    position: relative;
+    left: 1vh;
+}
