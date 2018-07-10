@@ -72,17 +72,6 @@ function ButtonAppBar() {
                 </Link>
             </li>
         {/* ===================================== */}
-        {/* Storage */}
-        {/* ===================================== */}
-            <li className="nav-item" color="inherit" classNameName={
-                window.location.pathname === "/storage"
-                ? "nav-item active"
-                : "nav-item"}>
-                <Link to="/storage" classNameName="nav-link">
-                    Storage
-                </Link>
-            </li>
-        {/* ===================================== */}
         {/* Landing */}
         {/* ===================================== */}
         <li className="nav-item" color="inherit" classNameName={
