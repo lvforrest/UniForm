@@ -25,6 +25,17 @@ function ButtonAppBar() {
                         Home
                     </Link>
             </li>
+                 {/* ===================================== */}
+        {/* Account */}
+        {/* ===================================== */}
+            <li color="inherit" classNameName={
+                    window.location.pathname === "/Account"
+                    ? "nav-item active"
+                    : "nav-item"}>
+                    <Link to="/Account" classNameName="nav-link">
+                        Account
+                    </Link>
+            </li>
         {/* ===================================== */}
         {/* Questionnaire */}
         {/* ===================================== */}
@@ -61,14 +72,14 @@ function ButtonAppBar() {
                 </Link>
             </li>
         {/* ===================================== */}
-        {/* Storage */}
+        {/* Landing */}
         {/* ===================================== */}
-            <li className="nav-item" color="inherit" classNameName={
-                window.location.pathname === "/storage"
+        <li className="nav-item" color="inherit" classNameName={
+                window.location.pathname === "/landing"
                 ? "nav-item active"
                 : "nav-item"}>
-                <Link to="/storage" classNameName="nav-link">
-                    Storage
+                <Link to="/landing" classNameName="nav-link">
+                    Landing
                 </Link>
             </li>
         {/* ===================================== */}
