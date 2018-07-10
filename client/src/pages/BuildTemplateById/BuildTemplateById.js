@@ -27,7 +27,8 @@ class BuildTemplateById extends Component {
     template: [],
     _id: "",
     url: "",
-    key: 1000000
+    key: 1000000,
+    name: "Template"
   }
   componentDidMount() {
     
@@ -123,7 +124,6 @@ class BuildTemplateById extends Component {
   <Container fluid>
     <Row>
       <Col size="md-12">
-        <h1>Templates</h1>
         <Button onClick = {this.newTemplate} children = "New" className = "btn" id="pageButton"/>
 
         <Title

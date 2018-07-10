@@ -3,7 +3,7 @@
     src: url(../../assets/fonts/Moon2.0-Light.otf);
 }
 
-h4 {
+h4#sidenav-header {
     font-family: 'MoonLight';
     letter-spacing: 1px;
     position: relative;

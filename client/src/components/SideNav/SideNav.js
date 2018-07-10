@@ -7,7 +7,7 @@ import './SideNav.css';
 const MySideNav = props => (
     <div style={{background: '#2c3e50', color: '#FFF', width: 220}}> 
         <SideNav>
-        <h4>{props.title}</h4>
+        <h4 id="sidenav-header">{props.title}</h4>
         <hr></hr>
         {props.children.map(child => {
           return (
