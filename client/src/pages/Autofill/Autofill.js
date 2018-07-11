@@ -113,7 +113,7 @@ class Autofill extends Component {
     const templateValue = templateOption && templateOption.value;
   return(
     <div>
-      <Jumbotron />
+      <Jumbotron name = {this.state.name} children = {this.state.name}/>
   <Container fluid>
     <Row>
       <Col size="md-12">
