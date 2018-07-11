@@ -17,7 +17,7 @@ class ManagePatronData extends Component {
    patrons: [],
     patron: [],
     patronOption: "", 
-    name: "Manage Patrons Data",
+    name: "Manage Patrons",
   }
   componentDidMount() {
     this.loadData();
@@ -92,6 +92,9 @@ class ManagePatronData extends Component {
     <Row>
       <Col size="md-12">
         <h2>My Patrons</h2>
+      </Col>
+      <Col size="md-12">
+      <p><i>Select a patron and update their information!</i></p>
         <br></br>
       </Col>
     </Row>
@@ -147,6 +150,14 @@ class ManagePatronData extends Component {
       </Col>
     </Row>
   </Container>
+  {/* Force footer to bootom */}
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
   </div>
 )}
 }

@@ -7,6 +7,7 @@ import Jumbotron from "../../components/Jumbotron";
 import FormManagerTable from "../../components/FormManagerTable";
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+import './ManageForms.css';
 class ManageForms extends Component {
  
   state = {
@@ -70,6 +71,13 @@ class ManageForms extends Component {
     </Row>
       <hr></hr>
     <Row>
+    <Col size = "md-12">
+    <h3>My Forms</h3>
+    <br></br>
+    </Col>
+    <Col size = "md-12">
+      <p><i>Select an existing form to generate its link!</i></p>
+      </Col>
       <Col size = "md-12">
         <Select
           name="form-field-name2"
@@ -95,6 +103,19 @@ class ManageForms extends Component {
     </Row>
     <hr></hr>
   </Container>
+  {/* Force footer to bootom */}
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
   </div>
 )}
 }
