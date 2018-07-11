@@ -19,8 +19,8 @@ class App extends Component {
     super()
     this.state ={user: null, loggedIn: false}
   
-  this.login =this.login.bind(this)
-  this.logOut=this.logOut.bind(this)
+  // this.login =this.login.bind(this)
+  // this.signup=this.signup.bind(this)
  
 } 
 
@@ -30,10 +30,12 @@ auth(user) {
 
 componentDidMount(){
   // 
-  if (!user) {
+  if (!this.state) {
+    redirectTo: "/Signup"
 
   } else {
-    
+    loggedIn:true
+    redirectTo: "/"
   }
 }
   render() {
@@ -53,7 +55,8 @@ componentDidMount(){
           <Route exact path="/autofill" component={Autofill}/>
           <Route exact path ="/storage" component={FindForm}/>
           <Route exact path = "/Account" component ={Account}/>
-          <Route exact path = "/Login" auth={this.auth} component ={Login}/>
+          <Route path = "/Login" 
+          render auth={this.auth} component ={Login}/>
 
           {/* <Route exact path="/filled/:id" component={ViewFilled}/> */}
           <Route component={NoMatch} />

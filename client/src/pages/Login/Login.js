@@ -130,6 +130,7 @@ class Login extends Component {
   this.state = {
     email:"", 
     password: "",
+
     redirectTo: null,
   }
 }
@@ -155,8 +156,16 @@ class Login extends Component {
       })
         .then(res => {
           const { user } = res;
-          this.props.auth(user);
+          this.props.auth(user,{
+            loggedIn: true,
+            email: res.data.email,
+            password: res.data.password
+
+          });
           alert("logged in!")
+        })
+        this.setState({
+          redirectTo: "/"
         })
         .catch(err => console.log(err));
        
@@ -185,7 +194,7 @@ class Login extends Component {
               />
               
 
-              <Button onClick={this.login(this.state.email)} children= "login"/>
+              <Button onClick={this.handleFormSubmit} children= "login"/>
               {/* <Button onClick={this.asdf} children= "asdf"/> */}
               
 
