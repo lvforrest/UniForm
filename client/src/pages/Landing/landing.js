@@ -54,7 +54,7 @@ class Landing extends Component {
                             </div>
                             <div className="col-6" id="body1">
                                 <h1 id="mainText">Say goodbye to the headache of filling out form after form.</h1>
-                                <h3 id="secondaryText">UniForm allows users to autofill repetitive, boring information that no one wants to fill out. Share your completed form with anyone using the app in safe and secure way.</h3>
+                                <h3 id="secondaryText">UniForm allows users to autofill repetitive, boring information that no one wants to fill out. Share your completed form with anyone using the app in a safe and secure way.</h3>
                                 <div className="row">
                                     <div className="col-6" id="loginButton">
                                         <button type="button" class="btn" id="landingLogin">Try It Out</button>

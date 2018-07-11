@@ -15,6 +15,7 @@ import StreetAddressInput from "../../build.components/StreetAddress-input";
 import LanguageInput from "../../build.components/Language-input";
 import NationalityInput from "../../build.components/Nationality-input";
 import GenderInput from "../../build.components/Gender-input";
+import Jumbotron from "../../components/Jumbotron";
 
 class Autofill extends Component {
  
@@ -26,6 +27,7 @@ class Autofill extends Component {
     template: [],
     patronOption: "",
     templateOption: "",
+    name: "Autofill"
     
   }
   componentDidMount() {
@@ -110,10 +112,11 @@ class Autofill extends Component {
     const { templateOption } = this.state;
     const templateValue = templateOption && templateOption.value;
   return(
+    <div>
+      <Jumbotron />
   <Container fluid>
     <Row>
       <Col size="md-12">
-        <h1>Autofill</h1>
         <h2>Patron</h2>          
         <Select
         name="form-field-name2"
@@ -136,6 +139,7 @@ class Autofill extends Component {
       </Col>
     </Row>
   </Container>
+  </div>
 )}
 }
 export default Autofill;
