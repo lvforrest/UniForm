@@ -5,13 +5,17 @@ import { Input, FormBtn } from "../../components/InputField";
 import Jumbotron from "../../components/Jumbotron";
 
 class SignUp extends Component {
-  state = {
-    firstName: "", 
-    lastName: "",
-    email: "",
-    password:"",
-    name: "signup"
-  }
+  constructor(){
+    super()
+    this.state = {
+      firstName: "", 
+      lastName: "",
+      email: "",
+      password:"",
+      name: "signup",
+      redirectTo: null
+    }
+}
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -29,8 +33,17 @@ class SignUp extends Component {
         email: this.state.email,
         password: this.state.password,
       })
-        .then(alert("User Saved"))
-        .catch(err => console.log(err));
+      .then(response =>{
+        if(!response.data.err){
+          this.setState({
+            redirectTo: "/Login"
+          })
+        }else{
+          alert("User already exists!")
+        }
+      })
+        // .then(alert("User Saved"))
+        // .catch(err => console.log(err));
     }
   };
   render() {

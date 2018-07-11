@@ -15,8 +15,27 @@ import Jumbotron from "./components/Jumbotron";
 import Account from "./pages/Account";
 import Login from "./pages/Login";
 class App extends Component {
-  state= {user: null};
+  constructor(){
+    super()
+    this.state ={user: null, loggedIn: false}
   
+  this.login =this.login.bind(this)
+  this.logOut=this.logOut.bind(this)
+ 
+} 
+
+auth(user) {
+  return this.setState({user})
+}
+
+componentDidMount(){
+  // 
+  if (!user) {
+
+  } else {
+    
+  }
+}
   render() {
     return(
 
@@ -34,7 +53,7 @@ class App extends Component {
           <Route exact path="/autofill" component={Autofill}/>
           <Route exact path ="/storage" component={FindForm}/>
           <Route exact path = "/Account" component ={Account}/>
-          <Route exact path = "/Login" component ={Login}/>
+          <Route exact path = "/Login" auth={this.auth} component ={Login}/>
 
           {/* <Route exact path="/filled/:id" component={ViewFilled}/> */}
           <Route component={NoMatch} />

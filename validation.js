@@ -1,32 +1,32 @@
 
-const express = require('express');
-const router = express.Router();
-var passport = require("passport");
-var LocalStrategy = require("passport-local").Strategy;
+// const express = require('express');
+// const router = express.Router();
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const User = require("./models/user");
 
-var db = require("../models");
+
 
 // Telling passport we want to use a Local Strategy. In other words, we want login with a username/email and password
-passport.use(new LocalStrategy(
+passport.use("local",new LocalStrategy(
   // Our user will sign in using an email, rather than a "username"
   {
-    usernameField: "email"
+	usernameField: "email",
+	passwordField: "password",
+	passReqToCallback:true
   },
-  function(email, password, done) {
+  function(req,email, password, done) {
     // When a user tries to sign in this code runs
-    db.User.findOne({
-      where: {
-        email: email
-      }
-    }).then(function(dbUser) {
+	User.findOne({email:email})
+	.then(function(user) {
       // If there's no user with the given email
-      if (!dbUser) {
+      if (!user) {
         return done(null, false, {
           message: "Incorrect email."
         });
       }
       // If there is a user with the given email, but the password the user gives us is incorrect
-      else if (!dbUser.validPassword(password)) {
+      else if (!user.validPassword(password)) {
         return done(null, false, {
           message: "Incorrect password."
         });
@@ -37,16 +37,40 @@ passport.use(new LocalStrategy(
   }
 ));
 
-// In order to help keep authentication state across HTTP requests,
-// Sequelize needs to serialize and deserialize the user
-// Just consider this part boilerplate needed to make it all work
-passport.serializeUser(function(user, cb) {
-  cb(null, user);
-});
+// passport.use("local-register",new LocalStrategy(
+// 	// Our user will sign in using an email, rather than a "username"
+// 	{
+// 	  usernameField: "email",
+// 	  passwordField: "password",
+// 	  passReqToCallback:true
+// 	},
+// 	function(req,email, password, done) {
+// 	  // When a user tries to sign in this code runs
+// 	  User.findOne({email:email})
+// 	  .then(function(user) {
+// 		// If there's no user with the given email
+// 		if (!user) {
+// 		  return done(null, false,)
+// 	}else{
+// 		const newUser= newUser();
+// 		newUser.email =email,
+// 		newUser.password = newUser.generateHash(password);
+// 		newUser.save(function(err){
+// 			if(err) throw err;
+// 			return done(null, newUser);
+// 		});
+// 		}
+// 	});
+// }));
 
-passport.deserializeUser(function(obj, cb) {
-  cb(null, obj);
-});
-
-// Exporting our configured passport
+  passport.serializeUser(function(user, done) {
+	done(null, user.id);
+  });
+  
+  passport.deserializeUser(function(user,done) {
+	User.findById(id, function(err,user){
+		done(err, user);
+	});
+  });
+  
 module.exports = passport;
