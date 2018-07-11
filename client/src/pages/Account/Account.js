@@ -75,8 +75,6 @@ class Account extends Component {
               
 
             </form>
-          
-        
       </Col>
     </Row>
   </Container>
