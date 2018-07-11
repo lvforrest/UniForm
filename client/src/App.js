@@ -27,7 +27,7 @@ class App extends Component {
       <div>
       <ButtonAppBar />
         <Switch>
-          <Route exact path="/" component={Home}/>
+          <Route exact path="/" component={Landing}/>
           <Route exact path="/buildTemplate" component={BuildTemplate}/>
           <Route exact path="/buildTemplate/:id" component={BuildTemplateById} />
           <Route exact path="/template/:id" component={ViewTemplate}/>
@@ -37,7 +37,7 @@ class App extends Component {
           <Route exact path ="/storage" component={FindForm}/>
           <Route exact path="/filled/:id" component={ViewFilled}/>
           <Route exact path="/managePatronData" component={ManagePatronData}/>
-          <Route exact path ="/Landing" component={Landing}/>
+          <Route exact path ="/login" component={Home}/>
           <Route exact path = "/Account" component ={Account}/>
           <Route component={NoMatch} />
         </Switch>
