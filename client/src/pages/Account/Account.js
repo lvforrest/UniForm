@@ -10,7 +10,8 @@ class Account extends Component {
     lastName: "",
     password: "",
     email: "", 
-    firstName: ""
+    firstName: "",
+    name: "Account"
   }
 
   handleInputChange = event => {
@@ -41,7 +42,7 @@ class Account extends Component {
   render() {
   return(
   <Container fluid>
-  <Jumbotron/>
+  <Jumbotron name = {this.state.name} children = {this.state.name}/>
     <Row>
       <Col size="md-12">
           <form>
