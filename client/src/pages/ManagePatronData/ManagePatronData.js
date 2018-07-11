@@ -94,7 +94,7 @@ class ManagePatronData extends Component {
         <h2>My Patrons</h2>
       </Col>
       <Col size="md-12">
-      <p><i>Select a patron and update their information!</i></p>
+      <p><i>Select a patron...</i></p>
       </Col>
     </Row>
       {/* <Col size="md-6">
@@ -120,8 +120,10 @@ class ManagePatronData extends Component {
       <hr></hr>
       <Row>
       <Col size="md-12">
-        <h3>Update Patron Data</h3>
-        <br></br>
+        <h2>Update Patron Data</h2>
+      </Col>
+      <Col size="md-12">
+      <p><i>...and update their information!</i></p>
       </Col>
     </Row>
     <Row>
@@ -150,10 +152,6 @@ class ManagePatronData extends Component {
     </Row>
   </Container>
   {/* Force footer to bootom */}
-  <br></br>
-  <br></br>
-  <br></br>
-  <br></br>
   <br></br>
   <br></br>
   <br></br>
