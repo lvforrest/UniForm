@@ -95,7 +95,6 @@ class ManagePatronData extends Component {
       </Col>
       <Col size="md-12">
       <p><i>Select a patron and update their information!</i></p>
-        <br></br>
       </Col>
     </Row>
       {/* <Col size="md-6">
