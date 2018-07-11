@@ -41,8 +41,9 @@ class Account extends Component {
   
   render() {
   return(
-  <Container fluid>
+  <div>
   <Jumbotron name = {this.state.name} children = {this.state.name}/>
+  <Container fluid>
     <Row>
       <Col size="md-12">
           <form>
@@ -79,6 +80,7 @@ class Account extends Component {
       </Col>
     </Row>
   </Container>
+  </div>
 )}
 }
 export default Account;
