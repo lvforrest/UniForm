@@ -117,25 +117,37 @@ class Autofill extends Component {
   <Container fluid>
     <Row>
       <Col size="md-12">
-        <h2>Patron</h2>          
-        <Select
-        name="form-field-name2"
-        value={patronValue}
-        onChange={this.handleChange}
-        options= {this.state.patrons.map(patron => (
-          { value: patron._id , label: patron.patronName } 
-      ))}
-      /> 
-      <h2>Template</h2>
-      <Select 
-        name="form-field-name2"
-        value={templateValue}
-        onChange={this.handleChangeB}
-        options= {this.state.templates.map(template => (
-          { value: template._id , label: template.templateName } 
-      ))}
-      />
-      <Button children = "Save" onClick = {this.save}/>
+          <h2>Patron</h2>
+          <p><i>Select a patron to import their information...</i></p>          
+          <Select
+          name="form-field-name2"
+          value={patronValue}
+          onChange={this.handleChange}
+          options= {this.state.patrons.map(patron => (
+            { value: patron._id , label: patron.patronName } 
+        ))} style={{left: '31vw'}}
+        /> 
+        </Col>
+    </Row>
+    <hr></hr>
+    <Row>
+      <Col size="md-12">
+        <h2>Template</h2>
+        <p><i>Then select the form you want their data to autofill!</i></p>  
+        <Select 
+          name="form-field-name2"
+          value={templateValue}
+          onChange={this.handleChangeB}
+          options= {this.state.templates.map(template => (
+            { value: template._id , label: template.templateName } 
+        ))} style={{left: '31vw'}}
+        />
+        </Col>
+      </Row>
+      <Row>
+        <Col size="md-12">
+        <hr></hr>
+        <Button children = "Save" onClick = {this.save}/>
       </Col>
     </Row>
   </Container>
