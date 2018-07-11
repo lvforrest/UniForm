@@ -21,8 +21,7 @@ class Landing extends Component {
                                 <h3 id="secondaryText">UniForm allows users to build any kind of form from their tablet or desktop in minutes and send it out to users with the click of a button.</h3>
                                 <div className="row">
                                     <div className="col-6" id="loginButton">
-                                        <button type="button" class="btn" id="landingLogin">Log In</button>
-                                        <button type="button" class="btn" id="landingSignup">Sign Up</button>
+                                        <button type="button" class="btn" id="landingLogin">Get Started For Free!</button>
                                     </div>
                                 </div>
                             </div>
