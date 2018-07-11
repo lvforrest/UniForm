@@ -8,6 +8,7 @@ import PatronManagerTable from "../../components/PatronManagerTable";
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import { Input, } from "../../components/InputField";
+import "./ManagePatronData.css";
 
 
 class ManagePatronData extends Component {
@@ -16,7 +17,7 @@ class ManagePatronData extends Component {
    patrons: [],
     patron: [],
     patronOption: "", 
-    name: "Manage Patrons Data",
+    name: "Manage Patrons",
   }
   componentDidMount() {
     this.loadData();
@@ -89,42 +90,58 @@ class ManagePatronData extends Component {
   <Jumbotron name = {this.state.name} children = {this.state.name} />
   <Container fluid>
     <Row>
-      <Col size="md-6">
-      <h2>My Patrons</h2>
+      <Col size="md-12">
+        <h2>My Patrons</h2>
       </Col>
-      <Col size="md-6">
+      <Col size="md-12">
+      <p><i>Select a patron and update their information!</i></p>
+      </Col>
+    </Row>
+      {/* <Col size="md-6">
       <Button onClick = {this.asdf}>asdf</Button>
+      </Col> */}
+    <Row>
+      <Col size = "md-12">
+        <Select
+          name="form-field-name2"
+          value={userValue}
+          onChange={this.handleChange}
+          options= {this.state.patrons.map(patron => (
+            { value:patron._id, label:patron.patronName } 
+        ))} style={{ left: '55vh'}}/>
+        </Col>
+    </Row>
+    <Row>
+      <Col size="md-12">
+      <br></br>
+        <Button onClick = {() => this.onDelete(this.state.userOption.value)} children = "Delete Patron"/>
       </Col>
-      <Col size = "md-6">
-      <Select
-        name="form-field-name2"
-        value={userValue}
-        onChange={this.handleChange}
-        options= {this.state.patrons.map(patron => (
-          { value:patron._id, label:patron.patronName } 
-      ))}
-      />
-      <Button onClick = {() => this.onDelete(this.state.userOption.value)} children = "Delete Patron"/>
-      </Col>
-      
-      </Row>
+    </Row>
       <hr></hr>
       <Row>
       <Col size="md-12">
+        <h3>Update Patron Data</h3>
+        <br></br>
+      </Col>
+    </Row>
+    <Row>
+      <Col size="md-5">
       <Input
-                width= "35%"
                 value={this.state.dataType}
                 onChange={this.handleInputChange}
                 name="dataType"
-                placeholder="Key"
+                placeholder="Key (Email, Address, etc.)"
               />
+      </Col>
+      <Col size="md-5">
               <Input
-                width= "35%"
                 value={this.state.dataValue}
                 onChange={this.handleInputChange}
                 name="dataValue"
-                placeholder="Value"
+                placeholder="New Information"
               />
+      </Col>
+      <Col size="md-2">
               <Button onClick = {this.patronUpdate} children = "Update"/>
       <PatronManagerTable 
       children = {this.state.patron.patronData} deleteKey = {this.deleteKey}
@@ -132,6 +149,14 @@ class ManagePatronData extends Component {
       </Col>
     </Row>
   </Container>
+  {/* Force footer to bootom */}
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
   </div>
 )}
 }

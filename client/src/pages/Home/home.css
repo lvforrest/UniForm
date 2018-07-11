@@ -4,6 +4,7 @@ body {
     text-align: center;
     height: auto;
     background-color: white;
+    max-width: 100%;
 }
 
 #landingPage {

@@ -17,7 +17,7 @@ import LanguageInput from "../../build.components/Language-input";
 import NationalityInput from "../../build.components/Nationality-input";
 import GenderInput from "../../build.components/Gender-input";
 import Jumbotron from "../../components/Jumbotron";
-import SideNav from "../../components/SideNav"
+import SideNav from "../../components/SideNav";
 
 class BuildTemplate extends Component {
 
