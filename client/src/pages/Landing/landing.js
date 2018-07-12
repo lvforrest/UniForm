@@ -59,7 +59,7 @@ class Landing extends Component {
                                 <h3 id="secondaryText">UniForm allows users to autofill repetitive, boring information that no one wants to fill out. Share your completed form with anyone using the app in a safe and secure way.</h3>
                                 <div className="row">
                                     <div className="col-6" id="loginButton">
-                                        <button type="button" class="btn" id="landingLogin">Try It Out</button>
+                                        <button type="button" class="btn" id="landingLogin" onClick = {this.splashRedirect}>Try It Out</button>
                                     </div>
                                 </div>
                             </div>
