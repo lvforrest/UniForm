@@ -26,29 +26,26 @@ function CenteredGrid(props) {
   const { classes } = props;
 
   return (
-    <div id='landingPage'>
-      <Grid container spacing={24}>
-      {/* Logo */}
-        <Grid item xs={12}>
-          <Logo />
-        </Grid>
-         {/* Text */}
-        <Grid item xs={12}>
-        <Typography variant="display1" id="title">uniform</Typography><Typography variant="subheading">Just like magic.</Typography>
-        </Grid>
-        {/* Login Button */}
-        <Grid item xs={12}>
-        <Button variant="contained" style={loginStyle} className={classes.button} id='loginButton'>
-        Login
-      </Button>
-        </Grid>
-        {/* Sign Up Button */}
-        <Grid item xs={12}>
-        <Button variant="contained" style={signupStyle}  className={classes.button} id='signupButton'>
-        Sign Up
-      </Button>
-        </Grid>
-      </Grid>
+    <div id="landingPage">
+      <div className="container">
+        <div className="row">
+          <div className="col-12">
+            <Logo />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-12">
+            <h1 id="loginTitle">Uniform</h1>
+            <h3 id="loginSubheading">Just like magic.</h3>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-12">
+            <button type="button" class="btn"  >Log In</button>
+            <button type="button" class="btn"  >Sign In</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -57,32 +54,8 @@ function CenteredGrid(props) {
 // Login Button Style Override
 // ===============================================
 
-const loginStyle = {
-  background: '#00dbff',
-  borderRadius: 3,
-  border: 0,
-  color: 'white',
-  height: 48,
-  padding: '0 30px',
-  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-};
 
-// ===============================================
-// Sign Up Button Style Override
-// ===============================================
 
-const signupStyle = {
-  background: '#f590fb',
-  borderRadius: 3,
-  border: 0,
-  color: 'background-color: #00dbff;',
-  height: 48,
-  padding: '0 30px',
-  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-};
 
-CenteredGrid.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(CenteredGrid);
