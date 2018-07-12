@@ -1,12 +1,9 @@
 .nav {
     width: 100vh;
+    
 }
 
-li, a#navbarDropdown {
-    margin-right: 10px;
+a#navbarDropdown {
+    margin-right: ;
     float: right;
 }
-
-nav.navbar.navbar-default, a#navbarDropdown {
-    margin-bottom: 0;
-  }
