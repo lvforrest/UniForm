@@ -1,17 +1,22 @@
 .nav {
     width: 100vh;
+    
 }
 
-li, a#navbarDropdown {
-    margin-right: 10px;
+a#navbarDropdown {
+    margin-right: ;
     float: right;
 }
 
-nav.navbar.navbar-default, a#navbarDropdown {
+#Home {
+    color: #f590fb;
+}
+
+/* nav.navbar.navbar-default, a#navbarDropdown {
     margin-bottom: 0;
   }
   
-  .nav-link, .nav-item {
+  .nav-link .nav-item .nav-light {
   color: #f590fb;
   }
   
@@ -21,4 +26,4 @@ nav.navbar.navbar-default, a#navbarDropdown {
   
   nav a:active, a#navbarDropdown {
     color: linear-gradient(270deg, #00dbff, #d9d9d9, #f590fb);
-  }
+  } */
