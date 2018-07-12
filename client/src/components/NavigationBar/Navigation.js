@@ -28,14 +28,14 @@ function ButtonAppBar() {
         {/* ===================================== */}
         {/* Account */}
         {/* ===================================== */}
-            <li color="inherit" className={
+            {/* <li color="inherit" className={
                     window.location.pathname === "/Account"
                     ? "nav-item active"
                     : "nav-item"}>
                     <Link to="/Account" className="nav-link" id="Account">
                         Account
                     </Link>
-            </li>
+            </li> */}
         {/* ===================================== */}
         {/* Build */}
         {/* ===================================== */}

@@ -87,7 +87,6 @@ class Account extends Component {
               <Row>
                 <Col size="md-12">
               <Button onClick={this.signup} children= "Sign Up"/>
-              <Button onClick={this.asdf} children= "asdf"/>
               {/* </form> */}
       </Col>
     </Row>
