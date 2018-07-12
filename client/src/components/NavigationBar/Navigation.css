@@ -11,18 +11,14 @@ nav.navbar.navbar-default, a#navbarDropdown {
     margin-bottom: 0;
   }
   
-  nav a, a#navbarDropdown {
+  .nav-link, .nav-item {
   color: #f590fb;
   }
   
-  nav a:hover, a#navbarDropdown:hover {
+  nav a:hover, a#navbarDropdown:hover, .nav-item:hover {
   color: #00dbff;
   }
   
   nav a:active, a#navbarDropdown {
     color: linear-gradient(270deg, #00dbff, #d9d9d9, #f590fb);
   }
-
-  a#navbarDropdown {
-    padding: 0;
-}

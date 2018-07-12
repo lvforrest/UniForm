@@ -15,39 +15,39 @@ function ButtonAppBar() {
         {/* ===================================== */}
         {/* Home */}
         {/* ===================================== */}
-        <div className="collapse navbar-collapse" id="navbarNavDropdown">
+        <div className="collapse navbar-collapse" id="navbarNavDropdown" id="Home">
           <ul className="navbar-nav">
-            <li color="inherit" classNameName={
+            <li color="inherit" className={
                     window.location.pathname === "/"
                     ? "nav-item active"
                     : "nav-item"}>
-                    <Link to="/" classNameName="nav-link">
+                    <Link to="/" className="nav-link">
                         Home
                     </Link>
             </li>
-                 {/* ===================================== */}
+        {/* ===================================== */}
         {/* Account */}
         {/* ===================================== */}
-            <li color="inherit" classNameName={
+            <li color="inherit" className={
                     window.location.pathname === "/Account"
                     ? "nav-item active"
                     : "nav-item"}>
-                    <Link to="/Account" classNameName="nav-link">
+                    <Link to="/Account" className="nav-link" id="Account">
                         Account
                     </Link>
             </li>
         {/* ===================================== */}
-        {/* Questionnaire */}
+        {/* Build */}
         {/* ===================================== */}
-            <li color="inherit" classNameName={
+            <li color="inherit" className={
                 window.location.pathname === "/buildTemplate"
                 ? "nav-item active"
                 : "nav-item"}>
-                <Link to="/buildTemplate" classNameName="nav-link">
+                <Link to="/buildTemplate" className="nav-link" id="Build">
                     Build
                 </Link>
             </li>
-             {/* ===================================== */}
+        {/* ===================================== */}
         {/* Manage Dropdown Menu */}
         {/* ===================================== */}
         <li className="nav-item dropdown">
@@ -63,22 +63,22 @@ function ButtonAppBar() {
         {/* ===================================== */}
         {/* Autofill */}
         {/* ===================================== */}
-        <li className="nav-item" color="inherit" classNameName={
+        <li className="nav-item" color="inherit" className={
                 window.location.pathname === "/autofill"
                 ? "nav-item active"
                 : "nav-item"}>
-                <Link to="/autofill" classNameName="nav-link">
+                <Link to="/autofill" className="nav-link" id="Autofill">
                     Autofill
                 </Link>
             </li>
         {/* ===================================== */}
         {/* Sign Out */}
         {/* ===================================== */}
-            <li color="inherit" classNameName={
+            <li color="inherit" className={
                 window.location.pathname === "/"
                 ? "nav-item active"
                 : "nav-item"}>
-                <Link to="/" classNameName="nav-link">
+                <Link to="/" className="nav-link" id="Signout">
                     Sign Out
                 </Link>
             
