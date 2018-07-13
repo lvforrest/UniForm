@@ -25,13 +25,9 @@ In order to run this application, you should have MongoDB already set up on your
 	
 ### Running Locally
 
-To run the application locally and access it in your browser, open the [UniForm parent folder](./UniForm) then the [client folder](./client) in separate terminals and run the command below in each.
+To run the application locally and access it in your browser, open the [UniForm parent folder](./UniForm) then enter the command `yarn start` in the terminal. This will run the API server on Port 3001. 
 
-``` Javascript
-	yarn start
-```
-	
-The application will now be running locally in your browser at the URL `http://localhost:3000`.
+Next, open the [client folder](./client) in another terminal and run `yarn start`. The application will now be running locally in your browser at the URL `http://localhost:3000`.
 
 ### Authors
 
