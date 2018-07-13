@@ -1,5 +1,5 @@
 # UniForm
-A form-building application with React/Babel/Material/Bootstrap/Node/Express/MongoDB
+A form-building application with React/Babel/Material/Bootstrap/Select/Express/MongoDB
 
 ## Description
 
@@ -11,7 +11,7 @@ The demo of *UniForm* can be found [here](https://uniformapp.herokuapp.com/) on 
 
 ### Installation
 
-To install the application follow the instructions below:
+To install the application, follow the instructions below:
 
 ``` Javascript
 	git clone git@github.com:uniformapp/UniForm.git
