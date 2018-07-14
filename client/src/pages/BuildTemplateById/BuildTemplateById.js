@@ -127,14 +127,6 @@ class BuildTemplateById extends Component {
       </Row>
       <Row>
         <Col size="md-6">
-          <Title
-                  onChange={this.handleInputChange}
-                  name="templateName"
-                  placeholder="Update Form Title"
-                  style={{width: '75vh'}}
-                />
-        </Col>
-        <Col size="md-6">
                 <Select
           name="form-field-name2"
           value={userValue}
@@ -142,7 +134,7 @@ class BuildTemplateById extends Component {
           options= {this.state.templates.map(template => (
             { value: template._id, label: template.templateName } 
         ))}
-        style={{left:'14vh'}}/>
+        style={{left:'25vw', marginBottom: '1vh'}}/>
         </Col>
       </Row>
       <Row>
