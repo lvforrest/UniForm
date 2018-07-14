@@ -22,15 +22,9 @@ class Account extends Component {
     });
   };
 
-  // asdf =(event) =>{
-  //   event.preventDefault();
-  //   console.log(this.state);
-  // }
 
   signup = (event)=>{
     event.preventDefault();
-    // console.log("Using ref:", this.refs.pswd.value);
-    // console.log("From form:", serialize(this.refs.form));
     API.saveUser({
       firstName: this.state.firstName,
       lastName: this.state.lastName,
