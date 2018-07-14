@@ -18,7 +18,7 @@ router
 
 router.get("/SignOut", function(req, res) {
   res.json(req);
-  res.json(res.username);
+  res.json(req.username);
   // req.logout();
   // res.redirect("/");
 });
