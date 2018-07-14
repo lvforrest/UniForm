@@ -15,8 +15,7 @@ class ManagePatrons extends Component {
    patrons: [],
     filled: [],
     filleds: [],
-    patronOption: "", 
-    name: "Manage Patrons",
+    patronOption: ""
 
     
   }
@@ -33,7 +32,8 @@ class ManagePatrons extends Component {
   };
   
   handleChange = (userOption) => {
-    this.setState({userOption: userOption})
+    let link = `http://${window.location.host}/buildTemplate/${userOption.value}`
+    this.setState({userOption: userOption, link: link})
     API.getFilledByPatron(userOption.value)
       .then(res =>
         this.setState({ filleds: res.data}),
@@ -54,7 +54,7 @@ class ManagePatrons extends Component {
     const userValue = userOption && userOption.value;
   return(
   <div>
-  <Jumbotron name = {this.state.name} children = {this.state.name} />
+  <Jumbotron name = "Manage Patrons" />
   <Container fluid>
     <Row>
       <Col size="md-6">
@@ -85,6 +85,19 @@ class ManagePatrons extends Component {
       </Col>
     </Row>
   </Container>
+  {/* Force footer to bootom */}
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
   </div>
 )}
 }

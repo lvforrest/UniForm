@@ -44,43 +44,51 @@ class Account extends Component {
       
   };
   
+  
   render() {
     if (this.state.redirectTo) {
       return <Redirect to={{ pathname: this.state.redirectTo }} />
   } else {
   return(
+  <div>
+  <Jumbotron name = "Account"/>
   <Container fluid>
+  {/* <form> */}
     <Row>
       <Col size="md-12">
        
           <h1>Account</h1>
           <form> 
+      <Col size="md-6">
               <Input
                 value={this.state.firstName}
                 onChange={this.handleInputChange}
                 name="firstName"
                 placeholder="First Name (Required)"
               />
+      </Col>
+      <Col size="md-6">
               <Input
                 value={this.state.lastName}
                 onChange={this.handleInputChange}
                 name="lastName"
                 placeholder="Last Name (Required)"
               />
+              </Col>
+              </Row>
+              <br></br>
+              <Row>
+                <Col size="md-6">
               <Input
                 value={this.state.email}
                 onChange={this.handleInputChange}
                 name="email"
-                placeholder="Email(Required)"
+                placeholder="Email (required)"
               />
-            
-              <Input
-        
-                value={this.state.password}
-                onChange={this.handleInputChange}
-                name="password"
+              </Col>
+        <Col size="md-6">
                 type= "password"
-                placeholder="Password(required)"
+                placeholder="Password (required)"
               />
 
               <Button onClick={this.signup} children= "signup"/>              
@@ -91,7 +99,20 @@ class Account extends Component {
       </Col>
     </Row>
   </Container>
-    )}
-  }
+  {/* Force footer to bootom */}
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  </div>
+)}
 }
 export default Account;
