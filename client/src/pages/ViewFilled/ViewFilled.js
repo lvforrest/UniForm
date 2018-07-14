@@ -145,14 +145,14 @@ class ViewFilled extends Component {
       <Col size="md-12">
       <div style={{width: '50%', margin: 'auto'}}> 
               <Input
-                width= "35%"
+                // width= "35%"
                 value={this.state.patron.firstName}
                 onChange={this.handleFillableChange}
                 name="firstName"
                 placeholder="First Name"
               />
               <Input
-                width= "35%"
+                // width= "35%"
                 value={this.state.patron.lastName}
                 onChange={this.handleFillableChange}
                 name="lastName"

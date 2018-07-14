@@ -33,4 +33,4 @@ Next, open the [client folder](./client) in another terminal and run `yarn start
 
 * *UI*: Louis Boehling & Will Fisher
 * *UX & Database*: Luke Myers
-* *Authentication*: Lacy Forrest
+* *Authentication*: Lacie Forrest
