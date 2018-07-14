@@ -295,6 +295,7 @@ class BuildTemplateById extends Component {
       </Row>
       <Row>
         <Col size="md-6">
+        <div style={{width: '50%', margin: 'auto', position: 'relative', left:'25vw', marginBottom: '1vh'}}> 
                 <Select
           name="form-field-name2"
           value={userValue}
@@ -302,9 +303,8 @@ class BuildTemplateById extends Component {
           options= {this.state.templates.map(template => (
             { value: template._id, label: template.templateName } 
         ))}
-
-        style={{left:'25vw', marginBottom: '1vh'}}/>
-
+        />
+        </div>
         </Col>
       </Row>
       <Row>
