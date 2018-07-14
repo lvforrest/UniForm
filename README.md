@@ -32,13 +32,13 @@ Next, open the [client folder](./client) in another terminal and run `yarn start
 ### Authors
 
 * Louis Boehling:
-Branding, Experience Design, Front-End Design, React Components, Landing Page, Constructor Pages, Presentation
+* *Branding, Experience Design, Front-End Design, React Components, Landing Page, Constructor Pages, Presentation*
 
-* Will Fisher
-Branding, Experience Design, Front-End Design, React Components, Logo, Constructor Pages
+* Will Fisher:
+* *Branding, Experience Design, Front-End Design, React Components, Logo, Constructor Pages*
 
-* Lacie Forrest
-Back-End Logic, Passport Login, MongoDB Connections, Mongoose ORM
+* Lacie Forrest:
+* *Back-End Logic, Passport Login, MongoDB Connections, Mongoose ORM*
 
-* Luke Myers
-Back-End Functionality, Front-End Logic, State Management, Form-Builder, Autofill Functionality
+* Luke Myers:
+* *Back-End Functionality, Front-End Logic, State Management, Form-Builder, Autofill Functionality*
