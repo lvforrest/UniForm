@@ -20,8 +20,6 @@ const styles = theme => ({
   },
 });
 
-
-
 function PatronManagerTable(props) {
   const { classes } = props;
   return (

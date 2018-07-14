@@ -4,6 +4,7 @@ body {
     text-align: center;
     height: auto;
     background-color: white;
+    max-width: 100%;
 }
 
 #landingPage {
@@ -16,12 +17,15 @@ body {
     margin-bottom: 3vh;
 }
 
-h3 {
-    position: relative;
-    top: 2vh;
-}
-
 button#loginButton {
     position: relative;
     left: 1vh;
+}
+
+#loginTitle {
+    margin: 30px 10px 10px 10px;
+}
+
+#loginSubheading {
+    margin: 10px 10px 30px 10px;
 }

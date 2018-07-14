@@ -285,37 +285,36 @@ class BuildTemplateById extends Component {
     const { userOption } = this.state;
     const userValue = userOption && userOption.value;
   return(
-  <div> 
-  <Jumbotron name = {this.state.name} children = {this.state.name} />
-  <Container fluid>
-    <Row>
-      <Col size="md-12">
-        <Button onClick = {this.newTemplate} children = "New" className = "btn" id="pageButton"/>
-
-        <Title
-                width= "35%"
-                onChange={this.handleInputChange}
-                name="templateName"
-                placeholder="Title (required)"
-              />
-              <Select
-        name="form-field-name2"
-        value={userValue}
-        onChange={this.handleChange}
-        options= {this.state.templates.map(template => (
-          { value: template._id, label: template.templateName } 
-         
-      ))}
-      />
-        <Button onClick = {() => this.updateTemplate(this.state._id)} children = "Save Changes" className = "btn" id="pageButton"/>
-        <Button onClick = {() => this.deleteTemplate(this.state._id)} display = {this.state.delete} children = "Delete Template" className = "btn" id="deleteButton"/>
-        </Col></Row>
-          {/* ====================================== */}
-          {/* SIDE NAV */}
-          {/* ===================================== */}
-        <Row>
-          <Col size="md 3">
-          <SideNav children={[
+  <div>
+    <Jumbotron name = "Template" />
+      <Container fluid>
+      <Row>
+        <Col size="md-12">
+        <Button onClick = {this.newTemplate} children = "Create a New Template" className = "btn" id="pageButton"/>
+        </Col>
+      </Row>
+      <Row>
+        <Col size="md-6">
+                <Select
+          name="form-field-name2"
+          value={userValue}
+          onChange={this.handleChange}
+          options= {this.state.templates.map(template => (
+            { value: template._id, label: template.templateName } 
+        ))}
+        style={{left:'25vw'}}/>
+        </Col>
+      </Row>
+      <Row>
+        <Col size="md-12">
+          <Button onClick = {() => this.updateTemplate(this.state._id)} children = "Save Changes" className = "btn" id="pageButton"/>
+          <Button onClick = {() => this.deleteTemplate(this.state._id)} display = {this.state.delete} children = "Delete Template" className = "btn" id="deleteButton"/>
+          </Col></Row>
+            {/* ====================================== */}
+            {/* SIDE NAV */}
+            {/* ===================================== */}
+      <Row>
+            <SideNav children={[
               /* ===================================== */
               // Email Button
               /* ===================================== */
@@ -350,18 +349,21 @@ class BuildTemplateById extends Component {
           children={this.state.nav} 
         />
         {/* End Button Div */}
-          </Col>
-          <Col size="md 8">
-        <Paper
-        display = {this.state.paper}
-        children = {this.state.template.map(template => (
-          this.createComponent(template.component,template.props)
-        ))}
-      />
-        
-      </Col>
-    </Row>
-  </Container>
+            
+            <Col size="md 8">
+            {/* ================================ */}
+            {/* PAPER */}
+            {/* ================================ */}
+          <Paper
+          right = '35vh'
+          children = {this.state.template.map(template => (
+            this.createComponent(template.component,template.props)
+          ))}
+        />
+          
+        </Col>
+        </Row>
+    </Container>
   </div>
 )
 }}

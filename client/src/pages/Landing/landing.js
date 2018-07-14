@@ -7,7 +7,9 @@ import SimpleCard from "./components/EmployeeCard";
 import EmployerCard from "./components/EmployerCard";
 
 class Landing extends Component {
-
+    splashRedirect = () => {
+        window.location = `http://${window.location.host}/login`
+      }
     render() {
         return(
 
@@ -21,8 +23,8 @@ class Landing extends Component {
                                 <h3 id="secondaryText">UniForm allows users to build any kind of form from their tablet or desktop in minutes and send it out to users with the click of a button.</h3>
                                 <div className="row">
                                     <div className="col-6" id="loginButton">
-                                        <button type="button" class="btn" id="landingLogin">Log In</button>
-                                        <button type="button" class="btn" id="landingSignup">Sign Up</button>
+                                        <button type="button" class="btn" id="landingLogin" onClick = {this.splashRedirect}>Get Started</button>
+                                        <button type="button" class="btn" id="landingLogin" onClick = {this.splashRedirect}>Sign In</button>
                                     </div>
                                 </div>
                             </div>
@@ -54,10 +56,10 @@ class Landing extends Component {
                             </div>
                             <div className="col-6" id="body1">
                                 <h1 id="mainText">Say goodbye to the headache of filling out form after form.</h1>
-                                <h3 id="secondaryText">UniForm allows users to autofill repetitive, boring information that no one wants to fill out. Share your completed form with anyone using the app in safe and secure way.</h3>
+                                <h3 id="secondaryText">UniForm allows users to autofill repetitive, boring information that no one wants to fill out. Share your completed form with anyone using the app in a safe and secure way.</h3>
                                 <div className="row">
                                     <div className="col-6" id="loginButton">
-                                        <button type="button" class="btn" id="landingLogin">Try It Out</button>
+                                        <button type="button" class="btn" id="landingLogin" onClick = {this.splashRedirect}>Try It Out</button>
                                     </div>
                                 </div>
                             </div>

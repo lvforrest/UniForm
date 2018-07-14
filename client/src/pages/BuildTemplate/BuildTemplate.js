@@ -281,31 +281,35 @@ class BuildTemplate extends Component {
     const { userOption } = this.state;
     const userValue = userOption && userOption.value;
   return(
-  <div> 
-  <Jumbotron name = {this.state.name} children = {this.state.name} />
+<div>
+    <Jumbotron name = "Build Template" />
   <Container fluid>
-    <Row>
-      <Col size="md-12">
-        <Button onClick = {this.newTemplate} children = "New" className = "btn" id="pageButton"/>
-
+   <Row>
+      <Col size="md-5">
         <Title
-                width= "35%"
+                id="templateTitle"
+                width="100vh"
+                value = {this.state.templatename}
                 onChange={this.handleInputChange}
                 name="templateName"
                 placeholder="Title (required)"
               />
+              </Col>
+              <Col size="md-2">
+              <Button onClick = {this.handleFormSubmit} children = "Save Changes" className = "btn" id="pageButton"/>
+              </Col>
+              <Col size="md-5">
               <Select
         name="form-field-name2"
+        placeholder="My Forms"
         value={userValue}
         onChange={this.handleChange}
         options= {this.state.templates.map(template => (
-          { value: template._id, label: template.templateName } 
-         
+          { value: template.templateName, label: template.templateName } 
       ))}
       />
-        <Button onClick = {() => this.updateTemplate(this.state._id)} children = "Save Changes" className = "btn" id="pageButton"/>
-        <Button onClick = {() => this.deleteTemplate(this.state._id)} display = {this.state.delete} children = "Delete Template" className = "btn" id="deleteButton"/>
-        </Col></Row>
+        </Col>
+        </Row>
           {/* ====================================== */}
           {/* SIDE NAV */}
           {/* ===================================== */}
@@ -347,12 +351,16 @@ class BuildTemplate extends Component {
         />
         {/* End Button Div */}
           </Col>
+          {/* ==================================== */}
+          {/* PAPER */}
+          {/* ==================================== */}
+          
           <Col size="md 8">
         <Paper
-        display = {this.state.paper}
+        right = '35vh'
         children = {this.state.template.map(template => (
           this.createComponent(template.component,template.props)
-        ))}
+        ))} style={{width: '50%', margin: 'auto'}}
       />
         
       </Col>

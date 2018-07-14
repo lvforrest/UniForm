@@ -40,46 +40,70 @@ class Account extends Component {
   
   render() {
   return(
+  <div>
+  <Jumbotron name = "Account"/>
   <Container fluid>
-  <Jumbotron/>
+  {/* <form> */}
     <Row>
-      <Col size="md-12">
-          <form>
+      <Col size="md-6">
               <Input
                 value={this.state.firstName}
                 onChange={this.handleInputChange}
                 name="firstName"
                 placeholder="First Name (required)"
               />
+      </Col>
+      <Col size="md-6">
               <Input
                 value={this.state.lastName}
                 onChange={this.handleInputChange}
                 name="lastName"
                 placeholder="Last Name (required)"
               />
+              </Col>
+              </Row>
+              <br></br>
+              <Row>
+                <Col size="md-6">
               <Input
                 value={this.state.email}
                 onChange={this.handleInputChange}
                 name="email"
-                placeholder="email (required)"
+                placeholder="Email (required)"
               />
+              </Col>
+        <Col size="md-6">
               <Input
                 value={this.state.password}
                 onChange={this.handleInputChange}
                 name="password"
-                placeholder="password(required)"
+                placeholder="Password (required)"
       
               />
-              <Button onClick={this.signup} children= "signup"/>
-              <Button onClick={this.asdf} children= "asdf"/>
-              
-
-            </form>
-          
-        
+              </Col>
+              </Row>
+              <br></br>
+              <Row>
+                <Col size="md-12">
+              <Button onClick={this.signup} children= "Sign Up"/>
+              {/* </form> */}
       </Col>
     </Row>
   </Container>
+  {/* Force footer to bootom */}
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  </div>
 )}
 }
 export default Account;

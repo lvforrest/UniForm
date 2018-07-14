@@ -1,8 +1,9 @@
 import React from "react";
+import "./Paper.css";
 
 const Paper = props => (
   <div
-    style={{ width: 850  ,height: 1100 , backgroundColor: "white",display: "inline-block"}}
+    style={{ width: 850, height: 1100, position: 'relative', left: props.left, right: props.right, backgroundColor: "white"}}
     className="paper"
   >
     <div style = {{padding: 100}}className = "content">

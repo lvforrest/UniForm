@@ -17,6 +17,8 @@ import NationalityInput from "../../build.components/Nationality-input";
 import GenderInput from "../../build.components/Gender-input";
 import CustomInput from "../../build.components/Custom-input"
 import TextInput from "../../build.components/Text-input"
+import Jumbotron from "../../components/Jumbotron";
+
 class ViewFilled extends Component {
  
   state = {
@@ -26,7 +28,7 @@ class ViewFilled extends Component {
     templateName: "",
     _id: "",
     patron_id: '',
-    url: "",
+    url: ""
   }
   componentDidMount() {
     
@@ -152,26 +154,31 @@ class ViewFilled extends Component {
 
   render() {
   return(
+  <div>
+    <Jumbotron name = "Update Form Data" />
   <Container fluid>
     <Row>
       <Col size="md-12">
-
+      <div style={{width: '50%', margin: 'auto'}}> 
               <Input
-                width= "35%"
+                // width= "35%"
                 value={this.state.patron.firstName}
                 onChange={this.handleFillableChange}
                 name="firstName"
                 placeholder="First Name"
               />
               <Input
-                width= "35%"
+                // width= "35%"
                 value={this.state.patron.lastName}
                 onChange={this.handleFillableChange}
                 name="lastName"
                 placeholder="Last Name"
               />
-        <Button onClick = {this.handleFormSubmit} children = "Post" className = "btn" id="pageButton"/>
+        <Button onClick = {this.handleFormSubmit} children = "Post" className = "btn" id="pageButton"
+        />
+        </div>
         <Paper
+        left = '35vh'
         display = {this.state.paper}
         children = {this.state.template.map(template => (
           this.createFillableComponent(template.component,template.props)
@@ -181,6 +188,7 @@ class ViewFilled extends Component {
     </Col>
     </Row>
   </Container>
+  </div>
 )
 }}
 export default ViewFilled;

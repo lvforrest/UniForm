@@ -16,6 +16,7 @@ const MySideNav = props => (
           </Nav>
           );      
         })}
+        <br></br>
         </SideNav>
     </div>
 )

@@ -17,6 +17,8 @@ import NationalityInput from "../../build.components/Nationality-input";
 import GenderInput from "../../build.components/Gender-input";
 import CustomInput from "../../build.components/Custom-input"
 import TextInput from "../../build.components/Text-input"
+import Jumbotron from "../../components/Jumbotron";
+
 class ViewTemplate extends Component {
  
   state = {
@@ -137,10 +139,12 @@ class ViewTemplate extends Component {
   }
   render() {
   return(
+    <div>
+      <Jumbotron name = {this.templateName} />
   <Container fluid>
     <Row>
-      <Col size="md-12">
-
+      <Col size="md-12" >
+      <div style={{width: '50%', margin: 'auto'}}>
               <Input
                 width= "35%"
                 value={this.state.patronData.firstName}
@@ -157,16 +161,23 @@ class ViewTemplate extends Component {
               />
         <Button onClick = {this.log} children = "asdf" className = "btn" id="pageButton"/>
         <Button onClick = {this.handleFormSubmit} children = "Post" className = "btn" id="pageButton"/>
+        </div>
+        {/* ==================== */}
+        {/* PAPER */}
+        {/* ==================== */}
+        <div style={{width: '50%', margin: 'auto'}}>
         <Paper
+        right = '10vh'
         display = {this.state.paper}
         children = {this.state.template.map(template => (
           this.createFillableComponent(template.component,template.props)
-        ))}
+        ))} 
       />
-        
+        </div>
     </Col>
     </Row>
   </Container>
+  </div>
 )
 }}
 export default ViewTemplate;
