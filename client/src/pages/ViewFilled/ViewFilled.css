@@ -9,7 +9,7 @@ body {
     color: white;
 }
 
-div.paper {
+/* div.paper {
     -webkit-transition: all 235ms ease 0s;
     -moz-transition: all 235ms ease 0s;
     -o-transition: all 235ms ease 0s;
@@ -23,4 +23,4 @@ div.paper {
     background: 0 0;
     border: 0.2vh solid #41403e;
     color: #00dbff;
-}
+} */

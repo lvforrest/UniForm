@@ -2,8 +2,7 @@ import React from "react";
 
 const Paper = props => (
   <div
-    style={{ width: 850, height: 1100 ,  marginRight: "auto",
-    marginLeft: "auto", backgroundColor: "white",display: props.display}}
+    style={{ width: 850  ,height: 1100 , backgroundColor: "white",display: "inline-block"}}
     className="paper"
   >
     <div style = {{padding: 100}}className = "content">

@@ -15,7 +15,8 @@ import StreetAddressInput from "../../build.components/StreetAddress-input";
 import LanguageInput from "../../build.components/Language-input";
 import NationalityInput from "../../build.components/Nationality-input";
 import GenderInput from "../../build.components/Gender-input";
-
+import CustomInput from "../../build.components/Custom-input"
+import TextInput from "../../build.components/Text-input"
 class ViewFilled extends Component {
  
   state = {
@@ -67,12 +68,26 @@ class ViewFilled extends Component {
       "StreetAddressInput" : StreetAddressInput,
       "GenderInput" : GenderInput,
       "NationalityInput" : NationalityInput,
-      "LanguageInput" : LanguageInput
+      "LanguageInput" : LanguageInput,
+      "CustomInput" : CustomInput,
+      "TextInput" : TextInput,
     }
-    props.onChange = this.handleFillableChange
-    props.value = this.state.patron[props.name]
+    console.log(props)
+    props.onClick = this.nothing
+    
+    if(componentName === "TextInput"){
+      props.value = props.value
+      props.onChange = this.nothing
+    } else {
+      props.value = this.state.patron[props.name]
+      props.onChange = this.handleFillableChange
+    }
+    
     const component = React.createElement(components[componentName], props);
     return component;
+  }
+  nothing = () => {
+
   }
   handleFillableChange = event => {
     const { name, value } = event.target;

@@ -3,7 +3,9 @@ import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import Button from "../../components/Button"
 import Paper from "../../components/Paper"
-import { Title, } from "../../components/InputField";
+import Jumbotron from "../../components/Jumbotron";
+import SideNav from "../../components/SideNav"
+import { Title, Input } from "../../components/InputField";
 import "./buildTemplate.css";
 import EmailInput from "../../build.components/Email-input";
 import NameInput from "../../build.components/Name-input";
@@ -16,8 +18,8 @@ import StreetAddressInput from "../../build.components/StreetAddress-input";
 import LanguageInput from "../../build.components/Language-input";
 import NationalityInput from "../../build.components/Nationality-input";
 import GenderInput from "../../build.components/Gender-input";
-import Jumbotron from "../../components/Jumbotron";
-import SideNav from "../../components/SideNav"
+import CustomInput from "../../build.components/Custom-input";
+import TextInput from "../../build.components/Text-input"
 
 class BuildTemplate extends Component {
 
@@ -25,9 +27,9 @@ class BuildTemplate extends Component {
     templates: [],
     templateName: "",
     template: [],
-    templates: [],
     key: 1000000, 
-    name: "Build Template"
+    title: "Build Template",
+    nav: []
   }
   componentDidMount() {
     this.loadData();
@@ -39,6 +41,7 @@ class BuildTemplate extends Component {
       )
       .catch(err => console.log(err));
   };
+
   singleInput = (name) => {
     let newTemplate = this.state.template.slice();
     newTemplate.push(name)
@@ -52,6 +55,11 @@ class BuildTemplate extends Component {
     }
     this.setState({template: newTemplate})
   }
+  keyMaker = () => {
+    const newKey = this.state.key - 1
+    this.setState({key: newKey})
+    return newKey;
+  }
   createComponent = (componentName,props) => {
     const  components = {
       "EmailInput" : EmailInput,
@@ -62,35 +70,106 @@ class BuildTemplate extends Component {
       "StreetAddressInput" : StreetAddressInput,
       "GenderInput" : GenderInput,
       "NationalityInput" : NationalityInput,
-      "LanguageInput" : LanguageInput
+      "LanguageInput" : LanguageInput,
+      "CustomInput" : CustomInput,
+      "TextInput" : TextInput,
     }
+    if (componentName === "TextInput"){
+      props.onChange = this.writtenData
+    }
+    props.onClick = this.selectElement
+    props.onDelete = this.deleteElement
+    props.param = props.key
     const component = React.createElement(components[componentName], props);
     return component;
   }
+  
 
   handleInputChange = event => {
     const { name, value } = event.target;
-
     this.setState({
       [name]: value
     });
   };
-
+    writtenData = event => {
+      const value = event.target.value
+      const editor = this.state.editor
+      editor.props.value = value
+      this.setState({editor: editor})
+      console.log(value)
+    }
     handleChange = (userOption) => {
       this.setState({userOption})
       for(let i = 0; i < this.state.templates.length; i++){
-        let match = this.state.templates[i].templateName.includes(userOption.value)
+        let match = this.state.templates[i].templateName.includes(userOption.label)
         let id = this.state.templates[i]._id
         if(match) {
-          console.log("hello")
+          console.log(id)
           window.location.href = `/buildTemplate/${id}`
         }
         }
     }
-    keyMaker = () => {
-      const newKey = this.state.key - 1
-      this.setState({key: newKey})
-      return newKey;
+    handleInputWidthChange = event => {
+      const { name, value } = event.target;
+      const editor = this.state.editor
+      let string = ""
+      if(isNaN(value)){
+        string = `${value}`
+      } else {
+        string = `${value}%`
+      }
+      editor.props[name] = string
+      const key = editor.props.key
+      for(let i = 0; i < this.state.template.length; i++) {
+        if(this.state.template[i].props.key === key){
+          let newTemplate = this.state.template
+          newTemplate[i] = editor;
+          console.log(newTemplate)
+          this.setState({template: newTemplate})
+        }
+      }
+      this.setState({
+        [name]: value
+      });
+    };
+    selecterStyle = key => {
+      for(let i = 0; i < this.state.template.length; i++){
+        if(this.state.template[i].props.key === key){
+          const selected = this.state.template[i]
+          selected.props.backgroundColor = "pink"
+          this.setState({editor: selected})
+        }
+        }
+    }
+    deleteElement = key => {
+      for(let i = 0; i < this.state.template.length; i++){
+        if(this.state.template[i].props.key === key){
+          const newTemplate = this.state.template
+          newTemplate.splice(i,1)
+          this.setState({editor: undefined})
+        }
+      }
+    }
+    selectElement = (key,type) => {
+      if(type === "CustomInput"){
+        this.customInputNav()
+      } 
+      if (type === "TextInput") {
+        this.textInputNav()
+      }
+      if(this.state.editor){
+        const selected = this.state.editor
+        selected.props.backgroundColor = "white"
+        selected.props.x = ""
+        this.selecterStyle(key)
+      } else {
+        this.selecterStyle(key)
+      }
+    }
+    deleteTemplate = (id) => {
+      API.deleteTemplate(id)
+      .then(res =>  this.props.history.push("/buildTemplate"))
+      .catch(err => console.log(err));
     }
     handleFormSubmit = event => {
       // When the form is submitted, prevent its default behavior, get recipes update the recipes state
@@ -98,73 +177,155 @@ class BuildTemplate extends Component {
       if(this.state.templateName === ""){
         alert("Template Title is requried!")
       } else {
-      
+      const template = this.state.template
+      let newTemplate = []
+      for(let i = 0; i < template.length; i++){
+        let element = template[i]
+        delete element.props.x
+        delete element.props.backgroundColor
+        delete element.props.border
+        delete element.props.onClick
+        delete element.props.onDelete
+        newTemplate.push(element)
+      }
       API.saveTemplate({
       templateName: this.state.templateName,
-      template: this.state.template
+      template: newTemplate
       })
         .then(res => this.props.history.push(`/buildTemplate/${res.data._id}`))
         .catch(err => console.log(err));
       }
       
     };
-
+    newTemplate = () => {
+     this.props.history.push("/buildTemplate")
+    }
+    customInputNav = () => {
+      const nav = [
+        <Input
+                width= "100%"
+                onChange={this.handleInputWidthChange}
+                name="width"
+                placeholder="Width"
+              />,
+            <Input
+                width= "100%"
+                onChange={this.handleInputWidthChange}
+                name="marginLeft"
+                placeholder="Margin Left"
+              />,
+              <Input
+                width= "100%"
+                onChange={this.handleInputWidthChange}
+                name="marginRight"
+                placeholder="Margin Right"
+              />,
+              <Input
+                width= "100%"
+                onChange={this.handleInputWidthChange}
+                name="placeholder"
+                placeholder="placeholder"
+              />,
+              <Input
+                width= "100%"
+                onChange={this.handleInputWidthChange}
+                name="name"
+                placeholder="user value"
+              /> 
+      ]
+      this.setState({nav: nav})
+    }
+    textInputNav = () => {
+      const nav = [
+        <Input
+                width= "100%"
+                onChange={this.handleInputWidthChange}
+                name="width"
+                placeholder="Width"
+              />,
+            <Input
+                width= "100%"
+                onChange={this.handleInputWidthChange}
+                name="marginLeft"
+                placeholder="Margin Left"
+              />,
+              <Input
+                width= "100%"
+                onChange={this.handleInputWidthChange}
+                name="marginRight"
+                placeholder="Margin Right"
+              />,
+              <Input
+                width= "100%"
+                onChange={this.handleInputWidthChange}
+                name="color"
+                placeholder="Color"
+              />,
+              <Input
+                width= "100%"
+                onChange={this.handleInputWidthChange}
+                name="fontSize"
+                placeholder="Font Size"
+              />,
+              <Input
+                width= "100%"
+                onChange={this.handleInputWidthChange}
+                name="fontFamily"
+                placeholder="Font Family"
+              />
+              
+      ]
+      this.setState({nav: nav})
+    }
   render() {
     const { userOption } = this.state;
     const userValue = userOption && userOption.value;
   return(
-    <div>
-    <Jumbotron name = {this.state.name} children = {this.state.name} />
+  <div> 
+  <Jumbotron name = {this.state.name} children = {this.state.name} />
   <Container fluid>
-   <Row>
-      <Col size="md-5">
+    <Row>
+      <Col size="md-12">
+        <Button onClick = {this.newTemplate} children = "New" className = "btn" id="pageButton"/>
+
         <Title
-                id="templateTitle"
-                width="100vh"
-                value = {this.state.templatename}
+                width= "35%"
                 onChange={this.handleInputChange}
                 name="templateName"
                 placeholder="Title (required)"
               />
-              </Col>
-              <Col size="md-2">
-              <Button onClick = {this.handleFormSubmit} children = "Save Changes" className = "btn" id="pageButton"/>
-              </Col>
-              <Col size="md-5">
               <Select
         name="form-field-name2"
-        placeholder="My Forms"
         value={userValue}
         onChange={this.handleChange}
         options= {this.state.templates.map(template => (
-          { value: template.templateName, label: template.templateName } 
+          { value: template._id, label: template.templateName } 
+         
       ))}
       />
-        </Col>
-        </Row>
+        <Button onClick = {() => this.updateTemplate(this.state._id)} children = "Save Changes" className = "btn" id="pageButton"/>
+        <Button onClick = {() => this.deleteTemplate(this.state._id)} display = {this.state.delete} children = "Delete Template" className = "btn" id="deleteButton"/>
+        </Col></Row>
           {/* ====================================== */}
           {/* SIDE NAV */}
           {/* ===================================== */}
         <Row>
           <Col size="md 3">
-          
-          <SideNav title="Form Elements" children={[
+          <SideNav children={[
               /* ===================================== */
               // Email Button
               /* ===================================== */
-          <div id="pageButton" onClick = {() => this.singleInput({component: "EmailInput" ,props: {key: this.keyMaker(), value: "",name: "email"}})} children = "Email Input" className = "navBtn"/>,
-              /* ===================================== */
+              <div id="pageButton" onClick = {() => this.singleInput({component: "CustomInput" ,props: {key: this.keyMaker(), x: "", border: "",onClick: this.selectElement, onDelete: this.deleteElement, param: this.state.key -1, type: "CustomInput",value: "",name: ""}})} children = "Custom Input" className = "navBtn"/>,              /* ===================================== */
               // Name Button 
               /* ===================================== */
-          <div id="pageButton" onClick = {() => this.singleInput({component: "NameInput" ,props: {key:this.keyMaker(), value: "",name: "firstName"}})} children = "Name Input" className = "navBtn"/> ,
-              /* ===================================== */
+              <div id="pageButton" onClick = {() => this.singleInput({component: "TextInput" ,props: {key: this.keyMaker(), onDelete: this.deleteElement, param: this.state.key -1, value: "",name: this.state.key -1,onClick: this.selectElement, onChange: this.writtenData, type: "TextInput"}})} children = "Block Text Input" className = "navBtn"/> ,              /* ===================================== */
               // Address Button 
               /* ===================================== */
           <div id="pageButton" onClick = {() => this.multiInput([
-            {component: "StreetAddressInput", props: {key:1, value: "",name: "streetAddress"}},
-            {component: "CityInput", props: {key: 2, value: "",name: "city",width: "45%"}},
-            {component: "StateInput", props: {key: 3, value: "",name: "state",width: "20%"}},
-            {component: "ZipInput", props: {key: 4,value: "",name: "zip",width: "30%"}}
+            {component: "StreetAddressInput", props: {key:this.keyMaker(), value: "",name: "streetAddress"}},
+            {component: "CityInput", props: {key:this.keyMaker(), value: "",name: "city",width: "45%"}},
+            {component: "StateInput", props: {key:this.keyMaker(), value: "",name: "state",width: "20%"}},
+            {component: "ZipInput", props: {key:this.keyMaker(),value: "",name: "zip",width: "30%"}}
             ])} children = "Address Input" className = "navBtn"/>,
               /* ===================================== */
               // Language Button 
@@ -177,28 +338,27 @@ class BuildTemplate extends Component {
               /* ===================================== */
               // Gender Button 
               /* ===================================== */
-          <div id="pageButton" onClick = {() => this.singleInput({component: "GenderInput" ,props: {key:this.keyMaker(), value: "",name: "gender"}})} children = "Gender Input" className = "navBtn"/>
-
+          <div id="pageButton" onClick = {() => this.singleInput({component: "GenderInput" ,props: {key:this.keyMaker(), value: "",name: "gender"}})} children = "Gender Input" className = "navBtn"/>,     
         
         // End Button Array
         ]}/>
+        <SideNav 
+          children={this.state.nav} 
+        />
         {/* End Button Div */}
           </Col>
           <Col size="md 8">
         <Paper
         display = {this.state.paper}
-        title = {this.state.templateName}
         children = {this.state.template.map(template => (
           this.createComponent(template.component,template.props)
         ))}
       />
-        {/* End Button Array */}
-        {/* End Button Div */}
-          </Col>
-          </Row>
+        
+      </Col>
+    </Row>
   </Container>
   </div>
-)}
-}
-
+)
+}}
 export default BuildTemplate;

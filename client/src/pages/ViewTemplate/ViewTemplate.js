@@ -15,7 +15,8 @@ import StreetAddressInput from "../../build.components/StreetAddress-input";
 import LanguageInput from "../../build.components/Language-input";
 import NationalityInput from "../../build.components/Nationality-input";
 import GenderInput from "../../build.components/Gender-input";
-
+import CustomInput from "../../build.components/Custom-input"
+import TextInput from "../../build.components/Text-input"
 class ViewTemplate extends Component {
  
   state = {
@@ -45,10 +46,21 @@ class ViewTemplate extends Component {
       "StreetAddressInput" : StreetAddressInput,
       "GenderInput" : GenderInput,
       "NationalityInput" : NationalityInput,
-      "LanguageInput" : LanguageInput
+      "LanguageInput" : LanguageInput,
+      "CustomInput" : CustomInput,
+      "TextInput" : TextInput,
     }
-    props.onChange = this.handleFillableChange
-    props.value = this.state.patronData[props.name]
+    console.log(props)
+    props.onClick = this.nothing
+    
+    if(componentName === "TextInput"){
+      props.value = props.value
+      props.onChange = this.nothing
+    } else {
+      props.value = this.state.patronData[props.name]
+      props.onChange = this.handleFillableChange
+    }
+    
     const component = React.createElement(components[componentName], props);
     return component;
   }
@@ -61,7 +73,9 @@ class ViewTemplate extends Component {
       patronData : newPatronData
     });
   };
-  
+  nothing = () => {
+
+  }
   handleInputChange = event => {
     const { name, value } = event.target;
  
@@ -118,7 +132,9 @@ class ViewTemplate extends Component {
             .catch(err => console.log(err))
       );
   }
-
+  log = () => {
+    console.log(this.state)
+  }
   render() {
   return(
   <Container fluid>
@@ -139,6 +155,7 @@ class ViewTemplate extends Component {
                 name="lastName"
                 placeholder="Last Name"
               />
+        <Button onClick = {this.log} children = "asdf" className = "btn" id="pageButton"/>
         <Button onClick = {this.handleFormSubmit} children = "Post" className = "btn" id="pageButton"/>
         <Paper
         display = {this.state.paper}
