@@ -6,13 +6,6 @@ import { Input, TextArea, FormBtn } from "../../components/InputField";
 import Button from "../../components/Button";
 import { Redirect } from 'react-router-dom'
 
-const passwordStyle={
-  WebkitTextSecurity: "disc",
-  MozextSecurity: "disc",
-  TextSecurity: "disc",
-};
-
-
 class Account extends Component {
   state = {
     lastName: "",
@@ -21,6 +14,7 @@ class Account extends Component {
     firstName: "",
   }
 
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -28,13 +22,15 @@ class Account extends Component {
     });
   };
 
-  asdf =(event) =>{
-    event.preventDefault();
-    console.log(this.state);
-  }
+  // asdf =(event) =>{
+  //   event.preventDefault();
+  //   console.log(this.state);
+  // }
 
   signup = (event)=>{
     event.preventDefault();
+    // console.log("Using ref:", this.refs.pswd.value);
+    // console.log("From form:", serialize(this.refs.form));
     API.saveUser({
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -44,29 +40,15 @@ class Account extends Component {
         .then(response =>{
           if(!response.data.err){
             this.setState({
-              redirectTo: "/login"
+              redirectTo: "/Login"
             })
           }else{
             alert("User already exists!")
           }
         })
         .catch(err => console.log(err));
+      
   };
-  // login = (event)=> {
-  //   event(preventDefault)();
-
-  // }
-  // export default React.createClass({
-
-  //   submitHandler(event) {
-  //     event.preventDefault();
-  
-  //     // Using ref: secret
-  //     console.log("Using ref:", this.refs.pswd.value);
-  
-  //     // From form: password=secret
-  //     console.log("From form:", serialize(this.refs.form));
-  //   },
   
   render() {
     if (this.state.redirectTo) {
@@ -78,7 +60,7 @@ class Account extends Component {
       <Col size="md-12">
        
           <h1>Account</h1>
-          <form>
+          <form> 
               <Input
                 value={this.state.firstName}
                 onChange={this.handleInputChange}
@@ -98,17 +80,16 @@ class Account extends Component {
                 placeholder="Email(Required)"
               />
             
-              <Input style ={passwordStyle}
+              <Input
+        
                 value={this.state.password}
                 onChange={this.handleInputChange}
                 name="password"
-                type="password"
+                type= "password"
                 placeholder="Password(required)"
               />
 
-              <Button onClick={this.signup} children= "signup"/>
-              {/* <Button onClick={this.asdf} children= "asdf"/> */}
-              
+              <Button onClick={this.signup} children= "signup"/>              
 
             </form>
           

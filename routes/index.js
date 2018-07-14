@@ -4,8 +4,12 @@ const apiRoutes = require("./api");
 var passport = require('../validation');
 
 // API Routes
-router.post("api/user/", passport.authenticate("local"), function(req,res){
-  console.log("Login");
+router.post("/login", passport.authenticate("local"), function(req,res){
+  console.log('logged in', req.user);
+        var userInfo = {
+            email: req.user.email
+        };
+        res.send(userInfo);
 });
 
 router.use("/api", apiRoutes);

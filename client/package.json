@@ -5,8 +5,10 @@
   "proxy": "http://localhost:3001/",
   "dependencies": {
     "axios": "^0.16.2",
+    "form-serialize": "^0.7.2",
     "jsx-to-string": "^1.4.0",
     "react": "^16.0.0",
+    "react-custom-password-mask": "^1.0.10",
     "react-dom": "^16.0.0",
     "react-router-dom": "^4.1.2",
     "react-scripts": "1.0.14",

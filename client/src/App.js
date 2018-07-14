@@ -14,29 +14,50 @@ import ManagePatrons from "./pages/ManagePatrons"
 import Jumbotron from "./components/Jumbotron";
 import Account from "./pages/Account";
 import Login from "./pages/Login";
+import API from "./utils/API";
+
+
+
 class App extends Component {
-  constructor(){
+  constructor() {
     super()
-    this.state ={user: null, loggedIn: false}
-  
-  // this.login =this.login.bind(this)
-  // this.signup=this.signup.bind(this)
- 
-} 
+    this.state = {
+      loggedIn: false,
+      email: ''
+    }
 
-auth(user) {
-  return this.setState({user})
-}
-
-componentDidMount(){
-  // 
-  if (!this.state) {
-    redirectTo: "/Account"
-
-  } else {
-    redirectTo: "/"
+    this.login = this.login.bind(this)
+    this.componentDidMount = this.componentDidMount.bind(this)
+    this.updateUser = this.updateUser.bind(this)
   }
-}
+
+  componentDidMount() {
+    this.login()
+  }
+
+  updateUser (obj) {
+    this.setState(obj);
+  }
+
+  login = ()=>{
+    API.getUserLogin(this.state.email)
+
+      if (this.state.email) {
+        console.log('user is already saved')
+
+        this.setState({
+          loggedIn: true,
+          email: this.state.email
+        })
+      } else {
+        this.setState({
+          loggedIn: false,
+          email: null
+        })
+      }
+    }
+
+
   render() {
     return(
 
@@ -52,14 +73,16 @@ componentDidMount(){
           <Route exact path="/manageForms" component={ManageForms}/>
           <Route exact path="/managePatrons" component={ManagePatrons}/>
           <Route exact path="/autofill" component={Autofill}/>
-          <Route exact path ="/storage" component={FindForm}/>
-          <Route exact path = "/Account" component ={Account}/>
+          <Route exact path ="/storage" component={FindForm}/>   
+          {/* <Route exact path ="/login" component={Login}/> */}
+          <Route exact path ="/account" component={Account}/>
           <Route
-            path='/Login'
-            component={() => <Login auth={true} />}
-            />
-
-          {/* <Route exact path="/filled/:id" component={ViewFilled}/> */}
+          path="/Login"
+          render = {() =>
+            <Login
+              updateUser={this.updateUser}
+            />}
+        />
           <Route component={NoMatch} />
         </Switch>
       </div>
@@ -67,8 +90,12 @@ componentDidMount(){
     <Footer />
   </div>
 
-  
-)};
-}
+             
+  );
+    }
+  }
+
+
+
 
 export default App;

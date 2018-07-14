@@ -10,11 +10,9 @@ const userSchema = new Schema({
 });
 
 
-userSchema.method={
-	checkPassword: function (inputPassword) {
-		return bcrypt.compareSync(inputPassword, this.password)
-  }
-};
+userSchema.method('checkPassword', function(inputPassword) {
+  return bcrypt.compareSync(inputPassword, this.password);
+});
 // ('checkPassword', function(inputPassword) {
 // 	return bcrypt.compareSync(inputPassword, this.password);
 //   });
