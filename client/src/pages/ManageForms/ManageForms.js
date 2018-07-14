@@ -79,13 +79,15 @@ class ManageForms extends Component {
       <p><i>Select an existing form to generate its link!</i></p>
       </Col>
       <Col size = "md-12">
+      <div style={{width: '50%', margin: 'auto'}}> 
         <Select
           name="form-field-name2"
           value={userValue}
           onChange={this.handleChange}
           options= {this.state.templates.map(template => (
             { value: template._id, label: template.templateName } 
-        ))} style={{left: '55vh'}} placeholder="Select Form" /> 
+        ))} placeholder="Select Form" /> 
+        </div>
         <br></br>
       </Col>
     </Row>

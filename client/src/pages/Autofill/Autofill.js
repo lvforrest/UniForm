@@ -118,30 +118,34 @@ class Autofill extends Component {
     <Row>
       <Col size="md-12">
           <h2>Patron</h2>
-          <p><i>Select a patron to import their information...</i></p>          
+          <p><i>Select a patron to import their information...</i></p>
+          <div style={{width: '50%', margin: 'auto'}}>           
           <Select
           name="form-field-name2"
           value={patronValue}
           onChange={this.handleChange}
           options= {this.state.patrons.map(patron => (
             { value: patron._id , label: patron.patronName } 
-        ))} style={{left: '31vw'}}
+        ))}
         /> 
+        </div>
         </Col>
     </Row>
     <hr></hr>
     <Row>
       <Col size="md-12">
         <h2>Template</h2>
-        <p><i>Then select the form you want their data to autofill!</i></p>  
+        <p><i>Then select the form you want their data to autofill!</i></p> 
+        <div style={{width: '50%', margin: 'auto'}}> 
         <Select 
           name="form-field-name2"
           value={templateValue}
           onChange={this.handleChangeB}
           options= {this.state.templates.map(template => (
             { value: template._id , label: template.templateName } 
-        ))} style={{left: '31vw'}}
+        ))}
         />
+        </div>
         </Col>
       </Row>
       <Row>
