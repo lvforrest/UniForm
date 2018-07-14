@@ -16,6 +16,7 @@ import ManagePatrons from "./pages/ManagePatrons"
 import Jumbotron from "./components/Jumbotron";
 import Account from "./pages/Account";
 import Landing from "./pages/Landing/landing";
+import Presentation from "./pages/Presentation/presentation";
 
 class App extends Component {
 
@@ -39,6 +40,7 @@ class App extends Component {
           <Route exact path="/managePatronData" component={ManagePatronData}/>
           <Route exact path ="/login" component={Home}/>
           <Route exact path = "/Account" component ={Account}/>
+          <Route exact path = "/presentation" component ={Presentation}/>
           <Route component={NoMatch} />
         </Switch>
       </div>
