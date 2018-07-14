@@ -302,7 +302,9 @@ class BuildTemplateById extends Component {
           options= {this.state.templates.map(template => (
             { value: template._id, label: template.templateName } 
         ))}
-        style={{left:'25vw'}}/>
+
+        style={{left:'25vw', marginBottom: '1vh'}}/>
+
         </Col>
       </Row>
       <Row>

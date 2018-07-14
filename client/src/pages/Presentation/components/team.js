@@ -45,26 +45,26 @@ function Team(props) {
                 <div className="row">
                     <div className="col-6">
                         <h1>Will</h1>
-                        <h3>Branding and Experience Design</h3>
-                        <h3>Front-end design, logo, constructor pages</h3>
+                        <h3>Branding, Experience Design</h3>
+                        <h3> Front-end design, React components, logo, constructor pages</h3>
                     </div>
                     <div className="col-6">
                         <h1>Luke</h1>
                         <h3>Back-end functionality</h3>
-                        <h3>Form-builder, autofill functionality</h3>
+                        <h3>Front-end logic, state management, form-builder, autofill functionality</h3>
                     </div>
                 </div>
                 <br />
                 <div className="row">
                     <div className="col-6">
                         <h1>Lacie</h1>
-                        <h3>Passport Login</h3>
-                        <h3>MongoDB connections and Mongoose ORM</h3>
+                        <h3>Back-end logic</h3>
+                        <h3>Passport Login, MongoDB connections, Mongoose ORM</h3>
                     </div>
                     <div className="col-6">
                         <h1>Louis</h1>
-                        <h3>Branding and Experience Design</h3>
-                        <h3>Front-end design, landing page, constructor pages, presentation</h3>
+                        <h3>Branding, Experience Design</h3>
+                        <h3>Front-end design, React components, landing page, constructor pages, presentation</h3>
                     </div>
                 </div>
                 <br />

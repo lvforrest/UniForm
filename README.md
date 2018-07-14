@@ -1,5 +1,5 @@
 # UniForm
-A form-building application with React/Babel/Material/Bootstrap/Select/Express/MongoDB
+A form-building application with React/Node/Express/MongoDB/Mongoose/Material/Select/Autosize/Passport
 
 ## Description
 
@@ -31,6 +31,14 @@ Next, open the [client folder](./client) in another terminal and run `yarn start
 
 ### Authors
 
-* *UI*: Louis Boehling & Will Fisher
-* *UX & Database*: Luke Myers
-* *Authentication*: Lacie Forrest
+* Louis Boehling:
+ *Branding, Experience Design, Front-End Design, React Components, Landing Page, Constructor Pages, Presentation*
+
+* Will Fisher:
+ *Branding, Experience Design, Front-End Design, React Components, Logo, Constructor Pages*
+
+* Lacie Forrest:
+ *Back-End Logic, Passport Login, MongoDB Connections, Mongoose ORM*
+
+* Luke Myers:
+ *Back-End Functionality, Front-End Logic, State Management, Form-Builder, Autofill Functionality*
