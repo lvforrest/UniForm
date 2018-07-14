@@ -1,10 +1,15 @@
 {
-  "main.css": "static/css/main.d6f7397e.css",
-  "main.css.map": "static/css/main.d6f7397e.css.map",
-  "main.js": "static/js/main.868a50f4.js",
-  "main.js.map": "static/js/main.868a50f4.js.map",
-  "static/media/Moon2.0-Bold.otf": "static/media/Moon2.0-Bold.e1c9d28f.otf",
-  "static/media/Moon2.0-Light.otf": "static/media/Moon2.0-Light.14e8e211.otf",
-  "static/media/cosmic.jpg": "static/media/cosmic.3638ec79.jpg",
-  "static/media/mainLogo.png": "static/media/mainLogo.ca85c30c.png"
+  "main.css": "static/css/main.4ba89e8d.css",
+  "main.css.map": "static/css/main.4ba89e8d.css.map",
+  "main.js": "static/js/main.2d8b02ce.js",
+  "main.js.map": "static/js/main.2d8b02ce.js.map",
+  "static\\media\\Moon2.0-Light.otf": "static/media/Moon2.0-Light.14e8e211.otf",
+  "static\\media\\cosmic.jpg": "static/media/cosmic.3638ec79.jpg",
+  "static\\media\\employees.png": "static/media/employees.e61f5970.png",
+  "static\\media\\employer.png": "static/media/employer.8f461ea6.png",
+  "static\\media\\futureDev.png": "static/media/futureDev.c34f2558.png",
+  "static\\media\\landingimage1.png": "static/media/landingimage1.0bf9ddda.png",
+  "static\\media\\mainLogo.png": "static/media/mainLogo.ca85c30c.png",
+  "static\\media\\part3.png": "static/media/part3.b16964ff.png",
+  "static\\media\\team.png": "static/media/team.4f45e62a.png"
 }

@@ -15,7 +15,7 @@ function ButtonAppBar() {
         {/* ===================================== */}
         {/* Home */}
         {/* ===================================== */}
-        <div className="collapse navbar-collapse" id="navbarNavDropdown">
+        <div className="collapse navbar-collapse" id="navbarNavDropdown" id="Home">
           <ul className="navbar-nav">
             <li color="inherit" className={
                     window.location.pathname === "/"
@@ -25,7 +25,7 @@ function ButtonAppBar() {
                         Home
                     </Link>
             </li>
-                 {/* ===================================== */}
+        {/* ===================================== */}
         {/* Account */}
         {/* ===================================== */}
             <li color="inherit" className={
@@ -47,17 +47,17 @@ function ButtonAppBar() {
                     </Link>
             </li>
         {/* ===================================== */}
-        {/* Questionnaire */}
+        {/* Build */}
         {/* ===================================== */}
             <li color="inherit" className={
                 window.location.pathname === "/buildTemplate"
                 ? "nav-item active"
                 : "nav-item"}>
-                <Link to="/buildTemplate" className="nav-link">
+                <Link to="/buildTemplate" className="nav-link" id="Build">
                     Build
                 </Link>
             </li>
-             {/* ===================================== */}
+        {/* ===================================== */}
         {/* Manage Dropdown Menu */}
         {/* ===================================== */}
         <li className="nav-item dropdown">
@@ -66,8 +66,8 @@ function ButtonAppBar() {
         </a>
         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
           <a className="dropdown-item" href="/manageForms">Forms</a>
-          {/* CHANGE QUESTIONNAIRE HREF WHEN NEW ROUTE GETS MADE */}
           <a className="dropdown-item" href="/managePatrons" color="inherit">Patrons</a>
+          <a className="dropdown-item" href="/managePatronData" color="inherit">Patron Data</a>
           </div>
         </li>
         {/* ===================================== */}
@@ -77,19 +77,8 @@ function ButtonAppBar() {
                 window.location.pathname === "/autofill"
                 ? "nav-item active"
                 : "nav-item"}>
-                <Link to="/autofill" className="nav-link">
+                <Link to="/autofill" className="nav-link" id="Autofill">
                     Autofill
-                </Link>
-            </li>
-        {/* ===================================== */}
-        {/* Storage */}
-        {/* ===================================== */}
-            <li className="nav-item" color="inherit" className={
-                window.location.pathname === "/storage"
-                ? "nav-item active"
-                : "nav-item"}>
-                <Link to="/storage" className="nav-link">
-                    Storage
                 </Link>
             </li>
         {/* ===================================== */}
@@ -99,7 +88,7 @@ function ButtonAppBar() {
                 window.location.pathname === "/"
                 ? "nav-item active"
                 : "nav-item"}>
-                <Link to="/" className="nav-link">
+                <Link to="/" className="nav-link" id="Signout">
                     Sign Out
                 </Link>
             

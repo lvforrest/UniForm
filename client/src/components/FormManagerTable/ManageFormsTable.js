@@ -36,7 +36,7 @@ function ManageFormsTable(props) {
                   {child.filledName}
                 </TableCell>
                 <TableCell>
-                <a href = {`/buildTemplate/${child.templateId}`} children = "View/Update"/>
+                <a href = {`/filled/${child._id}`} children = "View/Update"/>
                 </TableCell>
                 <TableCell>
                 <a onClick = {() => props.onDelete(child._id,child.templateId)} children = "Delete"/>
