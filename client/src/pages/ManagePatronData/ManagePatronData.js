@@ -102,13 +102,15 @@ class ManagePatronData extends Component {
       </Col> */}
     <Row>
       <Col size = "md-12">
+      <div style={{width: '50%', margin: 'auto'}}> 
         <Select
           name="form-field-name2"
           value={userValue}
           onChange={this.handleChange}
           options= {this.state.patrons.map(patron => (
             { value:patron._id, label:patron.patronName } 
-        ))} style={{ left: '55vh'}}/>
+        ))} />
+        </div>
         </Col>
     </Row>
     <Row>
