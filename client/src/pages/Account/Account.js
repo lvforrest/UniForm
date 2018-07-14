@@ -4,6 +4,13 @@ import { Col, Row, Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
 import { Input, TextArea, FormBtn } from "../../components/InputField";
 import Button from "../../components/Button";
+import { Redirect } from 'react-router-dom'
+
+const passwordStyle={
+  WebkitTextSecurity: "disc",
+  MozextSecurity: "disc",
+  TextSecurity: "disc",
+};
 
 
 class Account extends Component {
@@ -34,7 +41,15 @@ class Account extends Component {
       email: this.state.email,
       password: this.state.password
       })
-        .then(res => alert("user created!"))
+        .then(response =>{
+          if(!response.data.err){
+            this.setState({
+              redirectTo: "/login"
+            })
+          }else{
+            alert("User already exists!")
+          }
+        })
         .catch(err => console.log(err));
   };
   // login = (event)=> {
@@ -54,6 +69,9 @@ class Account extends Component {
   //   },
   
   render() {
+    if (this.state.redirectTo) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />
+  } else {
   return(
   <Container fluid>
     <Row>
@@ -80,15 +98,16 @@ class Account extends Component {
                 placeholder="Email(Required)"
               />
             
-              <Input
+              <Input style ={passwordStyle}
                 value={this.state.password}
                 onChange={this.handleInputChange}
                 name="password"
+                type="password"
                 placeholder="Password(required)"
               />
 
               <Button onClick={this.signup} children= "signup"/>
-              <Button onClick={this.asdf} children= "asdf"/>
+              {/* <Button onClick={this.asdf} children= "asdf"/> */}
               
 
             </form>
@@ -97,6 +116,7 @@ class Account extends Component {
       </Col>
     </Row>
   </Container>
-)}
+    )}
+  }
 }
 export default Account;

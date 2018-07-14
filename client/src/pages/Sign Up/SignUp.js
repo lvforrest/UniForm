@@ -3,6 +3,8 @@ import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/InputField";
 import Jumbotron from "../../components/Jumbotron";
+import { Redirect } from 'react-router-dom'
+
 
 class SignUp extends Component {
   constructor(){
@@ -26,6 +28,7 @@ class SignUp extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
+    console.log("submit")
     if (this.state.email && this.state.firstName ) {
       API.saveUser({
         firstName: this.state.firstName,
@@ -36,7 +39,7 @@ class SignUp extends Component {
       .then(response =>{
         if(!response.data.err){
           this.setState({
-            redirectTo: "/Login"
+            redirectTo: "/login"
           })
         }else{
           alert("User already exists!")
@@ -47,6 +50,9 @@ class SignUp extends Component {
     }
   };
   render() {
+    if (this.state.redirectTo) {
+    return <Redirect to={{ pathname: this.state.redirectTo }} />
+} else {
   return(
   <div>
   <Jumbotron name = {this.state.name} children = {this.state.name} />
@@ -95,6 +101,7 @@ class SignUp extends Component {
     </Row>
   </Container>
   </div>
-)}
+    )}
+  }
 }
 export default SignUp;

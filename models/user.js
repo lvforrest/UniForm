@@ -10,9 +10,14 @@ const userSchema = new Schema({
 });
 
 
-userSchema.method('checkPassword', function(inputPassword) {
-	return bcrypt.compareSync(inputPassword, this.password);
-  });
+userSchema.method={
+	checkPassword: function (inputPassword) {
+		return bcrypt.compareSync(inputPassword, this.password)
+  }
+};
+// ('checkPassword', function(inputPassword) {
+// 	return bcrypt.compareSync(inputPassword, this.password);
+//   });
 
 userSchema.pre('save', function(next) {
 	this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(10), null);

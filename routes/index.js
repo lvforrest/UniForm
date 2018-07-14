@@ -1,0 +1,18 @@
+const path = require("path");
+const router = require("express").Router();
+const apiRoutes = require("./api");
+var passport = require('../validation');
+
+// API Routes
+router.post("api/user/", passport.authenticate("local"), function(req,res){
+  console.log("Login");
+});
+
+router.use("/api", apiRoutes);
+
+// If no API routes are hit, send the React app
+router.use(function(req, res) {
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+});
+
+module.exports = router;

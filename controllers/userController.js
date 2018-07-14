@@ -17,9 +17,12 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findOne: function(req, res) { 
+    console.log("server")
+    console.log(JSON.stringify(req))
     db.User  
     .findOne({email:req.params.email}, {password:req.params.password})  
-    .then(dbModel => res.json(dbModel))  
+    .then(dbModel => {console.log(JSON.stringify(dbModel)) 
+      res.json(dbModel)})  
     .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {

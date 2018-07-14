@@ -4,6 +4,8 @@ import { Col, Row, Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
 import { Input, TextArea, FormBtn } from "../../components/InputField";
 import Button from "../../components/Button";
+import { Redirect } from 'react-router-dom'
+
 
 // class Auth extends Component {
 //   constructor(){
@@ -123,6 +125,7 @@ import Button from "../../components/Button";
 // )}
 // }
 // export default Login;
+ 
 
 class Login extends Component {
   constructor(){
@@ -130,7 +133,6 @@ class Login extends Component {
   this.state = {
     email:"", 
     password: "",
-
     redirectTo: null,
   }
 }
@@ -138,7 +140,7 @@ class Login extends Component {
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
-      [event.target.name]: event.target.value
+      [name]: value
     });
   };
 
@@ -149,23 +151,27 @@ class Login extends Component {
 
   login = (event)=>{
     event.preventDefault();
-    API.getUserLogin({
-      email: this.state.email,
-      password: this.state.password,
+    console.log('submit')
+    API.getUserLogin(
+      this.state.email,
+      this.state.password,
       
-      })
+      )
         .then(res => {
-          const { user } = res;
-          this.props.auth(user,{
-            loggedIn: true,
-            email: res.data.email,
-            password: res.data.password
-
-          });
+          // console.log(res)
+          console.log(res.data);
+          const { user } = res.data;
+          // this.props.auth(user,{
+            
+          //   loggedIn: true,
+          //   email: res.data.email,
+          //   password: res.data.password
+            
+          // });
           alert("logged in!")
-        })
-        this.setState({
-          redirectTo: "/"
+          this.setState({
+            redirectTo: "/"
+          });
         })
         .catch(err => console.log(err));
        
@@ -173,7 +179,11 @@ class Login extends Component {
 
   
   render() {
+    if (this.state.redirectTo) {
+        return <Redirect to={{ pathname: this.state.redirectTo }} />
+    } else {
   return(
+
   <Container fluid>
     <Row>
       <Col size="md-12">
@@ -186,15 +196,16 @@ class Login extends Component {
                 name="email"
                 placeholder="Email"
               />
-              <Input
+              <Input  
                 value={this.state.password}
                 onChange={this.handleInputChange}
                 name="password"
+                type= "password"
                 placeholder="Password"
               />
               
 
-              <Button onClick={this.handleFormSubmit} children= "login"/>
+              <Button onClick={this.login} children= "login"/>
               {/* <Button onClick={this.asdf} children= "asdf"/> */}
               
 
@@ -204,6 +215,8 @@ class Login extends Component {
       </Col>
     </Row>
   </Container>
-)}
+    )
+    }
+  }
 }
 export default Login;

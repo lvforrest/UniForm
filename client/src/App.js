@@ -31,10 +31,9 @@ auth(user) {
 componentDidMount(){
   // 
   if (!this.state) {
-    redirectTo: "/Signup"
+    redirectTo: "/Account"
 
   } else {
-    loggedIn:true
     redirectTo: "/"
   }
 }
@@ -55,8 +54,10 @@ componentDidMount(){
           <Route exact path="/autofill" component={Autofill}/>
           <Route exact path ="/storage" component={FindForm}/>
           <Route exact path = "/Account" component ={Account}/>
-          <Route path = "/Login" 
-          render auth={this.auth} component ={Login}/>
+          <Route
+            path='/Login'
+            component={() => <Login auth={true} />}
+            />
 
           {/* <Route exact path="/filled/:id" component={ViewFilled}/> */}
           <Route component={NoMatch} />

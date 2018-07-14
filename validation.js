@@ -16,6 +16,7 @@ passport.use("local",new LocalStrategy(
 	passReqToCallback:true
   },
   function(req,email, password, done) {
+		console.log(email)
     // When a user tries to sign in this code runs
 	User.findOne({email:email})
 	.then(function(user) {
@@ -26,13 +27,13 @@ passport.use("local",new LocalStrategy(
         });
       }
       // If there is a user with the given email, but the password the user gives us is incorrect
-      else if (!user.validPassword(password)) {
+      else if (!user.checkPassword(password)) {
         return done(null, false, {
           message: "Incorrect password."
         });
       }
       // If none of the above, return the user
-      return done(null, dbUser);
+      return done(null, user);
     });
   }
 ));
