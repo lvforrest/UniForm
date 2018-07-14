@@ -26,8 +26,7 @@ class BuildTemplate extends Component {
     templateName: "",
     template: [],
     templates: [],
-    key: 1000000, 
-    name: "Build Template"
+    key: 1000000
   }
   componentDidMount() {
     this.loadData();
@@ -114,7 +113,7 @@ class BuildTemplate extends Component {
     const userValue = userOption && userOption.value;
   return(
     <div>
-    <Jumbotron name = {this.state.name} children = {this.state.name} />
+    <Jumbotron name = "Build Template" />
   <Container fluid>
    <Row>
       <Col size="md-5">
@@ -184,13 +183,17 @@ class BuildTemplate extends Component {
         ]}/>
         {/* End Button Div */}
           </Col>
+          {/* ==================================== */}
+          {/* PAPER */}
+          {/* ==================================== */}
+          
           <Col size="md 8">
         <Paper
-        display = {this.state.paper}
+        right = '35vh'
         title = {this.state.templateName}
         children = {this.state.template.map(template => (
           this.createComponent(template.component,template.props)
-        ))}
+        ))} style={{width: '50%', margin: 'auto'}}
       />
         {/* End Button Array */}
         {/* End Button Div */}

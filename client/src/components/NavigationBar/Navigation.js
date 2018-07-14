@@ -56,8 +56,8 @@ function ButtonAppBar() {
         </a>
         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
           <a className="dropdown-item" href="/manageForms">Forms</a>
-          {/* <a className="dropdown-item" href="/managePatrons" color="inherit">Patrons</a> */}
-          <a className="dropdown-item" href="/managePatronData" color="inherit">Patrons</a>
+          <a className="dropdown-item" href="/managePatrons" color="inherit">Patrons</a>
+          <a className="dropdown-item" href="/managePatronData" color="inherit">Patron Data</a>
           </div>
         </li>
         {/* ===================================== */}

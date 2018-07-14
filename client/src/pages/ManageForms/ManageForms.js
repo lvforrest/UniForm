@@ -15,7 +15,7 @@ class ManageForms extends Component {
     filled: [],
     filleds: [],
     templateOption: "", 
-    name: "Manage Forms",
+    title: "Manage Forms",
     link: ""
     
   }
@@ -56,7 +56,7 @@ class ManageForms extends Component {
     const userValue = userOption && userOption.value;
   return(
   <div>
-    <Jumbotron name = {this.state.name} children = {this.state.name} />
+    <Jumbotron name = "Manage Forms" />
     <Container fluid>
     {/* <Row>
       <Col size="md-12">
