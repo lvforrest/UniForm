@@ -15,8 +15,7 @@ class ManagePatrons extends Component {
    patrons: [],
     filled: [],
     filleds: [],
-    patronOption: "", 
-    name: "Manage Patrons",
+    patronOption: ""
 
     
   }
@@ -55,7 +54,7 @@ class ManagePatrons extends Component {
     const userValue = userOption && userOption.value;
   return(
   <div>
-  <Jumbotron name = {this.state.name} children = {this.state.name} />
+  <Jumbotron name = "Manage Patrons" />
   <Container fluid>
     <Row>
       <Col size="md-6">

@@ -15,7 +15,7 @@ class ManageForms extends Component {
     filled: [],
     filleds: [],
     templateOption: "", 
-    name: "Manage Forms",
+    title: "Manage Forms",
     link: ""
     
   }
@@ -35,7 +35,7 @@ class ManageForms extends Component {
   }
   handleChange = (userOption) => {
     
-    let link = `http://${window.location.host}/buildTemplate/${userOption.value}`
+    let link = `http://${window.location.host}/Template/${userOption.value}`
     this.setState({userOption: userOption, link: link})
     API.getFilledByTemplate(userOption.value)
       .then(res =>
@@ -56,7 +56,7 @@ class ManageForms extends Component {
     const userValue = userOption && userOption.value;
   return(
   <div>
-    <Jumbotron name = {this.state.name} children = {this.state.name} />
+    <Jumbotron name = "Manage Forms" />
     <Container fluid>
     {/* <Row>
       <Col size="md-12">
@@ -93,7 +93,7 @@ class ManageForms extends Component {
     </Row>
     <Row>
       <Col size="md-12">
-      <p>Your form's URL: <br></br>{this.state.link}</p>  
+      <p>Your form's URL: <br></br><a href={this.state.link}>{this.state.link}</a></p>  
       </Col>
       </Row>
       <Row>

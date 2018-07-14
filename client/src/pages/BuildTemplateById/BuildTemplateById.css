@@ -2,32 +2,6 @@ body {
     background-color: lightgray;
 }
 
-.btn {
-    margin: 10px 0px 10px 10px;
-    background: linear-gradient( #89dfec, #00c0de 60%, #89dfec);
-    color: white;
-    position: relative;
-    bottom: 1.5vh;
-}
-
-div.paper {
-    position: relative;
-    right: 33vh;
-    -webkit-transition: all 235ms ease 0s;
-    -moz-transition: all 235ms ease 0s;
-    -o-transition: all 235ms ease 0s;
-    transition: all 235ms ease 0s;
-    box-shadow: 0.5vh 1vh 1vh black, 0 0 2vh black, 0 0 5px #00dbff;
-    -webkit-transition: all 235ms ease-in-out 0s;
-    -moz-transition: all 235ms ease-in-out 0s;
-    -o-transition: all 235ms ease-in-out 0s;
-    transition: all 235ms ease-in-out 0s;
-    align-self: center;
-    background: 0 0;
-    border: 0.2vh solid #41403e;
-    color: #00dbff;
-}
-
 .form-control#templateTitle {
     width: 75vh;
 }

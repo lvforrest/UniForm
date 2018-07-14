@@ -27,7 +27,7 @@ class Autofill extends Component {
     template: [],
     patronOption: "",
     templateOption: "",
-    name: "Autofill"
+    title: "Autofill"
     
   }
   componentDidMount() {
@@ -113,7 +113,7 @@ class Autofill extends Component {
     const templateValue = templateOption && templateOption.value;
   return(
     <div>
-      <Jumbotron name = {this.state.name} children = {this.state.name}/>
+      <Jumbotron name = "Autofill"/>
   <Container fluid>
     <Row>
       <Col size="md-12">

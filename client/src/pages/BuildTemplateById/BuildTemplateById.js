@@ -27,8 +27,7 @@ class BuildTemplateById extends Component {
     template: [],
     _id: "",
     url: "",
-    key: 1000000,
-    name: "Template"
+    key: 1000000
   }
   componentDidMount() {
     
@@ -119,7 +118,7 @@ class BuildTemplateById extends Component {
     const userValue = userOption && userOption.value;
   return(
   <div> 
-    <Jumbotron name = {this.state.name} children = {this.state.name} />
+    <Jumbotron name = "Template" />
       <Container fluid>
       <Row>
         <Col size="md-12">
@@ -193,7 +192,11 @@ class BuildTemplateById extends Component {
           {/* End Button Div */}
             </Col>
             <Col size="md 8">
+            {/* ================================ */}
+            {/* PAPER */}
+            {/* ================================ */}
           <Paper
+          right = '35vh'
           display = {this.state.paper}
           title = {this.state.templateName}
           children = {this.state.template.map(template => (
