@@ -192,7 +192,11 @@ class BuildTemplateById extends Component {
           {/* End Button Div */}
             </Col>
             <Col size="md 8">
+            {/* ================================ */}
+            {/* PAPER */}
+            {/* ================================ */}
           <Paper
+          right = '35vh'
           display = {this.state.paper}
           title = {this.state.templateName}
           children = {this.state.template.map(template => (
