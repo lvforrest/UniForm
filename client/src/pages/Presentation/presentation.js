@@ -41,7 +41,7 @@ class Presentation extends Component {
                                 <h3 id="secondaryText">✔ Authentication with Passport</h3>
                                 <h3 id="secondaryText">✔ MVC folder structure</h3>
                                 <h3 id="secondaryText">✔ .gitignore and README</h3>
-                                <div className="row">
+                                <div className="row" >
                                 </div>
                             </div>
                         </div>
