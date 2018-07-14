@@ -72,6 +72,7 @@ class Presentation extends Component {
                                     <li className="list-group-item">Integrate Node Emailer features such as email notifications when a form is sent or received and emailing full forms between parties.</li>
                                     <li className="list-group-item">Better optimize the way that data is managed, i.e. integrate more mathematic functionality and computation.</li>
                                     <li className="list-group-item">Optimize the UI/UX of the form builder pages, selectors, date managers, etc.</li>
+                                    <li className="list-group-item">Strengthen security measures to protect user data.</li>
                                 </ul>
                                 <div className="row">
                                 </div>
