@@ -3,7 +3,7 @@
     src: url(../../assets/fonts/Moon2.0-Light.otf);
 }
 
-h1 {
+h1#jumbotronHeader {
     font-family: 'MoonLight';
     position: relative;
     top: 3vh;
