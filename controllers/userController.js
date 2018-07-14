@@ -16,6 +16,15 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  findOne: function(req, res) { 
+    console.log("server")
+    console.log(JSON.stringify(req))
+    db.User  
+    .findOne({email:req.params.email}, {password:req.params.password})  
+    .then(dbModel => {console.log(JSON.stringify(dbModel)) 
+      res.json(dbModel)})  
+    .catch(err => res.status(422).json(err));
+  },
   create: function(req, res) {
     db.User
       .create(req.body)
@@ -34,5 +43,6 @@ module.exports = {
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  }
+  },
+  
 };

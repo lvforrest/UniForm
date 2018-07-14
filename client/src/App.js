@@ -15,10 +15,50 @@ import ManageForms from "./pages/ManageForms";
 import ManagePatrons from "./pages/ManagePatrons"
 import Jumbotron from "./components/Jumbotron";
 import Account from "./pages/Account";
+import Login from "./pages/Login";
+import API from "./utils/API";
 import Landing from "./pages/Landing/landing";
 import Presentation from "./pages/Presentation/presentation";
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      loggedIn: false,
+      email: ''
+    }
+
+    this.login = this.login.bind(this)
+    this.componentDidMount = this.componentDidMount.bind(this)
+    this.updateUser = this.updateUser.bind(this)
+  }
+
+  componentDidMount() {
+    this.login()
+  }
+
+  updateUser (obj) {
+    this.setState(obj);
+  }
+
+  login = ()=>{
+    API.getUserLogin(this.state.email)
+
+      if (this.state.email) {
+        console.log('user is already saved')
+
+        this.setState({
+          loggedIn: true,
+          email: this.state.email
+        })
+      } else {
+        this.setState({
+          loggedIn: false,
+          email: null
+        })
+      }
+    }
+
 
   render() {
     return(
@@ -34,12 +74,20 @@ class App extends Component {
           <Route exact path="/template/:id" component={ViewTemplate}/>
           <Route exact path="/manageForms" component={ManageForms}/>
           <Route exact path="/managePatrons" component={ManagePatrons}/>
-          <Route exact path="/autofill" component={Autofill}/>
+          <Route exact path="/autofill" component={Autofill}/>   
+          <Route exact path ="/account" component={Account}/>
+          <Route
+          path="/Login"
+          render = {() =>
+            <Login
+              updateUser={this.updateUser}
+            />}
+        />
+
           <Route exact path ="/storage" component={FindForm}/>
           <Route exact path="/filled/:id" component={ViewFilled}/>
           <Route exact path="/managePatronData" component={ManagePatronData}/>
           <Route exact path ="/login" component={Home}/>
-          <Route exact path = "/Account" component ={Account}/>
           <Route exact path = "/presentation" component ={Presentation}/>
           <Route component={NoMatch} />
         </Switch>
@@ -48,8 +96,12 @@ class App extends Component {
     <Footer />
   </div>
 
-  
-)};
-}
+             
+  );
+    }
+  }
+
+
+
 
 export default App;

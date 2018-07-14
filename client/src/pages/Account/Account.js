@@ -4,14 +4,16 @@ import { Col, Row, Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
 import { Input, TextArea, FormBtn } from "../../components/InputField";
 import Button from "../../components/Button";
+import { Redirect } from 'react-router-dom'
 
 class Account extends Component {
   state = {
     lastName: "",
     password: "",
     email: "", 
-    firstName: ""
+    firstName: "",
   }
+
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -20,10 +22,6 @@ class Account extends Component {
     });
   };
 
-  asdf =(event) =>{
-    event.preventDefault();
-    console.log(this.state);
-  }
 
   signup = (event)=>{
     event.preventDefault();
@@ -33,24 +31,40 @@ class Account extends Component {
       email: this.state.email,
       password: this.state.password
       })
-        .then(res => alert("user created!"))
+        .then(response =>{
+          if(!response.data.err){
+            this.setState({
+              redirectTo: "/Login"
+            })
+          }else{
+            alert("User already exists!")
+          }
+        })
         .catch(err => console.log(err));
-  }
+      
+  };
   
   
   render() {
+    if (this.state.redirectTo) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />
+  } else {
   return(
   <div>
   <Jumbotron name = "Account"/>
   <Container fluid>
   {/* <form> */}
     <Row>
+      <Col size="md-12">
+       
+          <h1>Account</h1>
+          <form> 
       <Col size="md-6">
               <Input
                 value={this.state.firstName}
                 onChange={this.handleInputChange}
                 name="firstName"
-                placeholder="First Name (required)"
+                placeholder="First Name (Required)"
               />
       </Col>
       <Col size="md-6">
@@ -58,7 +72,7 @@ class Account extends Component {
                 value={this.state.lastName}
                 onChange={this.handleInputChange}
                 name="lastName"
-                placeholder="Last Name (required)"
+                placeholder="Last Name (Required)"
               />
               </Col>
               </Row>
@@ -73,20 +87,15 @@ class Account extends Component {
               />
               </Col>
         <Col size="md-6">
-              <Input
-                value={this.state.password}
-                onChange={this.handleInputChange}
-                name="password"
+                type= "password"
                 placeholder="Password (required)"
-      
               />
-              </Col>
-              </Row>
-              <br></br>
-              <Row>
-                <Col size="md-12">
-              <Button onClick={this.signup} children= "Sign Up"/>
-              {/* </form> */}
+
+              <Button onClick={this.signup} children= "signup"/>              
+
+            </form>
+          
+        
       </Col>
     </Row>
   </Container>
