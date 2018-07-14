@@ -16,8 +16,7 @@ class ManagePatronData extends Component {
   state = {
    patrons: [],
     patron: [],
-    patronOption: "", 
-    name: "Manage Patrons",
+    patronOption: ""
   }
   componentDidMount() {
     this.loadData();
@@ -87,7 +86,7 @@ class ManagePatronData extends Component {
     const userValue = userOption && userOption.value;
   return(
   <div>
-  <Jumbotron name = {this.state.name} children = {this.state.name} />
+  <Jumbotron name = "Manage Patron Data" />
   <Container fluid>
     <Row>
       <Col size="md-12">
@@ -147,6 +146,9 @@ class ManagePatronData extends Component {
       </Col>
       <Col size="md-2">
               <Button onClick = {this.patronUpdate} children = "Update"/>
+      {/* ========================================== */}
+      {/* Patron Manager Table */}
+      {/* ========================================== */}
       <PatronManagerTable 
       children = {this.state.patron.patronData} deleteKey = {this.deleteKey}
       />

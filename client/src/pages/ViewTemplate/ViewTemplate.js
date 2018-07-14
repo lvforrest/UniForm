@@ -140,13 +140,17 @@ class ViewTemplate extends Component {
                 placeholder="Last Name"
               />
         <Button onClick = {this.handleFormSubmit} children = "Post" className = "btn" id="pageButton"/>
+        {/* ==================== */}
+        {/* PAPER */}
+        {/* ==================== */}
+        <div style={{width: '50%', margin: 'auto'}}>
         <Paper
         display = {this.state.paper}
         children = {this.state.template.map(template => (
           this.createFillableComponent(template.component,template.props)
-        ))}
+        ))} 
       />
-        
+        </div>
     </Col>
     </Row>
   </Container>

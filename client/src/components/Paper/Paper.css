@@ -1,0 +1,14 @@
+div.paper {
+    -webkit-transition: all 235ms ease 0s;
+    -moz-transition: all 235ms ease 0s;
+    -o-transition: all 235ms ease 0s;
+    transition: all 235ms ease 0s;
+    box-shadow: 0.5vh 1vh 1vh black, 0 0 2vh black, 0 0 5px #00dbff;
+    -webkit-transition: all 235ms ease-in-out 0s;
+    -moz-transition: all 235ms ease-in-out 0s;
+    -o-transition: all 235ms ease-in-out 0s;
+    transition: all 235ms ease-in-out 0s;
+    background: 0 0;
+    border: 0.2vh solid #41403e;
+    color: #00dbff;
+}
