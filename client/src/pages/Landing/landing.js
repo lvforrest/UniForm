@@ -11,7 +11,7 @@ class Landing extends Component {
         window.location = `http://${window.location.host}/login`
       };
       signupRedirect = () => {
-        window.location = `http://${window.location.host}/account`
+        window.location = `http://${window.location.host}/signup`
       }
     render() {
         return(
