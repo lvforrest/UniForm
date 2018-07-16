@@ -1,0 +1,13 @@
+body {
+    margin: auto;
+    align-content: center;
+    text-align: center;
+    height: auto;
+    max-width: 100%;
+}
+
+#landingPage {
+    background: linear-gradient(180deg, rgba(204,204,204,1) 24%, rgba(143,143,143,0) 75%);
+    background-color: white;
+    height: auto;
+}

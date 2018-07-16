@@ -4,7 +4,9 @@ import { Col, Row, Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
 import { Input, TextArea, FormBtn } from "../../components/InputField";
 import Button from "../../components/Button";
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
+import Logo from "../../components/Logo";
+import "./SignUp.css";
 
 class Account extends Component {
   state = {
@@ -50,42 +52,58 @@ class Account extends Component {
       return <Redirect to={{ pathname: this.state.redirectTo }} />
   } else {
   return(
-  <div>
-  <Jumbotron name = "Account"/>
-  <Container fluid>
-    <Row>
-      <Col size="md-12">
-       
-          <h1>Account</h1>
-          </Col>
-      <Col size="md-6">
+
+
+<div id="landingPage">
+    <div className="container">
+      <div className="row">
+        <div className="col-12">
+          <Logo />
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-12">
+          <h1 id="loginTitle">Uniform</h1>
+          <h3 id="loginSubheading">Just like magic.</h3>
+          <hr></hr>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-12">
+        <h5><i>Sign Up</i></h5>
+          <hr></hr>
+          <br></br>
+          </div>
+          </div>
+          <div className="row">
+      <div className="col-6">
               <Input
                 value={this.state.firstName}
                 onChange={this.handleInputChange}
                 name="firstName"
-                placeholder="First Name (Required)"
+                placeholder="First Name (required)"
               />
-      </Col>
-      <Col size="md-6">
+      </div>
+      <div className="col-6">
               <Input
                 value={this.state.lastName}
                 onChange={this.handleInputChange}
                 name="lastName"
-                placeholder="Last Name (Required)"
+                placeholder="Last Name (required)"
               />
-              </Col>
-              </Row>
+              </div>
+              </div>
               <br></br>
-              <Row>
-                <Col size="md-6">
+              <div className="row">
+                <div className="col-6">
               <Input
                 value={this.state.email}
                 onChange={this.handleInputChange}
                 name="email"
                 placeholder="Email (required)"
               />
-              </Col>
-        <Col size="md-6">
+              </div>
+        <div className="col-6">
         <Input
                 value={this.state.password}
                 onChange={this.handleInputChange}
@@ -93,26 +111,15 @@ class Account extends Component {
                 type= "password"
                 placeholder="Password (required)"
               />
-
-              <Button onClick={this.signup} children= "signup"/>              
-        
-      </Col>
-    </Row>
-  </Container>
-  {/* Force footer to bootom */}
-  <br></br>
-  <br></br>
-  <br></br>
-  <br></br>
-  <br></br>
-  <br></br>
-  <br></br>
-  <br></br>
-  <br></br>
-  <br></br>
-  <br></br>
-  <br></br>
-  </div>
+</div></div>
+<br></br>
+<div className="row">
+<div className="col-12">
+              <Button onClick={this.signup} children= "Sign Up"/>
+              </div></div>
+            <br></br>
+        </div>
+      </div>
 )}
 }
 }

@@ -4,7 +4,10 @@ import { Col, Row, Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
 import { Input, TextArea, FormBtn } from "../../components/InputField";
 import Button from "../../components/Button";
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
+import Logo from "../../components/Logo";
+import "./Login.css";
+
  
 
 class Login extends Component {
@@ -61,18 +64,36 @@ class Login extends Component {
     } else {
   return(
 
-  <Container fluid>
-    <Row>
-      <Col size="md-12">
-       
-          <h1>Login</h1>
-          <form>
+
+    <div id="landingPage">
+    <div className="container">
+      <div className="row">
+        <div className="col-12">
+          <Logo />
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-12">
+          <h1 id="loginTitle">Uniform</h1>
+          <h3 id="loginSubheading">Just like magic.</h3>
+          <hr></hr>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-12">
+        <h5><i>Login</i></h5>
+        <hr></hr>
+        <br></br>
+          <div className="row">
+          <div className="col-6">
               <Input
                 value={this.state.email}
                 onChange={this.handleInputChange}
                 name="email"
                 placeholder="Email"
               />
+              </div>
+              <div className="col-6">
               <Input
                 value={this.state.password}
                 onChange={this.handleInputChange}
@@ -80,18 +101,20 @@ class Login extends Component {
                 type="password"
                 placeholder="Password"
               />
-              
-
-              <Button onClick={this.login} children= "login"/>
+              </div>
+              </div>
+              <br></br>
+          <div className="row">
+          <div className="col-12">
+              <Button onClick={this.login} children= "Login"/>
               {/* <Button onClick={this.asdf} children= "asdf"/> */}
-              
 
-            </form>
-          
-        
-      </Col>
-    </Row>
-  </Container>
+            </div></div>
+            <br></br>
+        </div>
+      </div>
+    </div>
+  </div>
     )
     }
   }

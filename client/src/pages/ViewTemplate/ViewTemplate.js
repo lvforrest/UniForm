@@ -174,7 +174,6 @@ class ViewTemplate extends Component {
                 name="lastName"
                 placeholder="Last Name"
               />
-        <Button onClick = {this.log} children = "asdf" className = "btn" id="pageButton"/>
         <Button onClick = {this.handleFormSubmit} children = "Post" className = "btn" id="pageButton"/>
         </div>
         {/* ==================== */}

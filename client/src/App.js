@@ -75,7 +75,7 @@ class App extends Component {
           <Route exact path="/manageForms" component={ManageForms}/>
           <Route exact path="/managePatrons" component={ManagePatrons}/>
           <Route exact path="/autofill" component={Autofill}/>   
-          <Route exact path ="/account" component={Account}/>
+          <Route exact path ="/signup" component={Account}/>
           <Route
           path="/Login"
           render = {() =>

@@ -72,7 +72,8 @@ class ManagePatrons extends Component {
           { value:patron._id, label:patron.patronName } 
       ))}
       />
-      <p>{this.state.link}</p>  
+      <br></br>
+      <p>Patron URL:<br></br> <a href={this.state.link}>{this.state.link}</a></p>  
       </Col>
       
       </Row>
