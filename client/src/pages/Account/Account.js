@@ -53,12 +53,11 @@ class Account extends Component {
   <div>
   <Jumbotron name = "Account"/>
   <Container fluid>
-  {/* <form> */}
     <Row>
       <Col size="md-12">
        
           <h1>Account</h1>
-          <form> 
+          </Col>
       <Col size="md-6">
               <Input
                 value={this.state.firstName}
@@ -87,14 +86,15 @@ class Account extends Component {
               />
               </Col>
         <Col size="md-6">
+        <Input
+                value={this.state.password}
+                onChange={this.handleInputChange}
+                name="password"
                 type= "password"
                 placeholder="Password (required)"
               />
 
               <Button onClick={this.signup} children= "signup"/>              
-
-            </form>
-          
         
       </Col>
     </Row>
@@ -114,5 +114,6 @@ class Account extends Component {
   <br></br>
   </div>
 )}
+}
 }
 export default Account;
