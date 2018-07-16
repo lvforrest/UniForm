@@ -18,6 +18,7 @@ import GenderInput from "../../build.components/Gender-input";
 import CustomInput from "../../build.components/Custom-input"
 import TextInput from "../../build.components/Text-input"
 import Jumbotron from "../../components/Jumbotron";
+import RadioInput from "../../build.components/Radio-input"
 
 class ViewTemplate extends Component {
  
@@ -51,6 +52,7 @@ class ViewTemplate extends Component {
       "LanguageInput" : LanguageInput,
       "CustomInput" : CustomInput,
       "TextInput" : TextInput,
+      "RadioInput": RadioInput
     }
     console.log(props)
     props.onClick = this.nothing
@@ -58,6 +60,9 @@ class ViewTemplate extends Component {
     if(componentName === "TextInput"){
       props.value = props.value
       props.onChange = this.nothing
+    } else if(componentName === "RadioInput"){
+      props.onChange = this.onChange
+      props.disabled = false
     } else {
       props.value = this.state.patronData[props.name]
       props.onChange = this.handleFillableChange
@@ -77,6 +82,15 @@ class ViewTemplate extends Component {
   };
   nothing = () => {
 
+  }
+  onChange = (e,key) => {
+    const {value,checked} = e.target;
+    const string = checked.toString()
+    let newPatronData = this.state.patronData
+    newPatronData[value] = string
+    this.setState({
+      patronData : newPatronData
+    })
   }
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -115,6 +129,7 @@ class ViewTemplate extends Component {
     
   }
   updatePatron = (name) => {
+    console.log(this.state.patronData)
     API.getPatronName(name)
       .then(res => this.combinePatronData(res.data))
       .catch(err =>

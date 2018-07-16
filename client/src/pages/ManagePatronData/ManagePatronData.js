@@ -149,11 +149,11 @@ class ManagePatronData extends Component {
       {/* ========================================== */}
       {/* Patron Manager Table */}
       {/* ========================================== */}
-      <PatronManagerTable 
-      children = {this.state.patron.patronData} deleteKey = {this.deleteKey}
-      />
       </Col>
     </Row>
+    <PatronManagerTable 
+      children = {this.state.patron.patronData} deleteKey = {this.deleteKey}
+      />
   </Container>
   {/* Force footer to bootom */}
   <br></br>
