@@ -30,6 +30,10 @@ class ManagePatrons extends Component {
       )
       .catch(err => console.log(err));
   };
+
+  newForm = () => {
+    window.location = `http://${window.location.host}/buildTemplate`
+  };
   
   handleChange = (userOption) => {
     let link = `http://${window.location.host}/buildTemplate/${userOption.value}`
@@ -61,7 +65,7 @@ class ManagePatrons extends Component {
       <h2>My Patrons</h2>
       </Col>
       <Col size="md-6">
-      <Button onClick = {this.asdf}>Create a New Form</Button>
+      <Button onClick = {this.newForm}>Create a New Form</Button>
       </Col>
       <Col size = "md-6">
       <Select
