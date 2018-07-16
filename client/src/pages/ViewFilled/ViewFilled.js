@@ -18,6 +18,7 @@ import GenderInput from "../../build.components/Gender-input";
 import CustomInput from "../../build.components/Custom-input"
 import TextInput from "../../build.components/Text-input"
 import Jumbotron from "../../components/Jumbotron";
+import RadioInput from "../../build.components/Radio-input";
 
 class ViewFilled extends Component {
  
@@ -73,13 +74,21 @@ class ViewFilled extends Component {
       "LanguageInput" : LanguageInput,
       "CustomInput" : CustomInput,
       "TextInput" : TextInput,
+      "RadioInput" : RadioInput,
     }
-    console.log(props)
     props.onClick = this.nothing
-    
+    console.log(props)
     if(componentName === "TextInput"){
       props.value = props.value
       props.onChange = this.nothing
+    } 
+    else if(componentName === "RadioInput"){
+      props.onChange = this.onChange
+      props.disabled = false
+      let string = this.state.patron[props.value]
+      let boolean = (string === "true")
+      console.log(boolean)
+      props.defaultChecked = boolean
     } else {
       props.value = this.state.patron[props.name]
       props.onChange = this.handleFillableChange
@@ -91,9 +100,17 @@ class ViewFilled extends Component {
   nothing = () => {
 
   }
+  onChange = (e) => {
+    const {value,checked} = e.target;
+    const string = checked.toString()
+    let newPatronData = this.state.patron
+    newPatronData[value] = string
+    this.setState({
+      patron: newPatronData
+    })
+  }
   handleFillableChange = event => {
     const { name, value } = event.target;
-    console.log(value)
     let newPatronData = this.state.patron
     newPatronData[name] = value    
     this.setState({

@@ -3,7 +3,7 @@ import TextareaAutosize from 'react-autosize-textarea';
 function Text(props) {
   return (
     <TextareaAutosize 
-        placeholder='try writing some lines'
+        placeholder='type something'
         key = {props.keyMaker}
         value = {props.value}
         onClick = {() => props.onClick(props.param,props.type)}
@@ -16,6 +16,9 @@ function Text(props) {
             border: "none" ,
             float: "left", 
             marginLeft: props.marginLeft,
+            minHeight: "38px",
+            marginTop: "3px",
+            marginBottom: "3px",
             marginRight: props.marginRight,
             backgroundColor: props.backgroundColor,
             resize: "none",

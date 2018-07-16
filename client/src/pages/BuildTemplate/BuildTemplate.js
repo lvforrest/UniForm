@@ -19,8 +19,8 @@ import LanguageInput from "../../build.components/Language-input";
 import NationalityInput from "../../build.components/Nationality-input";
 import GenderInput from "../../build.components/Gender-input";
 import CustomInput from "../../build.components/Custom-input";
-import TextInput from "../../build.components/Text-input"
-
+import TextInput from "../../build.components/Text-input";
+import RadioInput from "../../build.components/Radio-input";
 class BuildTemplate extends Component {
 
   state = {
@@ -29,7 +29,8 @@ class BuildTemplate extends Component {
     template: [],
     key: 1000000, 
     title: "Build Template",
-    nav: []
+    nav: [],
+    disabled: true
   }
   componentDidMount() {
     this.loadData();
@@ -73,9 +74,15 @@ class BuildTemplate extends Component {
       "LanguageInput" : LanguageInput,
       "CustomInput" : CustomInput,
       "TextInput" : TextInput,
+      "RadioInput" : RadioInput
     }
     if (componentName === "TextInput"){
       props.onChange = this.writtenData
+    }
+
+    if (componentName === "RadioInput"){
+      props.onChange = this.doNothing
+      props.disabled = true;
     }
     props.onClick = this.selectElement
     props.onDelete = this.deleteElement
@@ -153,9 +160,10 @@ class BuildTemplate extends Component {
     selectElement = (key,type) => {
       if(type === "CustomInput"){
         this.customInputNav()
-      } 
-      if (type === "TextInput") {
+      } else if (type === "TextInput") {
         this.textInputNav()
+      } else {
+        this.radioInputNav()
       }
       if(this.state.editor){
         const selected = this.state.editor
@@ -277,6 +285,54 @@ class BuildTemplate extends Component {
       ]
       this.setState({nav: nav})
     }
+    radioInputNav = () => {
+      const nav = [
+          <Input
+              width= "100%"
+              onChange={this.handleInputWidthChange}
+              name="label"
+              placeholder="label"
+                />,
+          <Input
+              width= "100%"
+              onChange={this.handleInputWidthChange}
+              name="value"
+              placeholder="user value"
+                />,
+            <Input
+                width= "100%"
+                onChange={this.handleInputWidthChange}
+                name="marginLeft"
+                placeholder="Margin Left"
+              />,
+              <Input
+                width= "100%"
+                onChange={this.handleInputWidthChange}
+                name="marginRight"
+                placeholder="Margin Right"
+              />,
+              <Input
+                width= "100%"
+                onChange={this.handleInputWidthChange}
+                name="color"
+                placeholder="Color"
+              />,
+              <Input
+                width= "100%"
+                onChange={this.handleInputWidthChange}
+                name="fontSize"
+                placeholder="Font Size"
+              />,
+              <Input
+                width= "100%"
+                onChange={this.handleInputWidthChange}
+                name="fontFamily"
+                placeholder="Font Family"
+              />,
+              
+      ]
+      this.setState({nav: nav})
+    }
   render() {
     const { userOption } = this.state;
     const userValue = userOption && userOption.value;
@@ -322,19 +378,11 @@ class BuildTemplate extends Component {
               <div id="pageButton" onClick = {() => this.singleInput({component: "CustomInput" ,props: {key: this.keyMaker(), x: "", border: "",onClick: this.selectElement, onDelete: this.deleteElement, param: this.state.key -1, type: "CustomInput",value: "",name: ""}})} children = "Custom Input" className = "navBtn"/>,              /* ===================================== */
               // Name Button 
               /* ===================================== */
-              <div id="pageButton" onClick = {() => this.singleInput({component: "TextInput" ,props: {key: this.keyMaker(), onDelete: this.deleteElement, param: this.state.key -1, value: "",name: this.state.key -1,onClick: this.selectElement, onChange: this.writtenData, type: "TextInput"}})} children = "Block Text Input" className = "navBtn"/> ,              /* ===================================== */
-              // Address Button 
-              /* ===================================== */
-          <div id="pageButton" onClick = {() => this.multiInput([
-            {component: "StreetAddressInput", props: {key:this.keyMaker(), value: "",name: "streetAddress"}},
-            {component: "CityInput", props: {key:this.keyMaker(), value: "",name: "city",width: "45%"}},
-            {component: "StateInput", props: {key:this.keyMaker(), value: "",name: "state",width: "20%"}},
-            {component: "ZipInput", props: {key:this.keyMaker(),value: "",name: "zip",width: "30%"}}
-            ])} children = "Address Input" className = "navBtn"/>,
+              <div id="pageButton" onClick = {() => this.singleInput({component: "TextInput" ,props: {key: this.keyMaker(), fontSize: "20px" ,onDelete: this.deleteElement, param: this.state.key -1, value: "",name: this.state.key -1,onClick: this.selectElement, onChange: this.writtenData, type: "TextInput"}})} children = "Block Text Input" className = "navBtn"/> ,
               /* ===================================== */
               // Language Button 
               /* ===================================== */
-          <div id="pageButton" onClick = {() => this.singleInput({component: "LanguageInput" ,props: {key:this.keyMaker(), value: "",name: "language"}})} children = "Language Input"className = "navBtn"/>,
+          <div id="pageButton" onClick = {() => this.singleInput({component: "RadioInput" ,props: {key: this.keyMaker(), color: "black",fontSize: "20px", x: "", label: "CheckBox Label",onClick: this.selectElement, onDelete: this.deleteElement, param: this.state.key -1, type: "RadioInput",value: "",name: ""}})} children = "CheckBox Input"className = "navBtn"/>,
               /* ===================================== */
               // Nationality Button 
               /* ===================================== */
