@@ -1,24 +1,15 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
-import Button from "../../components/Button"
-import Paper from "../../components/Paper"
+import Button from "../../components/Button";
+import Paper from "../../components/Paper";
 import { Input, } from "../../components/InputField";
 import "./ViewTemplate.css";
-import EmailInput from "../../build.components/Email-input";
-import NameInput from "../../build.components/Name-input";
 import 'react-select/dist/react-select.css';
-import CityInput from "../../build.components/City-input";
-import StateInput from "../../build.components/State-input";
-import ZipInput from "../../build.components/Zip-input";
-import StreetAddressInput from "../../build.components/StreetAddress-input";
-import LanguageInput from "../../build.components/Language-input";
-import NationalityInput from "../../build.components/Nationality-input";
-import GenderInput from "../../build.components/Gender-input";
-import CustomInput from "../../build.components/Custom-input"
-import TextInput from "../../build.components/Text-input"
+import CustomInput from "../../build.components/Custom-input";
+import TextInput from "../../build.components/Text-input";
 import Jumbotron from "../../components/Jumbotron";
-import RadioInput from "../../build.components/Radio-input"
+import RadioInput from "../../build.components/Radio-input";
 
 class ViewTemplate extends Component {
  
@@ -29,27 +20,18 @@ class ViewTemplate extends Component {
     _id: "",
     patron_id: '',
     url: "",
+    email: "true@true.com"
   }
   componentDidMount() {
-    
     this.loadData();
   }
   loadData= () => {
-  API.getTemplate(this.props.match.params.id)
-  .then(res => this.setState({ template: res.data.template, templateName: res.data.templateName, _id: res.data._id,}))
-    .catch(err => console.log(err));
+    API.getTemplate(this.props.match.params.id)
+      .then(res => this.setState({ template: res.data.template, templateName: res.data.templateName, _id: res.data._id,}))
+      .catch(err => console.log(err));
   };
   createFillableComponent = (componentName,props) => {
     const  components = {
-      "EmailInput" : EmailInput,
-      "NameInput" : NameInput,
-      "CityInput" : CityInput,
-      "StateInput" : StateInput,
-      "ZipInput" : ZipInput,
-      "StreetAddressInput" : StreetAddressInput,
-      "GenderInput" : GenderInput,
-      "NationalityInput" : NationalityInput,
-      "LanguageInput" : LanguageInput,
       "CustomInput" : CustomInput,
       "TextInput" : TextInput,
       "RadioInput": RadioInput
@@ -80,9 +62,8 @@ class ViewTemplate extends Component {
       patronData : newPatronData
     });
   };
-  nothing = () => {
+  nothing = () => {}
 
-  }
   onChange = (e,key) => {
     const {value,checked} = e.target;
     const string = checked.toString()
@@ -104,7 +85,7 @@ class ViewTemplate extends Component {
     if(!this.state.patronData.firstName || !this.state.patronData.lastName){
       alert("First and Last names are requried!")
     } else {
-    const name = `${this.state.patronData.firstName} ${this.state.patronData.lastName}`
+    const name = `${this.state.email} ${this.state.patronData.firstName} ${this.state.patronData.lastName}`
     this.updatePatron(name)
     }
  
@@ -113,10 +94,14 @@ class ViewTemplate extends Component {
     Object.assign(data.patronData,this.state.patronData)
     this.setState({patronData:data.patronData, patron_id: data._id}, () => {
       API.updatePatron(this.state.patron_id, {
+        user: this.state.email,
+        userPatronName: `${this.state.email} ${this.state.patronData.firstName} ${this.state.patronData.lastName}`,
         patronName: `${this.state.patronData.firstName} ${this.state.patronData.lastName}`,
         patronData: this.state.patronData
       })
       .then(res => API.saveFilled({
+        user: this.state.email,
+        userFilledName: `${this.state.email} ${this.state.patronData.firstName} ${this.state.patronData.lastName} ${this.state.templateName}`,
         patronId: res.data._id,
         templateId: this.state._id,
         filledName: `${this.state.patronData.firstName} ${this.state.patronData.lastName} ${this.state.templateName}`
@@ -134,11 +119,15 @@ class ViewTemplate extends Component {
       .then(res => this.combinePatronData(res.data))
       .catch(err =>
         API.savePatron({
-          patronName: name,
+          user: this.state.email,
+          userPatronName: `${this.state.email} ${this.state.patronData.firstName} ${this.state.patronData.lastName}`,
+          patronName: `${this.state.patronData.firstName} ${this.state.patronData.lastName}`,
           patronData: this.state.patronData
           })
             .then(res => 
                 API.saveFilled({
+                  user: this.state.email,
+                  userFilledName: `${this.state.email} ${this.state.patronData.firstName} ${this.state.patronData.lastName} ${this.state.templateName}`,
                   patronId: res.data._id,
                   templateId: this.state._id,
                   filledName: `${this.state.patronData.firstName} ${this.state.patronData.lastName} ${this.state.templateName}`

@@ -27,7 +27,8 @@ class Autofill extends Component {
     template: [],
     patronOption: "",
     templateOption: "",
-    title: "Autofill"
+    title: "Autofill",
+    email: "true@true.com"
     
   }
   componentDidMount() {
@@ -35,13 +36,13 @@ class Autofill extends Component {
    
   }
   loadData= () => {
-    API.getTemplates()
+    API.getTemplates(this.state.email)
       .then(res =>
         this.setState({ templates: res.data}),
       )
       .catch(err => console.log(err));
  
-    API.getPatrons()
+    API.getPatrons(this.state.email)
       .then(res =>
         this.setState({ patrons: res.data}),
       )
@@ -72,6 +73,8 @@ class Autofill extends Component {
     }
     save = () => {
       API.saveFilled({
+        user: this.state.email,
+        userFilledName: `${this.state.email} ${this.state.patronOption.label} ${this.state.templateOption.label}`,
         templateId: this.state.templateOption.value,
         patronId: this.state.patronOption.value,
         filledName: `${this.state.patronOption.label} ${this.state.templateOption.label}`

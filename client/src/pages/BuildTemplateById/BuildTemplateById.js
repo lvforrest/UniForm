@@ -11,13 +11,6 @@ import EmailInput from "../../build.components/Email-input";
 import NameInput from "../../build.components/Name-input";
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
-import CityInput from "../../build.components/City-input";
-import StateInput from "../../build.components/State-input";
-import ZipInput from "../../build.components/Zip-input";
-import StreetAddressInput from "../../build.components/StreetAddress-input";
-import LanguageInput from "../../build.components/Language-input";
-import NationalityInput from "../../build.components/Nationality-input";
-import GenderInput from "../../build.components/Gender-input";
 import CustomInput from "../../build.components/Custom-input";
 import TextInput from "../../build.components/Text-input"
 import RadioInput from "../../build.components/Radio-input";
@@ -33,6 +26,7 @@ class BuildTemplateById extends Component {
     key: 1000000,
     name: "Template",
     nav: [],
+    email: "true@true.com"
   }
 
   componentDidMount() {
@@ -40,7 +34,6 @@ class BuildTemplateById extends Component {
     this.loadData();
   }
   loadData= () => {
-  console.log(this.props.match.params.id)
   API.getTemplate(this.props.match.params.id)
   .then(res => 
     
@@ -52,7 +45,7 @@ class BuildTemplateById extends Component {
       key: 1000000 - res.data.template.length}))
     .catch(err => console.log(err));
 
-  API.getTemplates()
+  API.getTemplates(this.state.email)
       .then(res =>
         this.setState({templates:res.data})
       )
@@ -79,15 +72,6 @@ class BuildTemplateById extends Component {
   }
   createComponent = (componentName,props) => {
     const  components = {
-      "EmailInput" : EmailInput,
-      "NameInput" : NameInput,
-      "CityInput" : CityInput,
-      "StateInput" : StateInput,
-      "ZipInput" : ZipInput,
-      "StreetAddressInput" : StreetAddressInput,
-      "GenderInput" : GenderInput,
-      "NationalityInput" : NationalityInput,
-      "LanguageInput" : LanguageInput,
       "CustomInput" : CustomInput,
       "TextInput" : TextInput,
       "RadioInput" : RadioInput
@@ -203,6 +187,8 @@ class BuildTemplateById extends Component {
         newTemplate.push(element)
       }
       API.updateTemplate(id, {
+        user: this.state.email,
+        userTemplateName: `${this.state.email} ${this.state.templateName}`,
         templateName: this.state.templateName,
         template: newTemplate
       })
@@ -372,6 +358,7 @@ class BuildTemplateById extends Component {
             {/* SIDE NAV */}
             {/* ===================================== */}
       <Row>
+        <Col size = "md-3">
             <SideNav children={[
               /* ===================================== */
               // Email Button
@@ -386,19 +373,12 @@ class BuildTemplateById extends Component {
               /* ===================================== */
               <div id="pageButton" onClick = {() => this.singleInput({component: "RadioInput" ,props: {key: this.keyMaker(), color: "black",fontSize: "20px", x: "", label: "CheckBox Label",onClick: this.selectElement, onDelete: this.deleteElement, param: this.state.key -1, type: "RadioInput",value: "",name: ""}})} children = "CheckBox Input"className = "navBtn"/>,
               /* ===================================== */
-              // Nationality Button 
-              /* ===================================== */
-          <div id="pageButton" onClick = {() => this.singleInput({component: "NationalityInput" ,props: {key:this.keyMaker(), value: "",name: "nationality"}})} children = "Nationality Input" className = "navBtn"/>,
-              /* ===================================== */
-              // Gender Button 
-              /* ===================================== */
-          <div id="pageButton" onClick = {() => this.singleInput({component: "GenderInput" ,props: {key:this.keyMaker(), value: "",name: "gender"}})} children = "Gender Input" className = "navBtn"/>,     
-        
         // End Button Array
         ]}/>
         <SideNav 
           children={this.state.nav} 
         />
+        </Col>
         {/* End Button Div */}
             
             <Col size="md 8">
@@ -406,10 +386,10 @@ class BuildTemplateById extends Component {
             {/* PAPER */}
             {/* ================================ */}
           <Paper
-          right = '35vh'
+          
           children = {this.state.template.map(template => (
             this.createComponent(template.component,template.props)
-          ))}
+          ))} style={{width: '50%', margin: 'auto'}}
         />
           
         </Col>

@@ -3,9 +3,10 @@ const patronController = require("../../controllers/patronController");
  
 // Matches with "/api/user" 
 router.route("/") 
-  .get(patronController.findAll) 
   .post(patronController.create); 
  
+  router.route("/find/:query")
+  .get(patronController.findAll)
 // Matches with "/api/user/:id" 
 router 
   .route("/:id") 

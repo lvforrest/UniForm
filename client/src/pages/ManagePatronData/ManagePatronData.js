@@ -16,14 +16,15 @@ class ManagePatronData extends Component {
   state = {
    patrons: [],
     patron: [],
-    patronOption: ""
+    patronOption: "",
+    email: "true@true.com"
   }
   componentDidMount() {
     this.loadData();
    
   }
   loadData= () => {
-    API.getPatrons()
+    API.getPatrons(this.state.email)
       .then(res =>
         this.setState({patrons: res.data}),
       )
@@ -60,6 +61,8 @@ class ManagePatronData extends Component {
     console.log(this.state.patron.patronData)
     this.setState({ patron: { ...this.state.patronData, patronData: object} }, () => {
       API.updatePatron(this.state.userOption.value, {
+        user: this.state.email,
+        userPatronName: `${this.state.email} ${this.state.patron.patronData.firstName} ${this.state.patron.patronData.lastName}`,
         patronName: `${this.state.patron.patronData.firstName} ${this.state.patron.patronData.lastName}`,
         patronData: this.state.patron.patronData
       })
@@ -74,13 +77,13 @@ class ManagePatronData extends Component {
       Object.assign(object,newData)
       this.setState({ patron: { ...this.state.patronData, patronData: object} }, () => {
         API.updatePatron(this.state.userOption.value, {
+          user: this.state.email,
+          userPatronName: `${this.state.email} ${this.state.patron.patronData.firstName} ${this.state.patron.patronData.lastName}`,
           patronName: `${this.state.patron.patronData.firstName} ${this.state.patron.patronData.lastName}`,
           patronData: this.state.patron.patronData
         })
       });
   }
-  
-  asdf = () => console.log(this.state)
   render() {
     const { userOption } = this.state;
     const userValue = userOption && userOption.value;
@@ -96,9 +99,6 @@ class ManagePatronData extends Component {
       <p><i>Select a patron...</i></p>
       </Col>
     </Row>
-      {/* <Col size="md-6">
-      <Button onClick = {this.asdf}>asdf</Button>
-      </Col> */}
     <Row>
       <Col size = "md-12">
       <div style={{width: '50%', margin: 'auto'}}> 

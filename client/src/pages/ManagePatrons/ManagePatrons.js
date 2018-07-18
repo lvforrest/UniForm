@@ -15,8 +15,8 @@ class ManagePatrons extends Component {
    patrons: [],
     filled: [],
     filleds: [],
-    patronOption: ""
-
+    patronOption: "",
+    email: "true@true.com"
     
   }
   componentDidMount() {
@@ -24,7 +24,7 @@ class ManagePatrons extends Component {
    
   }
   loadData= () => {
-    API.getPatrons()
+    API.getPatrons(this.state.email)
       .then(res =>
         this.setState({patrons: res.data}),
       )
