@@ -5,16 +5,7 @@ import Button from "../../components/Button"
 import Paper from "../../components/Paper"
 import { Input, } from "../../components/InputField";
 import "./ViewFilled.css";
-import EmailInput from "../../build.components/Email-input";
-import NameInput from "../../build.components/Name-input";
 import 'react-select/dist/react-select.css';
-import CityInput from "../../build.components/City-input";
-import StateInput from "../../build.components/State-input";
-import ZipInput from "../../build.components/Zip-input";
-import StreetAddressInput from "../../build.components/StreetAddress-input";
-import LanguageInput from "../../build.components/Language-input";
-import NationalityInput from "../../build.components/Nationality-input";
-import GenderInput from "../../build.components/Gender-input";
 import CustomInput from "../../build.components/Custom-input"
 import TextInput from "../../build.components/Text-input"
 import Jumbotron from "../../components/Jumbotron";
@@ -29,7 +20,8 @@ class ViewFilled extends Component {
     templateName: "",
     _id: "",
     patron_id: '',
-    url: ""
+    url: "",
+    email: "true@true.com"
   }
   componentDidMount() {
     
@@ -39,6 +31,8 @@ class ViewFilled extends Component {
   loadData= () => {
   API.getFilled(this.props.match.params.id)
   .then(res => this.setState({
+    user: res.data.user,
+    userFilledName: res.data.userFilledName,
     patronId: res.data.patronId,
     templateId: res.data.templateId,
     filledName: res.data.filledName
@@ -63,15 +57,6 @@ class ViewFilled extends Component {
   }
   createFillableComponent = (componentName,props) => {
     const  components = {
-      "EmailInput" : EmailInput,
-      "NameInput" : NameInput,
-      "CityInput" : CityInput,
-      "StateInput" : StateInput,
-      "ZipInput" : ZipInput,
-      "StreetAddressInput" : StreetAddressInput,
-      "GenderInput" : GenderInput,
-      "NationalityInput" : NationalityInput,
-      "LanguageInput" : LanguageInput,
       "CustomInput" : CustomInput,
       "TextInput" : TextInput,
       "RadioInput" : RadioInput,
@@ -130,7 +115,7 @@ class ViewFilled extends Component {
     if(!this.state.patron.firstName || !this.state.patron.lastName){
       alert("First and Last names are requried!")
     } else {
-    const name = `${this.state.patron.firstName} ${this.state.patron.lastName}`
+    const name = `${this.state.email} ${this.state.patron.firstName} ${this.state.patron.lastName}`
     this.updatePatron(name)
     }
  
@@ -139,25 +124,30 @@ class ViewFilled extends Component {
     Object.assign(data.patronData,this.state.patron)
     this.setState({patron: data.patronData, patron_id: data._id}, () => {
       API.updatePatron(this.state.patron_id, {
+        user: this.state.email,
+        userPatronName: `${this.state.email} ${this.state.patron.firstName} ${this.state.patron.lastName}`,
         patronName: `${this.state.patron.firstName} ${this.state.patron.lastName}`,
         patronData: this.state.patron
       })
         .then(res => alert("Patrons and form updated!"))
         .catch(err => console.log(err))
     });
-    
-    
   }
   updatePatron = (name) => {
+    console.log(name)
     API.getPatronName(name)
       .then(res => this.combinePatronData(res.data))
       .catch(err =>
         API.savePatron({
-          patronName: name,
+          user: this.state.email,
+          userPatronName: `${this.state.email} ${this.state.patron.firstName} ${this.state.patron.lastName}`,
+          patronName: `${this.state.patronData.firstName} ${this.state.patronData.lastName}`,
           patronData: this.state.patron
           })
             .then(res => 
                 API.saveFilled({
+                  user: this.state.email,
+                  userFilledName: `${this.state.email} ${this.state.patron.firstName} ${this.state.patron.lastName} ${this.state.templateName}`,
                   patronId: res.data._id,
                   templateId: this.state._id,
                   filledName: `${this.state.patron.firstName} ${this.state.patron.lastName} ${this.state.templateName}`

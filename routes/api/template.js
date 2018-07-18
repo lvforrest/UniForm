@@ -3,8 +3,11 @@ const templateController = require("../../controllers/templateController");
 
 // Matches with "/api/template"
 router.route("/")
-  .get(templateController.findAll)
   .post(templateController.create);
+
+// Matches with "api/template/:query"
+router.route("/user/:query")
+  .get(templateController.findAll)
 
 // Matches with "/api/template/:id"
 router

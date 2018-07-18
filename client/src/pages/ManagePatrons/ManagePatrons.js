@@ -15,8 +15,8 @@ class ManagePatrons extends Component {
    patrons: [],
     filled: [],
     filleds: [],
-    patronOption: ""
-
+    patronOption: "",
+    email: "true@true.com"
     
   }
   componentDidMount() {
@@ -24,11 +24,15 @@ class ManagePatrons extends Component {
    
   }
   loadData= () => {
-    API.getPatrons()
+    API.getPatrons(this.state.email)
       .then(res =>
         this.setState({patrons: res.data}),
       )
       .catch(err => console.log(err));
+  };
+
+  newForm = () => {
+    window.location = `http://${window.location.host}/buildTemplate`
   };
   
   handleChange = (userOption) => {
@@ -61,7 +65,7 @@ class ManagePatrons extends Component {
       <h2>My Patrons</h2>
       </Col>
       <Col size="md-6">
-      <Button onClick = {this.asdf}>Create a New Form</Button>
+      <Button onClick = {this.newForm}>Create a New Form</Button>
       </Col>
       <Col size = "md-6">
       <Select
@@ -71,8 +75,7 @@ class ManagePatrons extends Component {
         options= {this.state.patrons.map(patron => (
           { value:patron._id, label:patron.patronName } 
       ))}
-      />
-      <p>{this.state.link}</p>  
+      /> 
       </Col>
       
       </Row>

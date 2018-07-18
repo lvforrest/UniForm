@@ -3,9 +3,11 @@ const filledController = require("../../controllers/filledController");
 
 // Matches with "/api/filled"
 router.route("/")
-  .get(filledController.findAll)
   .post(filledController.create);
 
+
+router.route("/user/:query")
+  .get(filledController.findAll)
 // Matches with "/api/filled/:id"
 router
   .route("/:id")

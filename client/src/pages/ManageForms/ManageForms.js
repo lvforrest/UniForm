@@ -16,15 +16,15 @@ class ManageForms extends Component {
     filleds: [],
     templateOption: "", 
     title: "Manage Forms",
-    link: ""
-    
+    link: "",
+    email: "true@true.com"
   }
   componentDidMount() {
     this.loadData();
    
   }
   loadData= () => {
-    API.getTemplates()
+    API.getTemplates(this.state.email)
       .then(res =>
         this.setState({ templates: res.data}),
       )

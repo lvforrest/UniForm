@@ -7,17 +7,8 @@ import Jumbotron from "../../components/Jumbotron";
 import SideNav from "../../components/SideNav"
 import { Title, Input } from "../../components/InputField";
 import "./buildTemplate.css";
-import EmailInput from "../../build.components/Email-input";
-import NameInput from "../../build.components/Name-input";
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
-import CityInput from "../../build.components/City-input";
-import StateInput from "../../build.components/State-input";
-import ZipInput from "../../build.components/Zip-input";
-import StreetAddressInput from "../../build.components/StreetAddress-input";
-import LanguageInput from "../../build.components/Language-input";
-import NationalityInput from "../../build.components/Nationality-input";
-import GenderInput from "../../build.components/Gender-input";
 import CustomInput from "../../build.components/Custom-input";
 import TextInput from "../../build.components/Text-input";
 import RadioInput from "../../build.components/Radio-input";
@@ -30,13 +21,14 @@ class BuildTemplate extends Component {
     key: 1000000, 
     title: "Build Template",
     nav: [],
-    disabled: true
+    disabled: true,
+    email: "true@true.com"
   }
   componentDidMount() {
     this.loadData();
   }
   loadData= () => {
-    API.getTemplates()
+    API.getTemplates(this.state.email)
       .then(res =>
         this.setState({templates:res.data})
       )
@@ -63,15 +55,6 @@ class BuildTemplate extends Component {
   }
   createComponent = (componentName,props) => {
     const  components = {
-      "EmailInput" : EmailInput,
-      "NameInput" : NameInput,
-      "CityInput" : CityInput,
-      "StateInput" : StateInput,
-      "ZipInput" : ZipInput,
-      "StreetAddressInput" : StreetAddressInput,
-      "GenderInput" : GenderInput,
-      "NationalityInput" : NationalityInput,
-      "LanguageInput" : LanguageInput,
       "CustomInput" : CustomInput,
       "TextInput" : TextInput,
       "RadioInput" : RadioInput
@@ -103,7 +86,6 @@ class BuildTemplate extends Component {
       const editor = this.state.editor
       editor.props.value = value
       this.setState({editor: editor})
-      console.log(value)
     }
     handleChange = (userOption) => {
       this.setState({userOption})
@@ -111,7 +93,6 @@ class BuildTemplate extends Component {
         let match = this.state.templates[i].templateName.includes(userOption.label)
         let id = this.state.templates[i]._id
         if(match) {
-          console.log(id)
           window.location.href = `/buildTemplate/${id}`
         }
         }
@@ -174,11 +155,6 @@ class BuildTemplate extends Component {
         this.selecterStyle(key)
       }
     }
-    deleteTemplate = (id) => {
-      API.deleteTemplate(id)
-      .then(res =>  this.props.history.push("/buildTemplate"))
-      .catch(err => console.log(err));
-    }
     handleFormSubmit = event => {
       // When the form is submitted, prevent its default behavior, get recipes update the recipes state
       event.preventDefault();
@@ -197,6 +173,8 @@ class BuildTemplate extends Component {
         newTemplate.push(element)
       }
       API.saveTemplate({
+      user: this.state.email,
+      userTemplateName: `${this.state.email} ${this.state.templateName}`,
       templateName: this.state.templateName,
       template: newTemplate
       })
@@ -210,7 +188,7 @@ class BuildTemplate extends Component {
     }
     customInputNav = () => {
       const nav = [
-        <Input
+            <Input
                 width= "100%"
                 onChange={this.handleInputWidthChange}
                 name="width"
@@ -338,7 +316,7 @@ class BuildTemplate extends Component {
     const userValue = userOption && userOption.value;
   return(
 <div>
-    <Jumbotron name = "Build Template" />
+  <Jumbotron name = "Build Template" />
   <Container fluid>
    <Row>
       <Col size="md-5">
@@ -380,17 +358,10 @@ class BuildTemplate extends Component {
               /* ===================================== */
               <div id="pageButton" onClick = {() => this.singleInput({component: "TextInput" ,props: {key: this.keyMaker(), fontSize: "20px" ,onDelete: this.deleteElement, param: this.state.key -1, value: "",name: this.state.key -1,onClick: this.selectElement, onChange: this.writtenData, type: "TextInput"}})} children = "Block Text Input" className = "navBtn"/> ,
               /* ===================================== */
-              // Language Button 
+              // Radio Button 
               /* ===================================== */
-          <div id="pageButton" onClick = {() => this.singleInput({component: "RadioInput" ,props: {key: this.keyMaker(), color: "black",fontSize: "20px", x: "", label: "CheckBox Label",onClick: this.selectElement, onDelete: this.deleteElement, param: this.state.key -1, type: "RadioInput",value: "",name: ""}})} children = "CheckBox Input"className = "navBtn"/>,
+              <div id="pageButton" onClick = {() => this.singleInput({component: "RadioInput" ,props: {key: this.keyMaker(), color: "black",fontSize: "20px", x: "", label: "CheckBox Label",onClick: this.selectElement, onDelete: this.deleteElement, param: this.state.key -1, type: "RadioInput",value: "",name: ""}})} children = "CheckBox Input"className = "navBtn"/>,
               /* ===================================== */
-              // Nationality Button 
-              /* ===================================== */
-          <div id="pageButton" onClick = {() => this.singleInput({component: "NationalityInput" ,props: {key:this.keyMaker(), value: "",name: "nationality"}})} children = "Nationality Input" className = "navBtn"/>,
-              /* ===================================== */
-              // Gender Button 
-              /* ===================================== */
-          <div id="pageButton" onClick = {() => this.singleInput({component: "GenderInput" ,props: {key:this.keyMaker(), value: "",name: "gender"}})} children = "Gender Input" className = "navBtn"/>,     
         
         // End Button Array
         ]}/>
@@ -410,7 +381,6 @@ class BuildTemplate extends Component {
           this.createComponent(template.component,template.props)
         ))} style={{width: '50%', margin: 'auto'}}
       />
-        
       </Col>
     </Row>
   </Container>

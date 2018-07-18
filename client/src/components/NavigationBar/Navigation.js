@@ -1,17 +1,17 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import "./Navigation.css";
 
 
 function ButtonAppBar() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="#">UniForm</a>
+        <a className="navbar-brand" href="/">UniForm</a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" 
         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div id="floatNav">
+
         {/* ===================================== */}
         {/* Home */}
         {/* ===================================== */}
@@ -25,27 +25,26 @@ function ButtonAppBar() {
                         Home
                     </Link>
             </li>
+
         {/* ===================================== */}
-        {/* Account */}
+        {/* Account Dropdown Menu */}
         {/* ===================================== */}
-            <li color="inherit" className={
-                    window.location.pathname === "/Account"
-                    ? "nav-item active"
-                    : "nav-item"}>
-                    <Link to="/Account" className="nav-link">
-                        Account
-                    </Link>
-            </li>
-         {/* Account */}
-        {/* ===================================== */}
-        <li color="inherit" className={
-                    window.location.pathname === "/Login"
-                    ? "nav-item active"
-                    : "nav-item"}>
-                    <Link to="/Login" className="nav-link">
-                        Login
-                    </Link>
-            </li>
+        <li className="nav-item dropdown">
+        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Account
+        </a>
+        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+            {/* ===================================== */}    
+            {/* Login */}
+            {/* ===================================== */}
+            <a className="dropdown-item" href="/Login" color="inherit">Login</a>
+            {/* ===================================== */}
+            {/* Sign Up */}
+            {/* ===================================== */}
+             <a className="dropdown-item" href="/signup">Sign Up</a>
+          </div>
+        </li>
+
         {/* ===================================== */}
         {/* Build */}
         {/* ===================================== */}
@@ -57,19 +56,7 @@ function ButtonAppBar() {
                     Build
                 </Link>
             </li>
-        {/* ===================================== */}
-        {/* Manage Dropdown Menu */}
-        {/* ===================================== */}
-        <li className="nav-item dropdown">
-        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Manage
-        </a>
-        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a className="dropdown-item" href="/manageForms">Forms</a>
-          <a className="dropdown-item" href="/managePatrons" color="inherit">Patrons</a>
-          <a className="dropdown-item" href="/managePatronData" color="inherit">Patron Data</a>
-          </div>
-        </li>
+
         {/* ===================================== */}
         {/* Autofill */}
         {/* ===================================== */}
@@ -81,6 +68,30 @@ function ButtonAppBar() {
                     Autofill
                 </Link>
             </li>
+
+        {/* ===================================== */}
+        {/* Manage Dropdown Menu */}
+        {/* ===================================== */}
+        <li className="nav-item dropdown">
+        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Manage
+        </a>
+        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+            {/* ===================================== */}    
+            {/* Forms */}
+            {/* ===================================== */}
+          <a className="dropdown-item" href="/manageForms">Forms</a>
+            {/* ===================================== */}    
+            {/* Patrons */}
+            {/* ===================================== */}
+          <a className="dropdown-item" href="/managePatrons" color="inherit">Patrons</a>
+            {/* ===================================== */}    
+            {/* Patron Data */}
+            {/* ===================================== */}
+          <a className="dropdown-item" href="/managePatronData" color="inherit">Patron Data</a>
+          </div>
+        </li>
+
         {/* ===================================== */}
         {/* Sign Out */}
         {/* ===================================== */}

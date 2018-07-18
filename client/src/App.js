@@ -7,7 +7,6 @@ import ViewTemplate from "./pages/ViewTemplate"
 import NoMatch from "./pages/NoMatch";
 import ButtonAppBar from "./components/NavigationBar/Navigation";
 import Footer from "./components/Footer/Footer";
-import FindForm from "./pages/FindForm";
 import Autofill from "./pages/Autofill";
 import ViewFilled from "./pages/ViewFilled";
 import ManagePatronData from "./pages/ManagePatronData";
@@ -75,7 +74,7 @@ class App extends Component {
           <Route exact path="/manageForms" component={ManageForms}/>
           <Route exact path="/managePatrons" component={ManagePatrons}/>
           <Route exact path="/autofill" component={Autofill}/>   
-          <Route exact path ="/account" component={Account}/>
+          <Route exact path ="/signup" component={Account}/>
           <Route
           path="/Login"
           render = {() =>
@@ -83,8 +82,6 @@ class App extends Component {
               updateUser={this.updateUser}
             />}
         />
-
-          <Route exact path ="/storage" component={FindForm}/>
           <Route exact path="/filled/:id" component={ViewFilled}/>
           <Route exact path="/managePatronData" component={ManagePatronData}/>
           <Route exact path ="/login" component={Home}/>

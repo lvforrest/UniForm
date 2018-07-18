@@ -21,8 +21,8 @@ export default {
     return axios.post("/api/user", userData);
   },
    // Gets all Patrons 
-   getPatrons: function() { 
-    return axios.get("/api/patron"); 
+   getPatrons: function(user) { 
+    return axios.get("/api/patron/find/" + user); 
   }, 
   // Gets the Patron with the given id 
   getPatron: function(id) { 
@@ -45,8 +45,9 @@ export default {
     return axios.post("/api/patron", PatronData); 
   }, 
   // Gets all Templates
-  getTemplates: function() {
-    return axios.get("/api/template");
+  getTemplates: function(user) {
+    console.log(user)
+    return axios.get("/api/template/user/" + user);
   },
   // Gets the Template with the given id
   getTemplate: function(id) {
@@ -64,8 +65,8 @@ export default {
     return axios.put("/api/template/" + id, templateData);
   },
   // Gets all Filleds
-  getFilleds: function(data) {
-    return axios.get("/api/filled", data);
+  getFilleds: function(user) {
+    return axios.get("/api/filled", user);
   },
   // Gets the Filled with the given id
   getFilled: function(id) {

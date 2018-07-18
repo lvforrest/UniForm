@@ -9,6 +9,9 @@ import EmployerCard from "./components/EmployerCard";
 class Landing extends Component {
     splashRedirect = () => {
         window.location = `http://${window.location.host}/login`
+      };
+      signupRedirect = () => {
+        window.location = `http://${window.location.host}/signup`
       }
     render() {
         return(
@@ -23,7 +26,7 @@ class Landing extends Component {
                                 <h3 id="secondaryText">UniForm allows users to build any kind of form from their tablet or desktop in minutes and send it out to users with the click of a button.</h3>
                                 <div className="row">
                                     <div className="col-6" id="loginButton">
-                                        <button type="button" class="btn" id="landingLogin" onClick = {this.splashRedirect}>Get Started</button>
+                                        <button type="button" class="btn" id="landingLogin" onClick = {this.signupRedirect}>Get Started</button>
                                         <button type="button" class="btn" id="landingLogin" onClick = {this.splashRedirect}>Sign In</button>
                                     </div>
                                 </div>
